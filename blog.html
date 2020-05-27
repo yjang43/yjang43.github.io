@@ -1,0 +1,16 @@
+---
+layout: base
+title: Blog
+---
+
+<div class="container-fluid">
+    tags go here
+</div>
+<div class="container-sm">
+    {% for post in site.posts %}
+    <h1>{{ post.title }}</h1>
+    {{ post.date | date_to_string }}
+    {{ post }}
+    <div class="post-border"></div>
+    {% endfor %}
+</div>

@@ -1,0 +1,47 @@
+
+#intro {
+    padding: 20px;
+}
+
+.nav-item a {
+
+}
+
+.multiple-columns {
+    column-count: 2;
+    column-gap: 40px;
+    column-rule-style: solid;
+    column-rule-width: 2px;
+    column-rule-color: lightgray;
+}
+
+.multiple-columns h1 {
+    column-span: all;
+}
+
+#contact {
+    padding: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .multiple-columns {
+    column-count: 1;
+  }
+}
+
+.jumbotron-img {
+    color: white;
+
+    height: 400px;
+
+    background-image: url('/assets/img/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.post-border {
+    border-bottom-style: solid;
+    border-width: 2px;
+    border-color: lightgray;
+}
