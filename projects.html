@@ -1,4 +1,12 @@
 ---
-layout: default
+layout: base
 title: Projects
+intro: One of the joys of knowing how to program is that we put lives into ideas and make them real. These are some of my projects I worked on.
 ---
+
+<div class="container-sm">
+    {% for project in site.projects %}
+    {{ project }}
+    <div class="post-border"></div>
+    {% endfor %}
+</div>

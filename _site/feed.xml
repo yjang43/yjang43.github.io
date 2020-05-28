@@ -1,24 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-27T11:08:19-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2020/05/26/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2020-05-26T11:52:25-05:00</published><updated>2020-05-26T11:52:25-05:00</updated><id>http://localhost:4000/jekyll/update/2020/05/26/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/26/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-28T06:01:43-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">AWS Deployment, Check for Compatibility</title><link href="http://localhost:4000/2020/05/27/django-aws-compatibility.html" rel="alternate" type="text/html" title="AWS Deployment, Check for Compatibility" /><published>2020-05-27T00:00:00-05:00</published><updated>2020-05-27T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/27/django-aws-compatibility</id><content type="html" xml:base="http://localhost:4000/2020/05/27/django-aws-compatibility.html">&lt;p&gt;I used Django 3.0.5 to develop my portfolio website originally.
+Unfortunately, I overlooked the version compatibility of AWS with Django.
+The specified version was 2.1.1 with Python 3.6 the latest.
+This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root.
+I think one of the reasons why AWS is maintaining such compatibility is due to SQLite.
+Once I did&lt;/p&gt;
 
-&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python hello.py
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;eb logs
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;p&gt;I found out that SQLite 3.8 which is a default db provided by Django is not provided by AWS
+(it still maintained 3.7 version).&lt;/p&gt;
+
+&lt;p&gt;This made me reconsider the value of virtualenv sciprt.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pyenv
+pyenv &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;3.6
+virtualenv &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;LOCATION_OF_PYTHON_INSTALLED]/bin/python.3.6 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;VIRTUAL_ENVIRONMENT]
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;VIRTUAL_ENVIRONMENT]/bin/activate
+...
+
+deactivate
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;This gets very handy when I have to face compatibility issue.&lt;/p&gt;</content><author><name></name></author><category term="aws" /><category term="django" /><category term="python" /><summary type="html">I used Django 3.0.5 to develop my portfolio website originally. Unfortunately, I overlooked the version compatibility of AWS with Django. The specified version was 2.1.1 with Python 3.6 the latest. This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root. I think one of the reasons why AWS is maintaining such compatibility is due to SQLite. Once I did</summary></entry><entry><title type="html">Python Standard Library - threading.py</title><link href="http://localhost:4000/2020/05/27/python-standard-library-threading.html" rel="alternate" type="text/html" title="Python Standard Library - threading.py" /><published>2020-05-27T00:00:00-05:00</published><updated>2020-05-27T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/27/python-standard-library-threading</id><content type="html" xml:base="http://localhost:4000/2020/05/27/python-standard-library-threading.html">&lt;p&gt;Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">python test</title><link href="http://localhost:4000/update/jekyll/2020/05/26/test.html" rel="alternate" type="text/html" title="python test" /><published>2020-05-26T00:00:00-05:00</published><updated>2020-05-26T00:00:00-05:00</updated><id>http://localhost:4000/update/jekyll/2020/05/26/test</id><content type="html" xml:base="http://localhost:4000/update/jekyll/2020/05/26/test.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;python test&lt;/p&gt;</content><author><name></name></author><summary type="html">Test print(&quot;hello&quot;) python test</summary></entry></feed>
+&lt;p&gt;There is a package called threading. Thread instance can be created with Thread class and other instances for communication between threads can be created.&lt;/p&gt;
+
+&lt;p&gt;Ones I found easy to understand and important were Thread, Timer, and Event. One thing I found interesting is that standard way of terminating a thread is not provided in the document. There are few suggestions from online like causing exception, or hidden function _stop().&lt;/p&gt;
+
+&lt;p&gt;Python’s queue package can be used to manage data between threads.&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</summary></entry><entry><title type="html">Jekyll to GitHub Pages</title><link href="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html" rel="alternate" type="text/html" title="Jekyll to GitHub Pages" /><published>2020-05-26T00:00:00-05:00</published><updated>2020-05-26T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/26/jekyll-to-github-pages</id><content type="html" xml:base="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html">&lt;p&gt;GitHub page is not something new to me. When I first
+learned about HTML and CSS, like all others wanted to do,
+I tried to create a phat personal website.
+However, I knew so little to make it look okay.&lt;/p&gt;
+
+&lt;p&gt;Several months later, as I learn more about website hosting
+and etc. I realized there is no cheap way &lt;em&gt;for a college student like me&lt;/em&gt;
+to host a dynamic web sites. Reason is simple, you need a computer to
+compute and render. So, I came back to GitHub page because they are free.
+Then, I looked for static site generator that GitHub supports.&lt;/p&gt;
+
+&lt;p&gt;Jekyll was a standard one and very easy to understand. Some of the terms
+were quite knew to me because Jekyll was a Ruby product, but many of them
+can be disregarded without backfiring at your project.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Check out Jekyll.&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="github" /><summary type="html">GitHub page is not something new to me. When I first learned about HTML and CSS, like all others wanted to do, I tried to create a phat personal website. However, I knew so little to make it look okay.</summary></entry></feed>

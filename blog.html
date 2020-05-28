@@ -1,15 +1,22 @@
 ---
 layout: base
 title: Blog
+intro: Journal during my journey to the programming. Anyone interested in subjects like python, algorithms and AI, you are the first class to this blog. Welcome to my blog!
+my_tag:
 ---
 
 <div class="container-fluid">
-    tags go here
+    <p class="tag-box">
+        <a href="/tags.html">Tags:</a>
+        {% for tag in site.tags %}
+        {{ tag.first }}
+        {% endfor %}
+    </p>
 </div>
 <div class="container-sm">
     {% for post in site.posts %}
     <h1>{{ post.title }}</h1>
-    {{ post.date | date_to_string }}
+    {{ post.date | date_to_string }}<br><br>
     {{ post }}
     <div class="post-border"></div>
     {% endfor %}

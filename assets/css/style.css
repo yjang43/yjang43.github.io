@@ -1,3 +1,18 @@
+.tag-box {
+    padding: 20px;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tag-box::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.tag-box {
+  -ms-overflow-style: none;
+}
 
 #intro {
     padding: 20px;
@@ -23,11 +38,6 @@
     padding: 20px;
 }
 
-@media only screen and (max-width: 768px) {
-  .multiple-columns {
-    column-count: 1;
-  }
-}
 
 .jumbotron-img {
     color: white;
@@ -40,8 +50,36 @@
     background-position: center;
 }
 
+.jumbotron p {
+    padding: 20px;
+    width: 400px;
+}
+
 .post-border {
     border-bottom-style: solid;
     border-width: 2px;
     border-color: lightgray;
+}
+
+.filler {
+    width: 15%;
+}
+
+.project-image {
+    max-width: 100%;
+}
+
+
+.tech {
+    column-count: 2;
+    column-gap: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .multiple-columns {
+    column-count: 1;
+  }
+  .tech {
+    column-count: 1;
+  }
 }
