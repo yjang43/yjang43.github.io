@@ -1,6 +1,6 @@
 ---
 title: How to Properly Use Relative Import
-tag: python module
+tags: python module
 ---
 
 As I learn more about file control in Python, I
