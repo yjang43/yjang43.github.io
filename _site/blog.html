@@ -36,7 +36,11 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <!--for kramdown math render-->
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<div class="container-fluid">
     <p class="tag-box">
         <a href="/tags.html">Tags:</a>
         
@@ -50,9 +54,164 @@
         
         python
         
+        module
+        
+        ml
+        
+        ai
+        
+        paper
+        
+        svm
+        
     </p>
 </div>
 <div class="container-sm">
+    
+    <h1>Training Hyperplane for Support Vector Machine</h1>
+    19 Jun 2020<br><br>
+    <p>We have this simple function of an hyperplane.
+\(\mathbf{\omega \cdot x} + b = 0\)
+However, getting the optimized hyperplane for SVM
+is not so easy as this function looks.</p>
+
+<p>To get an hyperplane that meets the condition,
+\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
+and maximum margin, one can approach by minimizing a loss function of this
+operation.</p>
+
+\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
+
+<p>This can be solved by (sub-) gradient descent methods. A <a href="https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf">lecture note from
+University of Utah</a>
+explains the procedure well. The lecture note suggests stochastic 
+gradient descent for the computation speed.</p>
+
+    <div class="post-border"></div>
+    
+    <h1>Primal Support Vector Machine</h1>
+    19 Jun 2020<br><br>
+    <p>In a case where you need to draw a hyperplane that does
+binary classification, there can be multiple hyperplanes.
+Primal SVM is one way to solve this issue by bringing the
+concept that maximizes a margin of the hyper vector.</p>
+
+<p>Before anything, definition of margin needs to be settled.
+Margin is a distance from a hyperplane to its closest data points.</p>
+
+<p><em>“Vladimir Vapnik and Alexey Chervonenkis said when the margin
+is large, the “complexity” of the function is low, and hence learning
+is possible.”</em></p>
+
+<p>From one of the methods that derives the margin called
+<em>hard margin SVM</em>, you see it focuses on getting the
+minimal value of</p>
+
+\[{1 \over 2} \|\omega\|^{2}\]
+
+<p>while assuming the set margin of length 1.
+This seems to contradict the goal, to find the max
+margin. Through mathematical tweaks, however, this
+equation is equivalent to the meaning of getting
+the max margin.</p>
+
+    <div class="post-border"></div>
+    
+    <h1>Readings about Object Detection</h1>
+    01 Jun 2020<br><br>
+    <p>I am reading a journal from <em>IEEE</em> and decided to 
+record some of the learning points from the reading.
+<em>Object Detection With Deep Learning: A Review</em> by Zhao
+and others thoroughly reviews on the development of
+object detection and its future as well.</p>
+
+<p>There are two requirements to detect object:</p>
+<ol>
+  <li><em>object localization</em> - where the object is located
+from the frame</li>
+  <li><em>object classification</em> - what is the object</li>
+</ol>
+
+<p>The author states that <em>supported vector machine</em> (SVM)
+was used often for classification, so let’s learn more
+about that.</p>
+
+<p>SVM is a classification technique that can be used
+in supervised learning model. The idea is that
+if there are <em>k</em>-dimension vectors than it separates
+vectors with <em>(k-1)</em>-dimension hyperplane that 
+maximizes distance from nearest data point from
+each side is maximized.</p>
+
+<p>However, occurrence of convolutional neural network (CNN)
+was the game changer. Changing technology brings
+these advantages to CNN:</p>
+<ol>
+  <li>ImageNet - big ass data set to train the model</li>
+  <li>faster GPU specs</li>
+  <li>better design of structures like <em>autoencoder</em> or 
+<em>restricted Boltzmann machine</em> to avoid preexisting
+issues</li>
+</ol>
+
+
+    <div class="post-border"></div>
+    
+    <h1>How to Properly Use Relative Import</h1>
+    31 May 2020<br><br>
+    <p>As I learn more about file control in Python, I
+stumbled upon two options for import: absolute
+import and relative import.</p>
+
+<p>Prior to that, there is a need of understanding 
+how import system works in Python.</p>
+
+<p>When import occurs, Python finds the package, module
+, resource, or whatever you attempt to retrieve
+in the order of sys.modules(cache for modules),
+built-in modules, and list of directories defined
+by sys.path (current directory and etc.).</p>
+
+<p>With this in mind, absolute import is done by showing
+import path starting from any directory found from
+the process above. Otherwise, relative path gives
+freedom to import sources relative to the file
+location.</p>
+
+<p>This is useful but there are caveats.</p>
+
+<p>When I tried to achieve relative import, it caused
+an error as such:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"test.py"</span>, line 1, <span class="k">in</span> &lt;module&gt;
+    from .word_vector import <span class="k">*</span>
+ImportError: attempted relative import with no known parent package
+</code></pre></div></div>
+<p>my file structure looked like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nlpyj
+    <span class="nt">-text</span>
+        -...
+    <span class="nt">-word_vector</span>.py
+    <span class="nt">-test</span>.py
+</code></pre></div></div>
+<p>and with in test.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># test.py
+</span><span class="kn">from</span> <span class="nn">.word_vector</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>The problem was that my test.py file ran
+within the package and it prevented Python to realize
+word_vector.py is a part of the package. word_vector.py
+was found <em>way to early</em> according to https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time.</p>
+
+<p>The link explains nitty gritty of why Python throws
+such error. I think the best to avoid is to understand
+the caveat of relative import and don’t use it unless
+you really need to.</p>
+
+    <div class="post-border"></div>
     
     <h1>Python Standard Library - threading.py</h1>
     27 May 2020<br><br>

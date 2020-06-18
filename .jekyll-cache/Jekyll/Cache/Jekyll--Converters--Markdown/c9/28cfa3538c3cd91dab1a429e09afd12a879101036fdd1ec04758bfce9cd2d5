@@ -1,0 +1,5 @@
+I"è<p>In a case where you need to draw a hyperplane that does
+binary classification, there can be multiple hyperplanes.
+Primal SVM is one way to solve this issue by bringing the
+concept that maximizes a margin of the hyper vector.</p>
+:ET

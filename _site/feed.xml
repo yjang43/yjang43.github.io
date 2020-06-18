@@ -1,4 +1,124 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-28T08:13:37-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">AWS Deployment, Check for Compatibility</title><link href="http://localhost:4000/2020/05/27/django-aws-compatibility.html" rel="alternate" type="text/html" title="AWS Deployment, Check for Compatibility" /><published>2020-05-27T00:00:00-05:00</published><updated>2020-05-27T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/27/django-aws-compatibility</id><content type="html" xml:base="http://localhost:4000/2020/05/27/django-aws-compatibility.html">&lt;p&gt;I used Django 3.0.5 to develop my portfolio website originally.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-19T02:01:19+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Primal Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/primal-support-vector-machine.html" rel="alternate" type="text/html" title="Primal Support Vector Machine" /><published>2020-06-19T00:00:00+09:00</published><updated>2020-06-19T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/19/primal-support-vector-machine</id><content type="html" xml:base="http://localhost:4000/2020/06/19/primal-support-vector-machine.html">&lt;p&gt;In a case where you need to draw a hyperplane that does
+binary classification, there can be multiple hyperplanes.
+Primal SVM is one way to solve this issue by bringing the
+concept that maximizes a margin of the hyper vector.&lt;/p&gt;
+
+&lt;p&gt;Before anything, definition of margin needs to be settled.
+Margin is a distance from a hyperplane to its closest data points.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;“Vladimir Vapnik and Alexey Chervonenkis said when the margin
+is large, the “complexity” of the function is low, and hence learning
+is possible.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;From one of the methods that derives the margin called
+&lt;em&gt;hard margin SVM&lt;/em&gt;, you see it focuses on getting the
+minimal value of&lt;/p&gt;
+
+\[{1 \over 2} \|\omega\|^{2}\]
+
+&lt;p&gt;while assuming the set margin of length 1.
+This seems to contradict the goal, to find the max
+margin. Through mathematical tweaks, however, this
+equation is equivalent to the meaning of getting
+the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry><entry><title type="html">Training Hyperplane for Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/training-svm-hyperplane.html" rel="alternate" type="text/html" title="Training Hyperplane for Support Vector Machine" /><published>2020-06-19T00:00:00+09:00</published><updated>2020-06-19T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/19/training-svm-hyperplane</id><content type="html" xml:base="http://localhost:4000/2020/06/19/training-svm-hyperplane.html">&lt;p&gt;We have this simple function of an hyperplane.
+\(\mathbf{\omega \cdot x} + b = 0\)
+However, getting the optimized hyperplane for SVM
+is not so easy as this function looks.&lt;/p&gt;
+
+&lt;p&gt;To get an hyperplane that meets the condition,
+\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
+and maximum margin, one can approach by minimizing a loss function of this
+operation.&lt;/p&gt;
+
+\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
+
+&lt;p&gt;This can be solved by (sub-) gradient descent methods. A &lt;a href=&quot;https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf&quot;&gt;lecture note from
+University of Utah&lt;/a&gt;
+explains the procedure well. The lecture note suggests stochastic 
+gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry><entry><title type="html">Readings about Object Detection</title><link href="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html" rel="alternate" type="text/html" title="Readings about Object Detection" /><published>2020-06-01T00:00:00+09:00</published><updated>2020-06-01T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1</id><content type="html" xml:base="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html">&lt;p&gt;I am reading a journal from &lt;em&gt;IEEE&lt;/em&gt; and decided to 
+record some of the learning points from the reading.
+&lt;em&gt;Object Detection With Deep Learning: A Review&lt;/em&gt; by Zhao
+and others thoroughly reviews on the development of
+object detection and its future as well.&lt;/p&gt;
+
+&lt;p&gt;There are two requirements to detect object:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;em&gt;object localization&lt;/em&gt; - where the object is located
+from the frame&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;object classification&lt;/em&gt; - what is the object&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The author states that &lt;em&gt;supported vector machine&lt;/em&gt; (SVM)
+was used often for classification, so let’s learn more
+about that.&lt;/p&gt;
+
+&lt;p&gt;SVM is a classification technique that can be used
+in supervised learning model. The idea is that
+if there are &lt;em&gt;k&lt;/em&gt;-dimension vectors than it separates
+vectors with &lt;em&gt;(k-1)&lt;/em&gt;-dimension hyperplane that 
+maximizes distance from nearest data point from
+each side is maximized.&lt;/p&gt;
+
+&lt;p&gt;However, occurrence of convolutional neural network (CNN)
+was the game changer. Changing technology brings
+these advantages to CNN:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;ImageNet - big ass data set to train the model&lt;/li&gt;
+  &lt;li&gt;faster GPU specs&lt;/li&gt;
+  &lt;li&gt;better design of structures like &lt;em&gt;autoencoder&lt;/em&gt; or 
+&lt;em&gt;restricted Boltzmann machine&lt;/em&gt; to avoid preexisting
+issues&lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="paper" /><summary type="html">I am reading a journal from IEEE and decided to record some of the learning points from the reading. Object Detection With Deep Learning: A Review by Zhao and others thoroughly reviews on the development of object detection and its future as well.</summary></entry><entry><title type="html">How to Properly Use Relative Import</title><link href="http://localhost:4000/2020/05/31/python-relative-import.html" rel="alternate" type="text/html" title="How to Properly Use Relative Import" /><published>2020-05-31T00:00:00+09:00</published><updated>2020-05-31T00:00:00+09:00</updated><id>http://localhost:4000/2020/05/31/python-relative-import</id><content type="html" xml:base="http://localhost:4000/2020/05/31/python-relative-import.html">&lt;p&gt;As I learn more about file control in Python, I
+stumbled upon two options for import: absolute
+import and relative import.&lt;/p&gt;
+
+&lt;p&gt;Prior to that, there is a need of understanding 
+how import system works in Python.&lt;/p&gt;
+
+&lt;p&gt;When import occurs, Python finds the package, module
+, resource, or whatever you attempt to retrieve
+in the order of sys.modules(cache for modules),
+built-in modules, and list of directories defined
+by sys.path (current directory and etc.).&lt;/p&gt;
+
+&lt;p&gt;With this in mind, absolute import is done by showing
+import path starting from any directory found from
+the process above. Otherwise, relative path gives
+freedom to import sources relative to the file
+location.&lt;/p&gt;
+
+&lt;p&gt;This is useful but there are caveats.&lt;/p&gt;
+
+&lt;p&gt;When I tried to achieve relative import, it caused
+an error as such:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Traceback &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+  File &lt;span class=&quot;s2&quot;&gt;&quot;test.py&quot;&lt;/span&gt;, line 1, &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &amp;lt;module&amp;gt;
+    from .word_vector import &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+ImportError: attempted relative import with no known parent package
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;my file structure looked like this:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nlpyj
+    &lt;span class=&quot;nt&quot;&gt;-text&lt;/span&gt;
+        -...
+    &lt;span class=&quot;nt&quot;&gt;-word_vector&lt;/span&gt;.py
+    &lt;span class=&quot;nt&quot;&gt;-test&lt;/span&gt;.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;and with in test.py&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# test.py
+&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.word_vector&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The problem was that my test.py file ran
+within the package and it prevented Python to realize
+word_vector.py is a part of the package. word_vector.py
+was found &lt;em&gt;way to early&lt;/em&gt; according to https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time.&lt;/p&gt;
+
+&lt;p&gt;The link explains nitty gritty of why Python throws
+such error. I think the best to avoid is to understand
+the caveat of relative import and don’t use it unless
+you really need to.&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="module" /><summary type="html">As I learn more about file control in Python, I stumbled upon two options for import: absolute import and relative import.</summary></entry><entry><title type="html">AWS Deployment, Check for Compatibility</title><link href="http://localhost:4000/2020/05/27/django-aws-compatibility.html" rel="alternate" type="text/html" title="AWS Deployment, Check for Compatibility" /><published>2020-05-27T00:00:00+09:00</published><updated>2020-05-27T00:00:00+09:00</updated><id>http://localhost:4000/2020/05/27/django-aws-compatibility</id><content type="html" xml:base="http://localhost:4000/2020/05/27/django-aws-compatibility.html">&lt;p&gt;I used Django 3.0.5 to develop my portfolio website originally.
 Unfortunately, I overlooked the version compatibility of AWS with Django.
 The specified version was 2.1.1 with Python 3.6 the latest.
 This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root.
@@ -20,13 +140,13 @@ virtualenv &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot
 deactivate
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This gets very handy when I have to face compatibility issue.&lt;/p&gt;</content><author><name></name></author><category term="aws" /><category term="django" /><category term="python" /><summary type="html">I used Django 3.0.5 to develop my portfolio website originally. Unfortunately, I overlooked the version compatibility of AWS with Django. The specified version was 2.1.1 with Python 3.6 the latest. This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root. I think one of the reasons why AWS is maintaining such compatibility is due to SQLite. Once I did</summary></entry><entry><title type="html">Python Standard Library - threading.py</title><link href="http://localhost:4000/2020/05/27/python-standard-library-threading.html" rel="alternate" type="text/html" title="Python Standard Library - threading.py" /><published>2020-05-27T00:00:00-05:00</published><updated>2020-05-27T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/27/python-standard-library-threading</id><content type="html" xml:base="http://localhost:4000/2020/05/27/python-standard-library-threading.html">&lt;p&gt;Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.&lt;/p&gt;
+&lt;p&gt;This gets very handy when I have to face compatibility issue.&lt;/p&gt;</content><author><name></name></author><category term="aws" /><category term="django" /><category term="python" /><summary type="html">I used Django 3.0.5 to develop my portfolio website originally. Unfortunately, I overlooked the version compatibility of AWS with Django. The specified version was 2.1.1 with Python 3.6 the latest. This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root. I think one of the reasons why AWS is maintaining such compatibility is due to SQLite. Once I did</summary></entry><entry><title type="html">Python Standard Library - threading.py</title><link href="http://localhost:4000/2020/05/27/python-standard-library-threading.html" rel="alternate" type="text/html" title="Python Standard Library - threading.py" /><published>2020-05-27T00:00:00+09:00</published><updated>2020-05-27T00:00:00+09:00</updated><id>http://localhost:4000/2020/05/27/python-standard-library-threading</id><content type="html" xml:base="http://localhost:4000/2020/05/27/python-standard-library-threading.html">&lt;p&gt;Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.&lt;/p&gt;
 
 &lt;p&gt;There is a package called threading. Thread instance can be created with Thread class and other instances for communication between threads can be created.&lt;/p&gt;
 
 &lt;p&gt;Ones I found easy to understand and important were Thread, Timer, and Event. One thing I found interesting is that standard way of terminating a thread is not provided in the document. There are few suggestions from online like causing exception, or hidden function _stop().&lt;/p&gt;
 
-&lt;p&gt;Python’s queue package can be used to manage data between threads.&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</summary></entry><entry><title type="html">Jekyll to GitHub Pages</title><link href="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html" rel="alternate" type="text/html" title="Jekyll to GitHub Pages" /><published>2020-05-26T00:00:00-05:00</published><updated>2020-05-26T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/26/jekyll-to-github-pages</id><content type="html" xml:base="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html">&lt;p&gt;GitHub page is not something new to me. When I first
+&lt;p&gt;Python’s queue package can be used to manage data between threads.&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</summary></entry><entry><title type="html">Jekyll to GitHub Pages</title><link href="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html" rel="alternate" type="text/html" title="Jekyll to GitHub Pages" /><published>2020-05-26T00:00:00+09:00</published><updated>2020-05-26T00:00:00+09:00</updated><id>http://localhost:4000/2020/05/26/jekyll-to-github-pages</id><content type="html" xml:base="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html">&lt;p&gt;GitHub page is not something new to me. When I first
 learned about HTML and CSS, like all others wanted to do,
 I tried to create a phat personal website.
 However, I knew so little to make it look okay.&lt;/p&gt;
