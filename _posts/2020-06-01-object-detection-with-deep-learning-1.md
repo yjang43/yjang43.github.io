@@ -1,5 +1,5 @@
 ---
-title: Readings about Object Detection - 1
+title: Readings about Object Detection
 tags: ml ai paper
 ---
 
