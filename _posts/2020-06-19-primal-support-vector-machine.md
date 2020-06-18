@@ -19,14 +19,10 @@ From one of the methods that derives the margin called
 _hard margin SVM_, you see it focuses on getting the
 minimal value of
 
-$$
-\begin{aligned}
+$$\begin
 1/2\|\omega\|^{2}
-\end{aligned}
-$$
-```math
-0.5 * ||w||^2       # w is a normal vector of a hyperplane
-```
+\end$$
+
 while assuming the set margin of length 1.
 This seems to contradict the goal, to find the max
 margin. Through mathematical tweaks, however, this
