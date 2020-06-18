@@ -19,7 +19,7 @@ From one of the methods that derives the margin called
 _hard margin SVM_, you see it focuses on getting the
 minimal value of
 
-$$\|\omega\|^{2}$$
+$$1 \over 2 \|\omega\|^{2}$$
 
 while assuming the set margin of length 1.
 This seems to contradict the goal, to find the max
