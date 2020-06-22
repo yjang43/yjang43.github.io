@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-19T02:01:19+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Primal Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/primal-support-vector-machine.html" rel="alternate" type="text/html" title="Primal Support Vector Machine" /><published>2020-06-19T00:00:00+09:00</published><updated>2020-06-19T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/19/primal-support-vector-machine</id><content type="html" xml:base="http://localhost:4000/2020/06/19/primal-support-vector-machine.html">&lt;p&gt;In a case where you need to draw a hyperplane that does
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-23T00:22:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Bifrost, Possible Solution for DApp</title><link href="http://localhost:4000/2020/06/20/solution-for-dapp.html" rel="alternate" type="text/html" title="Bifrost, Possible Solution for DApp" /><published>2020-06-20T00:00:00+09:00</published><updated>2020-06-20T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/20/solution-for-dapp</id><content type="html" xml:base="http://localhost:4000/2020/06/20/solution-for-dapp.html">&lt;p&gt;The whole reason I came across the idea of DApp is because of the interview
+with a company called &lt;em&gt;&lt;a href=&quot;https://pilab.co/&quot;&gt;Pilab&lt;/a&gt;&lt;/em&gt;. This company tries to seek a solution
+for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://thebifrost.io/static/Bifrost_WP_Eng.pdf&quot;&gt;Bifrost’s white paper&lt;/a&gt;&lt;/em&gt; was interesting reading.
+Even if I lacked a DApp background, with a simple understanding of block chain in general, and private and public
+block chain, I was able to understand what problem Bifrost intend to solve.&lt;/p&gt;
+
+&lt;p&gt;According to the document, each block chain platform has a different focus as to
+its implementation and ecosystem. Some focuses on scalability, and other focuses
+on security and beyond.&lt;/p&gt;
+
+&lt;p&gt;As a programmer that needs to choose solely one platform, the risk or loss for
+completely giving in one platform is a huge risk. Bifrost comes into place and solve
+this dilemma by suggesting a framework, so to speak, that allows running two block
+chain platforms in parallel from my understanding. My first concern was decrease in
+its efficiency due to running two platforms compared to one, but they are working on
+creating its own language called &lt;em&gt;Recipe&lt;/em&gt; that optimizes its performance.&lt;/p&gt;
+
+&lt;p&gt;I am excited to learn more about this technology in the future.&lt;/p&gt;</content><author><name></name></author><category term="blockchain" /><category term="dapp" /><summary type="html">The whole reason I came across the idea of DApp is because of the interview with a company called Pilab. This company tries to seek a solution for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</summary></entry><entry><title type="html">Training Hyperplane for Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/training-svm-hyperplane.html" rel="alternate" type="text/html" title="Training Hyperplane for Support Vector Machine" /><published>2020-06-19T00:00:00+09:00</published><updated>2020-06-19T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/19/training-svm-hyperplane</id><content type="html" xml:base="http://localhost:4000/2020/06/19/training-svm-hyperplane.html">&lt;p&gt;We have this simple function of an hyperplane.
+\(\mathbf{\omega \cdot x} + b = 0\)
+However, getting the optimized hyperplane for SVM
+is not so easy as this function looks.&lt;/p&gt;
+
+&lt;p&gt;To get an hyperplane that meets the condition,
+\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
+and maximum margin, one can approach by minimizing a loss function of this
+operation.&lt;/p&gt;
+
+\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
+
+&lt;p&gt;This can be solved by (sub-) gradient descent methods. A &lt;a href=&quot;https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf&quot;&gt;lecture note from
+University of Utah&lt;/a&gt;
+explains the procedure well. The lecture note suggests stochastic 
+gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry><entry><title type="html">Primal Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/primal-support-vector-machine.html" rel="alternate" type="text/html" title="Primal Support Vector Machine" /><published>2020-06-19T00:00:00+09:00</published><updated>2020-06-19T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/19/primal-support-vector-machine</id><content type="html" xml:base="http://localhost:4000/2020/06/19/primal-support-vector-machine.html">&lt;p&gt;In a case where you need to draw a hyperplane that does
 binary classification, there can be multiple hyperplanes.
 Primal SVM is one way to solve this issue by bringing the
 concept that maximizes a margin of the hyper vector.&lt;/p&gt;
@@ -20,23 +55,7 @@ minimal value of&lt;/p&gt;
 This seems to contradict the goal, to find the max
 margin. Through mathematical tweaks, however, this
 equation is equivalent to the meaning of getting
-the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry><entry><title type="html">Training Hyperplane for Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/training-svm-hyperplane.html" rel="alternate" type="text/html" title="Training Hyperplane for Support Vector Machine" /><published>2020-06-19T00:00:00+09:00</published><updated>2020-06-19T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/19/training-svm-hyperplane</id><content type="html" xml:base="http://localhost:4000/2020/06/19/training-svm-hyperplane.html">&lt;p&gt;We have this simple function of an hyperplane.
-\(\mathbf{\omega \cdot x} + b = 0\)
-However, getting the optimized hyperplane for SVM
-is not so easy as this function looks.&lt;/p&gt;
-
-&lt;p&gt;To get an hyperplane that meets the condition,
-\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
-and maximum margin, one can approach by minimizing a loss function of this
-operation.&lt;/p&gt;
-
-\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
-+ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
-
-&lt;p&gt;This can be solved by (sub-) gradient descent methods. A &lt;a href=&quot;https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf&quot;&gt;lecture note from
-University of Utah&lt;/a&gt;
-explains the procedure well. The lecture note suggests stochastic 
-gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry><entry><title type="html">Readings about Object Detection</title><link href="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html" rel="alternate" type="text/html" title="Readings about Object Detection" /><published>2020-06-01T00:00:00+09:00</published><updated>2020-06-01T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1</id><content type="html" xml:base="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html">&lt;p&gt;I am reading a journal from &lt;em&gt;IEEE&lt;/em&gt; and decided to 
+the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry><entry><title type="html">Readings about Object Detection</title><link href="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html" rel="alternate" type="text/html" title="Readings about Object Detection" /><published>2020-06-01T00:00:00+09:00</published><updated>2020-06-01T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1</id><content type="html" xml:base="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html">&lt;p&gt;I am reading a journal from &lt;em&gt;IEEE&lt;/em&gt; and decided to 
 record some of the learning points from the reading.
 &lt;em&gt;Object Detection With Deep Learning: A Review&lt;/em&gt; by Zhao
 and others thoroughly reviews on the development of
