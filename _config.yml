@@ -36,6 +36,9 @@ plugins:
 collections:
   - projects
 
+paginate: 4
+paginate_path: "/blog/page:num/"
+
 # Conversion
 markdown:    kramdown
 highlighter: rouge
