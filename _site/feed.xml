@@ -1,4 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-10T22:44:26+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Bifrost, Possible Solution for DApp</title><link href="http://localhost:4000/2020/06/20/solution-for-dapp.html" rel="alternate" type="text/html" title="Bifrost, Possible Solution for DApp" /><published>2020-06-20T00:00:00+09:00</published><updated>2020-06-20T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/20/solution-for-dapp</id><content type="html" xml:base="http://localhost:4000/2020/06/20/solution-for-dapp.html">&lt;p&gt;The whole reason I came across the idea of DApp is because of the interview
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-11-25T03:24:12-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Hidden Markov Model and Algorithms</title><link href="http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms.html" rel="alternate" type="text/html" title="Hidden Markov Model and Algorithms" /><published>2020-11-23T00:00:00-06:00</published><updated>2020-11-23T00:00:00-06:00</updated><id>http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms</id><content type="html" xml:base="http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms.html">&lt;h3 id=&quot;hidden-markov-model&quot;&gt;Hidden Markov Model&lt;/h3&gt;
+&lt;p&gt;HMM is easy to understand knowing its components first.
+HMM can represent a sequence of &lt;em&gt;states&lt;/em&gt; and &lt;em&gt;symbol&lt;/em&gt;.
+Symbol is what we observe, 
+and state is an information about the symbol.
+Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).&lt;/p&gt;
+
+&lt;p&gt;If state at location &lt;em&gt;i&lt;/em&gt; is denoted as \(\pi_i\).
+Probability of a state &lt;em&gt;k&lt;/em&gt; to state &lt;em&gt;l&lt;/em&gt; is expressed as,&lt;/p&gt;
+
+\[a_{kl} = P(\pi=l|\pi=k)\]
+
+&lt;p&gt;This is called &lt;em&gt;transition probability&lt;/em&gt; and carries an important role in explaining the first part of HMM, states.
+Next, the probability of a symbol in a given state can be denoted as,&lt;/p&gt;
+
+&lt;p&gt;\(e_k(b) = P(x_i=b|\pi=k)\)
+This is called &lt;em&gt;emission probability&lt;/em&gt; and likewise this explains the second part of HMM, symbol.&lt;/p&gt;
+
+&lt;h3 id=&quot;viterbi&quot;&gt;Viterbi&lt;/h3&gt;
+&lt;p&gt;One question to ask while working with a squential data whose formation is determined by probability is, 
+“what is the most probable meaning of the observed sequence?”
+This in other words is to ask what the most probable &lt;em&gt;state path&lt;/em&gt; is.&lt;/p&gt;
+
+\[\tilde{\pi} = argmax_\pi P(x, \pi)\]
+
+&lt;p&gt;Viterbi algorithm provides a solution to this question. The heart of the algorithm is dynamic programming, and the idea comes from the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;If the last state \(\pi_n\) completes the most probable state path, it is completed by connecting to the most probable state path up to \(\pi_{n-1}\)&lt;/em&gt;&lt;/p&gt;
+
+\[v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})\]
+
+&lt;p&gt;Here &lt;em&gt;i&lt;/em&gt;, &lt;em&gt;l&lt;/em&gt;, &lt;em&gt;k&lt;/em&gt; indicate a position in the squence, a state in question, and a previous state respectively.&lt;/p&gt;
+
+&lt;h3 id=&quot;forward-algorithm&quot;&gt;Forward Algorithm&lt;/h3&gt;
+
+&lt;p&gt;Forward algorithm gives a probabilty of a sequence, \(P(x)\) 
+simple as that.&lt;/p&gt;
+
+\[P(x)=\sum_\pi P(x, \pi)\]
+
+&lt;p&gt;This is a marginalization of states. This can be solved with dynamic programming because \(P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)\).&lt;/p&gt;
+
+&lt;p&gt;Thus,&lt;/p&gt;
+
+\[when \ f_k(i) = P(x_1...x_i, \pi_i=k)\]
+
+\[f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}\]
+
+&lt;p&gt;The weighted sum of the probabilities of previous sequence from each state is quite intuitive.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="hmm" /><summary type="html">Hidden Markov Model HMM is easy to understand knowing its components first. HMM can represent a sequence of states and symbol. Symbol is what we observe, and state is an information about the symbol. Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</summary></entry><entry><title type="html">Vanilla RNN</title><link href="http://localhost:4000/2020/11/21/vanila-RNN.html" rel="alternate" type="text/html" title="Vanilla RNN" /><published>2020-11-21T00:00:00-06:00</published><updated>2020-11-21T00:00:00-06:00</updated><id>http://localhost:4000/2020/11/21/vanila-RNN</id><content type="html" xml:base="http://localhost:4000/2020/11/21/vanila-RNN.html">&lt;h3 id=&quot;motif&quot;&gt;Motif&lt;/h3&gt;
+&lt;p&gt;Language model is the probability of a sequence.
+This can be approximated as the product of &lt;em&gt;n&lt;/em&gt;-gram,&lt;/p&gt;
+
+\[P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\]
+
+&lt;p&gt;So, &lt;em&gt;n&lt;/em&gt;-gram was a natural approach to do language modeling.
+However, this traditional approach has two limitations.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;sparsity of &lt;em&gt;n&lt;/em&gt;-gram&lt;/li&gt;
+  &lt;li&gt;exponential growth in model size as &lt;em&gt;n&lt;/em&gt; increases&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;vanila-rnn&quot;&gt;Vanila RNN&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/rnn_structure.png&quot; alt=&quot;RNN structure&quot; align=&quot;center&quot; width=&quot;450&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In contrast to the complex network of RNN,
+equations to express the network is surprisingly very simple.
+This is because weights are repeated used throughout timestamps.&lt;/p&gt;
+
+\[h_t=\sigma(W_hh_{t-1} + W_ex_t)\]
+
+\[\hat{y}=softmax(Uh_t)\]
+
+&lt;p&gt;Here are short description of dimensions of each parameter.&lt;/p&gt;
+
+\[x_t\in\mathbb{R}^d\]
+
+\[W_e\in\mathbb{R}^{D_h\times d}\]
+
+\[W_h\in\mathbb{R}^{D_h\times D_h}\]
+
+\[h_{t-1}\in\mathbb{R}^{D_h}\]
+
+\[\hat{y}\in\mathbb{R}^{|V|}\]
+
+\[U\in\mathbb{R}^{|V| \times D_h}\]
+
+&lt;p&gt;\(d\) indicates dimension of word embeddings &lt;em&gt;(possibly with Word2Vec)&lt;/em&gt;, 
+\(D_h\) is a dimension chosen in design. 
+\(|V|\) is the cardinality of the corpus.&lt;/p&gt;
+
+&lt;p&gt;Now the structure of RNN is clear, I will discuss the loss and gradient of RNN.
+First, loss function looks like this.&lt;/p&gt;
+
+\[J^{(t)}(\Theta) = - \sum^{|V|}_{j=1}y_{t,j}\times log(\hat{y}_{t,j})\]
+
+\[J = {1\over T} \sum^{T}_{t=1}J^{(t)}(\Theta)\]
+
+&lt;p&gt;Here, cross entropy is used to define a distance of proabability.
+The loss function of RNN looks a little bit complicated, but it is explained intuitively by looking at the structure of RNN.
+\(J^{(t)}\) indicates a loss at a timestamp \(t\). 
+Then \(J\) indicates the overall loss of the RNN which is a summation over each timeframe and averaged by dividing the sum by the corpus size.&lt;/p&gt;
+
+&lt;p&gt;Second, gradient looks complicated as well.&lt;/p&gt;
+
+\[{\partial J \over \partial W} = \sum^T_{t=1}{\partial J_t \over \partial W}\]
+
+\[{\partial J_t \over \partial W} = \sum^t_{k=1} {\partial J_t \over \partial y_t}{\partial y_t \over \partial h_t}{\partial h_t \over \partial h_k}{\partial h_k \over \partial W}\]
+
+&lt;p&gt;However, this again is explained intuitively. Similar to how loss at each timestamp is added for an overall loss, overall gradient can decompose into a sum of gradient at each timestamp. Then, gradient at each timestamp is a sum of gradient that imposes change to \(y_t\). This is a multiplication of local gradients in sequence.&lt;/p&gt;
+
+&lt;h3 id=&quot;problem-with-vanila-rnn&quot;&gt;Problem With Vanila RNN&lt;/h3&gt;
+&lt;p&gt;With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call &lt;em&gt;exploding gradient&lt;/em&gt; and &lt;em&gt;vanishing gradient&lt;/em&gt; respectively. Thus, variation of RNNs are devised in newer literatures.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="nlp" /><summary type="html">Motif Language model is the probability of a sequence. This can be approximated as the product of n-gram,</summary></entry><entry><title type="html">Bifrost, Possible Solution for DApp</title><link href="http://localhost:4000/2020/06/20/solution-for-dapp.html" rel="alternate" type="text/html" title="Bifrost, Possible Solution for DApp" /><published>2020-06-20T00:00:00-05:00</published><updated>2020-06-20T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/20/solution-for-dapp</id><content type="html" xml:base="http://localhost:4000/2020/06/20/solution-for-dapp.html">&lt;p&gt;The whole reason I came across the idea of DApp is because of the interview
 with a company called &lt;em&gt;&lt;a href=&quot;https://pilab.co/&quot;&gt;Pilab&lt;/a&gt;&lt;/em&gt;. This company tries to seek a solution
 for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.&lt;/p&gt;
 
@@ -17,7 +128,7 @@ chain platforms in parallel from my understanding. My first concern was decrease
 its efficiency due to running two platforms compared to one, but they are working on
 creating its own language called &lt;em&gt;Recipe&lt;/em&gt; that optimizes its performance.&lt;/p&gt;
 
-&lt;p&gt;I am excited to learn more about this technology in the future.&lt;/p&gt;</content><author><name></name></author><category term="blockchain" /><category term="dapp" /><summary type="html">The whole reason I came across the idea of DApp is because of the interview with a company called Pilab. This company tries to seek a solution for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</summary></entry><entry><title type="html">Training Hyperplane for Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/training-svm-hyperplane.html" rel="alternate" type="text/html" title="Training Hyperplane for Support Vector Machine" /><published>2020-06-19T00:00:00+09:00</published><updated>2020-06-19T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/19/training-svm-hyperplane</id><content type="html" xml:base="http://localhost:4000/2020/06/19/training-svm-hyperplane.html">&lt;p&gt;We have this simple function of an hyperplane.
+&lt;p&gt;I am excited to learn more about this technology in the future.&lt;/p&gt;</content><author><name></name></author><category term="blockchain" /><category term="dapp" /><summary type="html">The whole reason I came across the idea of DApp is because of the interview with a company called Pilab. This company tries to seek a solution for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</summary></entry><entry><title type="html">Training Hyperplane for Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/training-svm-hyperplane.html" rel="alternate" type="text/html" title="Training Hyperplane for Support Vector Machine" /><published>2020-06-19T00:00:00-05:00</published><updated>2020-06-19T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/19/training-svm-hyperplane</id><content type="html" xml:base="http://localhost:4000/2020/06/19/training-svm-hyperplane.html">&lt;p&gt;We have this simple function of an hyperplane.
 \(\mathbf{\omega \cdot x} + b = 0\)
 However, getting the optimized hyperplane for SVM
 is not so easy as this function looks.&lt;/p&gt;
@@ -33,7 +144,7 @@ operation.&lt;/p&gt;
 &lt;p&gt;This can be solved by (sub-) gradient descent methods. A &lt;a href=&quot;https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf&quot;&gt;lecture note from
 University of Utah&lt;/a&gt;
 explains the procedure well. The lecture note suggests stochastic 
-gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry><entry><title type="html">Primal Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/primal-support-vector-machine.html" rel="alternate" type="text/html" title="Primal Support Vector Machine" /><published>2020-06-19T00:00:00+09:00</published><updated>2020-06-19T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/19/primal-support-vector-machine</id><content type="html" xml:base="http://localhost:4000/2020/06/19/primal-support-vector-machine.html">&lt;p&gt;In a case where you need to draw a hyperplane that does
+gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry><entry><title type="html">Primal Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/primal-support-vector-machine.html" rel="alternate" type="text/html" title="Primal Support Vector Machine" /><published>2020-06-19T00:00:00-05:00</published><updated>2020-06-19T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/19/primal-support-vector-machine</id><content type="html" xml:base="http://localhost:4000/2020/06/19/primal-support-vector-machine.html">&lt;p&gt;In a case where you need to draw a hyperplane that does
 binary classification, there can be multiple hyperplanes.
 Primal SVM is one way to solve this issue by bringing the
 concept that maximizes a margin of the hyper vector.&lt;/p&gt;
@@ -55,7 +166,7 @@ minimal value of&lt;/p&gt;
 This seems to contradict the goal, to find the max
 margin. Through mathematical tweaks, however, this
 equation is equivalent to the meaning of getting
-the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry><entry><title type="html">Readings about Object Detection</title><link href="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html" rel="alternate" type="text/html" title="Readings about Object Detection" /><published>2020-06-01T00:00:00+09:00</published><updated>2020-06-01T00:00:00+09:00</updated><id>http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1</id><content type="html" xml:base="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html">&lt;p&gt;I am reading a journal from &lt;em&gt;IEEE&lt;/em&gt; and decided to 
+the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry><entry><title type="html">Readings about Object Detection</title><link href="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html" rel="alternate" type="text/html" title="Readings about Object Detection" /><published>2020-06-01T00:00:00-05:00</published><updated>2020-06-01T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1</id><content type="html" xml:base="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html">&lt;p&gt;I am reading a journal from &lt;em&gt;IEEE&lt;/em&gt; and decided to 
 record some of the learning points from the reading.
 &lt;em&gt;Object Detection With Deep Learning: A Review&lt;/em&gt; by Zhao
 and others thoroughly reviews on the development of
@@ -88,7 +199,7 @@ these advantages to CNN:&lt;/p&gt;
   &lt;li&gt;better design of structures like &lt;em&gt;autoencoder&lt;/em&gt; or 
 &lt;em&gt;restricted Boltzmann machine&lt;/em&gt; to avoid preexisting
 issues&lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="paper" /><summary type="html">I am reading a journal from IEEE and decided to record some of the learning points from the reading. Object Detection With Deep Learning: A Review by Zhao and others thoroughly reviews on the development of object detection and its future as well.</summary></entry><entry><title type="html">How to Properly Use Relative Import</title><link href="http://localhost:4000/2020/05/31/python-relative-import.html" rel="alternate" type="text/html" title="How to Properly Use Relative Import" /><published>2020-05-31T00:00:00+09:00</published><updated>2020-05-31T00:00:00+09:00</updated><id>http://localhost:4000/2020/05/31/python-relative-import</id><content type="html" xml:base="http://localhost:4000/2020/05/31/python-relative-import.html">&lt;p&gt;As I learn more about file control in Python, I
+&lt;/ol&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="paper" /><summary type="html">I am reading a journal from IEEE and decided to record some of the learning points from the reading. Object Detection With Deep Learning: A Review by Zhao and others thoroughly reviews on the development of object detection and its future as well.</summary></entry><entry><title type="html">How to Properly Use Relative Import</title><link href="http://localhost:4000/2020/05/31/python-relative-import.html" rel="alternate" type="text/html" title="How to Properly Use Relative Import" /><published>2020-05-31T00:00:00-05:00</published><updated>2020-05-31T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/31/python-relative-import</id><content type="html" xml:base="http://localhost:4000/2020/05/31/python-relative-import.html">&lt;p&gt;As I learn more about file control in Python, I
 stumbled upon two options for import: absolute
 import and relative import.&lt;/p&gt;
 
@@ -137,7 +248,13 @@ was found &lt;em&gt;way to early&lt;/em&gt; according to https://stackoverflow.c
 &lt;p&gt;The link explains nitty gritty of why Python throws
 such error. I think the best to avoid is to understand
 the caveat of relative import and don’t use it unless
-you really need to.&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="module" /><summary type="html">As I learn more about file control in Python, I stumbled upon two options for import: absolute import and relative import.</summary></entry><entry><title type="html">AWS Deployment, Check for Compatibility</title><link href="http://localhost:4000/2020/05/27/django-aws-compatibility.html" rel="alternate" type="text/html" title="AWS Deployment, Check for Compatibility" /><published>2020-05-27T00:00:00+09:00</published><updated>2020-05-27T00:00:00+09:00</updated><id>http://localhost:4000/2020/05/27/django-aws-compatibility</id><content type="html" xml:base="http://localhost:4000/2020/05/27/django-aws-compatibility.html">&lt;p&gt;I used Django 3.0.5 to develop my portfolio website originally.
+you really need to.&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="module" /><summary type="html">As I learn more about file control in Python, I stumbled upon two options for import: absolute import and relative import.</summary></entry><entry><title type="html">Python Standard Library - threading.py</title><link href="http://localhost:4000/2020/05/27/python-standard-library-threading.html" rel="alternate" type="text/html" title="Python Standard Library - threading.py" /><published>2020-05-27T00:00:00-05:00</published><updated>2020-05-27T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/27/python-standard-library-threading</id><content type="html" xml:base="http://localhost:4000/2020/05/27/python-standard-library-threading.html">&lt;p&gt;Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.&lt;/p&gt;
+
+&lt;p&gt;There is a package called threading. Thread instance can be created with Thread class and other instances for communication between threads can be created.&lt;/p&gt;
+
+&lt;p&gt;Ones I found easy to understand and important were Thread, Timer, and Event. One thing I found interesting is that standard way of terminating a thread is not provided in the document. There are few suggestions from online like causing exception, or hidden function _stop().&lt;/p&gt;
+
+&lt;p&gt;Python’s queue package can be used to manage data between threads.&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</summary></entry><entry><title type="html">AWS Deployment, Check for Compatibility</title><link href="http://localhost:4000/2020/05/27/django-aws-compatibility.html" rel="alternate" type="text/html" title="AWS Deployment, Check for Compatibility" /><published>2020-05-27T00:00:00-05:00</published><updated>2020-05-27T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/27/django-aws-compatibility</id><content type="html" xml:base="http://localhost:4000/2020/05/27/django-aws-compatibility.html">&lt;p&gt;I used Django 3.0.5 to develop my portfolio website originally.
 Unfortunately, I overlooked the version compatibility of AWS with Django.
 The specified version was 2.1.1 with Python 3.6 the latest.
 This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root.
@@ -159,13 +276,7 @@ virtualenv &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot
 deactivate
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This gets very handy when I have to face compatibility issue.&lt;/p&gt;</content><author><name></name></author><category term="aws" /><category term="django" /><category term="python" /><summary type="html">I used Django 3.0.5 to develop my portfolio website originally. Unfortunately, I overlooked the version compatibility of AWS with Django. The specified version was 2.1.1 with Python 3.6 the latest. This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root. I think one of the reasons why AWS is maintaining such compatibility is due to SQLite. Once I did</summary></entry><entry><title type="html">Python Standard Library - threading.py</title><link href="http://localhost:4000/2020/05/27/python-standard-library-threading.html" rel="alternate" type="text/html" title="Python Standard Library - threading.py" /><published>2020-05-27T00:00:00+09:00</published><updated>2020-05-27T00:00:00+09:00</updated><id>http://localhost:4000/2020/05/27/python-standard-library-threading</id><content type="html" xml:base="http://localhost:4000/2020/05/27/python-standard-library-threading.html">&lt;p&gt;Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.&lt;/p&gt;
-
-&lt;p&gt;There is a package called threading. Thread instance can be created with Thread class and other instances for communication between threads can be created.&lt;/p&gt;
-
-&lt;p&gt;Ones I found easy to understand and important were Thread, Timer, and Event. One thing I found interesting is that standard way of terminating a thread is not provided in the document. There are few suggestions from online like causing exception, or hidden function _stop().&lt;/p&gt;
-
-&lt;p&gt;Python’s queue package can be used to manage data between threads.&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</summary></entry><entry><title type="html">Jekyll to GitHub Pages</title><link href="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html" rel="alternate" type="text/html" title="Jekyll to GitHub Pages" /><published>2020-05-26T00:00:00+09:00</published><updated>2020-05-26T00:00:00+09:00</updated><id>http://localhost:4000/2020/05/26/jekyll-to-github-pages</id><content type="html" xml:base="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html">&lt;p&gt;GitHub page is not something new to me. When I first
+&lt;p&gt;This gets very handy when I have to face compatibility issue.&lt;/p&gt;</content><author><name></name></author><category term="aws" /><category term="django" /><category term="python" /><summary type="html">I used Django 3.0.5 to develop my portfolio website originally. Unfortunately, I overlooked the version compatibility of AWS with Django. The specified version was 2.1.1 with Python 3.6 the latest. This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root. I think one of the reasons why AWS is maintaining such compatibility is due to SQLite. Once I did</summary></entry><entry><title type="html">Jekyll to GitHub Pages</title><link href="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html" rel="alternate" type="text/html" title="Jekyll to GitHub Pages" /><published>2020-05-26T00:00:00-05:00</published><updated>2020-05-26T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/26/jekyll-to-github-pages</id><content type="html" xml:base="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html">&lt;p&gt;GitHub page is not something new to me. When I first
 learned about HTML and CSS, like all others wanted to do,
 I tried to create a phat personal website.
 However, I knew so little to make it look okay.&lt;/p&gt;
