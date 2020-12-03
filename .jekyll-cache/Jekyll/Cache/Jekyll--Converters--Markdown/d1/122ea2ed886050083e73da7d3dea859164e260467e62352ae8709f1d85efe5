@@ -1,4 +1,4 @@
-<h3 id="motif">Motif</h3>
+I"><h3 id="motif">Motif</h3>
 <p>Language model is the probability of a sequence.
 This can be approximated as the product of <em>n</em>-gram,</p>
 
@@ -13,8 +13,9 @@ However, this traditional approach has two limitations.</p>
 
 <h3 id="vanila-rnn">Vanila RNN</h3>
 <p align="center">
-    <img src="/assets/img/rnn_structure.png" alt="RNN structure" width="40%" />
+    <img src="/assets/img/arnn_structurettention_diagram.png" alt="attention diagram" width="75%" />
 </p>
+<p><img src="/assets/img/.png" alt="RNN structure" align="center" width="450" /></p>
 
 <p>In contrast to the complex network of RNN,
 equations to express the network is surprisingly very simple.
@@ -64,3 +65,4 @@ Then \(J\) indicates the overall loss of the RNN which is a summation over each 
 
 <h3 id="problem-with-vanila-rnn">Problem With Vanila RNN</h3>
 <p>With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call <em>exploding gradient</em> and <em>vanishing gradient</em> respectively. Thus, variation of RNNs are devised in newer literatures.</p>
+:ET

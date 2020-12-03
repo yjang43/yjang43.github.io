@@ -1,4 +1,4 @@
-<h3 id="thoughts">Thoughts</h3>
+I"'<h3 id="thoughts">Thoughts</h3>
 <p>The paper, “Attention Is All You Need”, is the first to present transformer architecture.
 The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
 This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
@@ -24,7 +24,7 @@ We can use parallelization in this step by using multi-head instead.
 Here is a diagram of multi-head attention mechansim.</p>
 
 <p align="center">
-    <img src="/assets/img/attention_diagram.png" alt="attention diagram" width="75%" />
+    <img src="/assets/img/attention_diagram.png" alt="attention diagram" width="100%%" />
 </p>
 
 <p>The idea is simply taking a dot product of <em>query</em> vector and <em>key</em> vector to decide the weight to put on the <em>value</em> vector. This shows the depencies of values. 
@@ -40,3 +40,4 @@ Attention layer for connecting encoder and decoder is different to other attenti
 <p><em>Paper: <a href="https://arxiv.org/pdf/1706.03762.pdf">https://arxiv.org/pdf/1706.03762.pdf</a></em></p>
 
 <p><em>YouTube: <a href="https://www.youtube.com/watch?v=4Bdc55j80l8">https://www.youtube.com/watch?v=4Bdc55j80l8</a></em></p>
+:ET

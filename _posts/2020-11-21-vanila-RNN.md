@@ -15,7 +15,9 @@ However, this traditional approach has two limitations.
 * exponential growth in model size as _n_ increases
 
 ### Vanila RNN
-<img src="/assets/img/rnn_structure.png" alt="RNN structure" align="center" width="450"/>
+<p align="center">
+    <img src="/assets/img/rnn_structure.png" alt="RNN structure"  width="40%"/>
+</p>
 
 In contrast to the complex network of RNN,
 equations to express the network is surprisingly very simple.

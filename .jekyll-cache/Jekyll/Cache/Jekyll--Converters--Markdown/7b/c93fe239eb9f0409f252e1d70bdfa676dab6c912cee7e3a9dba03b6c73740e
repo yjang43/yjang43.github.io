@@ -1,4 +1,4 @@
-<h3 id="motif">Motif</h3>
+I"Ô<h3 id="motif">Motif</h3>
 <p>Language model is the probability of a sequence.
 This can be approximated as the product of <em>n</em>-gram,</p>
 
@@ -64,3 +64,4 @@ Then \(J\) indicates the overall loss of the RNN which is a summation over each 
 
 <h3 id="problem-with-vanila-rnn">Problem With Vanila RNN</h3>
 <p>With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call <em>exploding gradient</em> and <em>vanishing gradient</em> respectively. Thus, variation of RNNs are devised in newer literatures.</p>
+:ET

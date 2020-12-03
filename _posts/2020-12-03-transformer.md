@@ -9,14 +9,14 @@ This let the transformer architecture utilize the parallel computation with GPU.
 The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.
 
 <p align="center">
-    <img src="/assets/img/transformer_table.png" alt="transformer rnn cnn comparison table"  width="800"/>
+    <img src="/assets/img/transformer_table.png" alt="transformer rnn cnn comparison table"  width="75%"/>
 </p>
 
 ### Architecture
 I recommend looking back at the article for more details because this part will only stay simple focus more on the overview of the architecture.
 Below is the diagram,
 <p align="center">
-    <img src="/assets/img/transformer_architecture.png" alt="transformer architecture"  width="450"/>
+    <img src="/assets/img/transformer_architecture.png" alt="transformer architecture"  width="40%"/>
 </p>
 Left part of the diagram is an encoder (multi-head self-attention mechanism + fully connected feed-forward network) and the right is a decoder (multi-head attention over output + multi-head attention connecting encoder and decoder + fully connected feed-forawrd).
 #### Encoder
@@ -28,7 +28,7 @@ We can use parallelization in this step by using multi-head instead.
 Here is a diagram of multi-head attention mechansim.
 
 <p align="center">
-    <img src="/assets/img/attention_diagram.png" alt="attention diagram"  width="800"/>
+    <img src="/assets/img/attention_diagram.png" alt="attention diagram"  width="75%"/>
 </p>
 
 The idea is simply taking a dot product of _query_ vector and _key_ vector to decide the weight to put on the _value_ vector. This shows the depencies of values. 
