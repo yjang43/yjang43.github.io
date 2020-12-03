@@ -74,9 +74,35 @@
         
         hmm
         
+        nlp,
+        
+        transformer
+        
     </p>
 </div>
 <div class="container-sm">
+    
+    <h1>Training Hyperplane for Support Vector Machine</h1>
+    19 Jun 2020<br><br>
+    <p>We have this simple function of an hyperplane.
+\(\mathbf{\omega \cdot x} + b = 0\)
+However, getting the optimized hyperplane for SVM
+is not so easy as this function looks.</p>
+
+<p>To get an hyperplane that meets the condition,
+\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
+and maximum margin, one can approach by minimizing a loss function of this
+operation.</p>
+
+\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
+
+<p>This can be solved by (sub-) gradient descent methods. A <a href="https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf">lecture note from
+University of Utah</a>
+explains the procedure well. The lecture note suggests stochastic 
+gradient descent for the computation speed.</p>
+
+    <div class="post-border"></div>
     
     <h1>Primal Support Vector Machine</h1>
     19 Jun 2020<br><br>
@@ -198,19 +224,6 @@ was found <em>way to early</em> according to https://stackoverflow.com/questions
 such error. I think the best to avoid is to understand
 the caveat of relative import and don’t use it unless
 you really need to.</p>
-
-    <div class="post-border"></div>
-    
-    <h1>Python Standard Library - threading.py</h1>
-    27 May 2020<br><br>
-    <p>Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</p>
-
-<p>There is a package called threading. Thread instance can be created with Thread class and other instances for communication between threads can be created.</p>
-
-<p>Ones I found easy to understand and important were Thread, Timer, and Event. One thing I found interesting is that standard way of terminating a thread is not provided in the document. There are few suggestions from online like causing exception, or hidden function _stop().</p>
-
-<p>Python’s queue package can be used to manage data between threads.</p>
-
 
     <div class="post-border"></div>
     

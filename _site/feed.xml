@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-11-25T03:24:12-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Hidden Markov Model and Algorithms</title><link href="http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms.html" rel="alternate" type="text/html" title="Hidden Markov Model and Algorithms" /><published>2020-11-23T00:00:00-06:00</published><updated>2020-11-23T00:00:00-06:00</updated><id>http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms</id><content type="html" xml:base="http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms.html">&lt;h3 id=&quot;hidden-markov-model&quot;&gt;Hidden Markov Model&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-03T05:30:46-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Attention Is All You Need - Transformer</title><link href="http://localhost:4000/2020/12/03/transformer.html" rel="alternate" type="text/html" title="Attention Is All You Need - Transformer" /><published>2020-12-03T00:00:00-06:00</published><updated>2020-12-03T00:00:00-06:00</updated><id>http://localhost:4000/2020/12/03/transformer</id><content type="html" xml:base="http://localhost:4000/2020/12/03/transformer.html">&lt;h3 id=&quot;thoughts&quot;&gt;Thoughts&lt;/h3&gt;
+&lt;p&gt;The paper, “Attention Is All You Need”, is the first to present transformer architecture.
+The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
+This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
+The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/transformer_table.png&quot; alt=&quot;transformer rnn cnn comparison table&quot; width=&quot;800&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&quot;architecture&quot;&gt;Architecture&lt;/h3&gt;
+&lt;p&gt;I recommend looking back at the article for more details because this part will only stay simple focus more on the overview of the architecture.
+Below is the diagram,&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/transformer_architecture.png&quot; alt=&quot;transformer architecture&quot; width=&quot;450&quot; /&gt;
+&lt;/p&gt;
+&lt;p&gt;Left part of the diagram is an encoder (multi-head self-attention mechanism + fully connected feed-forward network) and the right is a decoder (multi-head attention over output + multi-head attention connecting encoder and decoder + fully connected feed-forawrd).&lt;/p&gt;
+&lt;h4 id=&quot;encoder&quot;&gt;Encoder&lt;/h4&gt;
+&lt;p&gt;Starting from the bottom of the encoder, input embedding is done like many other networks into \(d_{model}\) dimension.
+Positional encoding is added to the embeddings. From the candidates of positional encodings, one using sine and consine functions is used. I need more background to understand this implementation.
+Then, this gets fed into &lt;em&gt;multi-head attention&lt;/em&gt; or scaled dot-product attention layer. This layer is the highlight of the paper, and used in both encoder and encoder and even encoder-decoder in which encoder connects to decoder. 
+Difference between multi-head attention and scaled dot-product attention is simply the latter is the single-head version of the former.
+We can use parallelization in this step by using multi-head instead.
+Here is a diagram of multi-head attention mechansim.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/attention_diagram.png&quot; alt=&quot;attention diagram&quot; width=&quot;800&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The idea is simply taking a dot product of &lt;em&gt;query&lt;/em&gt; vector and &lt;em&gt;key&lt;/em&gt; vector to decide the weight to put on the &lt;em&gt;value&lt;/em&gt; vector. This shows the depencies of values. 
+Then the result gets fed into a feed-forward network with one hidden layer with ReLU activation.&lt;/p&gt;
+
+&lt;h4 id=&quot;decoder&quot;&gt;Decoder&lt;/h4&gt;
+&lt;p&gt;Input embedding and positional encoding is identical to an encoder. Also, a feed-forward network after the attention mechanism layer is identical. However, the attention mechanism layers for decoder have some subtle difference. Self-attention layer attends up to the current point which means position after the current point needs to be masked.
+This masking stage is shown in the diagram as “Mask (opt.)” and mask is done by putting \(-inf\) to the position after the current point.
+Attention layer for connecting encoder and decoder is different to other attention layers in a sense that &lt;em&gt;query&lt;/em&gt; comes from the decoder step and &lt;em&gt;key&lt;/em&gt; and &lt;em&gt;value&lt;/em&gt; comes from the encoder step.&lt;/p&gt;
+
+&lt;p&gt;The overview of transformer ends here. It was a great fun reading the paper. In addition to the link to the paper, I leave a link of YouTube video that explains the structure in much more detail with visuals.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Paper: &lt;a href=&quot;https://arxiv.org/pdf/1706.03762.pdf&quot;&gt;https://arxiv.org/pdf/1706.03762.pdf&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;YouTube: &lt;a href=&quot;https://www.youtube.com/watch?v=4Bdc55j80l8&quot;&gt;https://www.youtube.com/watch?v=4Bdc55j80l8&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="nlp," /><category term="transformer" /><summary type="html">Thoughts The paper, “Attention Is All You Need”, is the first to present transformer architecture. The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN. This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure. The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.</summary></entry><entry><title type="html">Hidden Markov Model and Algorithms - 1</title><link href="http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms.html" rel="alternate" type="text/html" title="Hidden Markov Model and Algorithms - 1" /><published>2020-11-23T00:00:00-06:00</published><updated>2020-11-23T00:00:00-06:00</updated><id>http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms</id><content type="html" xml:base="http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms.html">&lt;h3 id=&quot;hidden-markov-model&quot;&gt;Hidden Markov Model&lt;/h3&gt;
 &lt;p&gt;HMM is easy to understand knowing its components first.
 HMM can represent a sequence of &lt;em&gt;states&lt;/em&gt; and &lt;em&gt;symbol&lt;/em&gt;.
 Symbol is what we observe, 
@@ -276,19 +317,4 @@ virtualenv &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot
 deactivate
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This gets very handy when I have to face compatibility issue.&lt;/p&gt;</content><author><name></name></author><category term="aws" /><category term="django" /><category term="python" /><summary type="html">I used Django 3.0.5 to develop my portfolio website originally. Unfortunately, I overlooked the version compatibility of AWS with Django. The specified version was 2.1.1 with Python 3.6 the latest. This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root. I think one of the reasons why AWS is maintaining such compatibility is due to SQLite. Once I did</summary></entry><entry><title type="html">Jekyll to GitHub Pages</title><link href="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html" rel="alternate" type="text/html" title="Jekyll to GitHub Pages" /><published>2020-05-26T00:00:00-05:00</published><updated>2020-05-26T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/26/jekyll-to-github-pages</id><content type="html" xml:base="http://localhost:4000/2020/05/26/jekyll-to-github-pages.html">&lt;p&gt;GitHub page is not something new to me. When I first
-learned about HTML and CSS, like all others wanted to do,
-I tried to create a phat personal website.
-However, I knew so little to make it look okay.&lt;/p&gt;
-
-&lt;p&gt;Several months later, as I learn more about website hosting
-and etc. I realized there is no cheap way &lt;em&gt;for a college student like me&lt;/em&gt;
-to host a dynamic web sites. Reason is simple, you need a computer to
-compute and render. So, I came back to GitHub page because they are free.
-Then, I looked for static site generator that GitHub supports.&lt;/p&gt;
-
-&lt;p&gt;Jekyll was a standard one and very easy to understand. Some of the terms
-were quite knew to me because Jekyll was a Ruby product, but many of them
-can be disregarded without backfiring at your project.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Check out Jekyll.&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="github" /><summary type="html">GitHub page is not something new to me. When I first learned about HTML and CSS, like all others wanted to do, I tried to create a phat personal website. However, I knew so little to make it look okay.</summary></entry></feed>
+&lt;p&gt;This gets very handy when I have to face compatibility issue.&lt;/p&gt;</content><author><name></name></author><category term="aws" /><category term="django" /><category term="python" /><summary type="html">I used Django 3.0.5 to develop my portfolio website originally. Unfortunately, I overlooked the version compatibility of AWS with Django. The specified version was 2.1.1 with Python 3.6 the latest. This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root. I think one of the reasons why AWS is maintaining such compatibility is due to SQLite. Once I did</summary></entry></feed>

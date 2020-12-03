@@ -1,5 +1,5 @@
 ---
-title: Hidden Markov Model and Algorithms
+title: Hidden Markov Model and Algorithms - 1
 tags: ml, hmm
 ---
 

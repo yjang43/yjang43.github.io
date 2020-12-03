@@ -1,0 +1,6 @@
+I"�<h3 id="thoughts">Thoughts</h3>
+<p>The paper, “Attention Is All You Need”, is the first to present transformer architecture.
+The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
+This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
+The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.</p>
+:ET
