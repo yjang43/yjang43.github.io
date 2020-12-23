@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/paginator.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
 </head>
 <body>
@@ -78,9 +79,36 @@
         
         transformer
         
+        pytorch
+        
     </p>
 </div>
 <div class="container-sm">
+    
+    <h1>Bifrost, Possible Solution for DApp</h1>
+    20 Jun 2020<br><br>
+    <p>The whole reason I came across the idea of DApp is because of the interview
+with a company called <em><a href="https://pilab.co/">Pilab</a></em>. This company tries to seek a solution
+for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</p>
+
+<p><em><a href="https://thebifrost.io/static/Bifrost_WP_Eng.pdf">Bifrost’s white paper</a></em> was interesting reading.
+Even if I lacked a DApp background, with a simple understanding of block chain in general, and private and public
+block chain, I was able to understand what problem Bifrost intend to solve.</p>
+
+<p>According to the document, each block chain platform has a different focus as to
+its implementation and ecosystem. Some focuses on scalability, and other focuses
+on security and beyond.</p>
+
+<p>As a programmer that needs to choose solely one platform, the risk or loss for
+completely giving in one platform is a huge risk. Bifrost comes into place and solve
+this dilemma by suggesting a framework, so to speak, that allows running two block
+chain platforms in parallel from my understanding. My first concern was decrease in
+its efficiency due to running two platforms compared to one, but they are working on
+creating its own language called <em>Recipe</em> that optimizes its performance.</p>
+
+<p>I am excited to learn more about this technology in the future.</p>
+
+    <div class="post-border"></div>
     
     <h1>Training Hyperplane for Support Vector Machine</h1>
     19 Jun 2020<br><br>
@@ -172,84 +200,39 @@ issues</li>
 
     <div class="post-border"></div>
     
-    <h1>How to Properly Use Relative Import</h1>
-    31 May 2020<br><br>
-    <p>As I learn more about file control in Python, I
-stumbled upon two options for import: absolute
-import and relative import.</p>
-
-<p>Prior to that, there is a need of understanding 
-how import system works in Python.</p>
-
-<p>When import occurs, Python finds the package, module
-, resource, or whatever you attempt to retrieve
-in the order of sys.modules(cache for modules),
-built-in modules, and list of directories defined
-by sys.path (current directory and etc.).</p>
-
-<p>With this in mind, absolute import is done by showing
-import path starting from any directory found from
-the process above. Otherwise, relative path gives
-freedom to import sources relative to the file
-location.</p>
-
-<p>This is useful but there are caveats.</p>
-
-<p>When I tried to achieve relative import, it caused
-an error as such:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-  File <span class="s2">"test.py"</span>, line 1, <span class="k">in</span> &lt;module&gt;
-    from .word_vector import <span class="k">*</span>
-ImportError: attempted relative import with no known parent package
-</code></pre></div></div>
-<p>my file structure looked like this:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nlpyj
-    <span class="nt">-text</span>
-        -...
-    <span class="nt">-word_vector</span>.py
-    <span class="nt">-test</span>.py
-</code></pre></div></div>
-<p>and with in test.py</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># test.py
-</span><span class="kn">from</span> <span class="nn">.word_vector</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="p">...</span>
-</code></pre></div></div>
-
-<p>The problem was that my test.py file ran
-within the package and it prevented Python to realize
-word_vector.py is a part of the package. word_vector.py
-was found <em>way to early</em> according to https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time.</p>
-
-<p>The link explains nitty gritty of why Python throws
-such error. I think the best to avoid is to understand
-the caveat of relative import and don’t use it unless
-you really need to.</p>
-
-    <div class="post-border"></div>
-    
 </div>
 
 <div class="pagination">
   
-    <a href="/blog/">&laquo; Prev </a>
+    <span class=page_num>
+      <a href="/blog/">&laquo; Prev </a>
+    </span>
   
 
   
     
-      <a href="/blog/">1 </a>
+      <span class=page_num>
+        <a href="/blog/">1 </a>
+      </span>
     
   
     
-      <em>2</em>
+      <span class=page_num>
+        <em>2</em>
+      </span>
     
   
     
-      <a href="/blog/page3/">3 </a>
+      <span class=page_num>
+        <a href="/blog/page3/">3 </a>
+      </span>
     
   
 
   
-    <a href="/blog/page3/">Next &raquo;</a>
+    <span class=page_num>
+      <a href="/blog/page3/">Next &raquo;</a>
+    </span>
   
 </div>
 

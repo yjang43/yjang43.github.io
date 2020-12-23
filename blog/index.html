@@ -27,25 +27,39 @@ my_tag:
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev </a>
+    <span class=page_num>
+      <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev </a>
+    </span>
   {% else %}
-    <span>&laquo; Prev</span>
+    <span class=page_num>
+      <span>&laquo; Prev</span>
+    </span>
   {% endif %}
 
   {% for page in (1..paginator.total_pages) %}
     {% if page == paginator.page %}
-      <em>{{ page }}</em>
+      <span class=page_num>
+        <em>{{ page }}</em>
+      </span>
     {% elsif page == 1 %}
-      <a href="{{ '/blog/' | relative_url }}">{{ page }} </a>
+      <span class=page_num>
+        <a href="{{ '/blog/' | relative_url }}">{{ page }} </a>
+      </span>
     {% else %}
-      <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }} </a>
+      <span class=page_num>
+        <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }} </a>
+      </span>
     {% endif %}
   {% endfor %}
 
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+    <span class=page_num>
+      <a href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+    </span>
   {% else %}
-    <span>Next &raquo;</span>
+    <span class=page_num>
+      <span>Next &raquo;</span>
+    </span>
   {% endif %}
 </div>
 {% endif %}

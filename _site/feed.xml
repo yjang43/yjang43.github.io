@@ -1,4 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-03T05:35:28-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Attention Is All You Need - Transformer</title><link href="http://localhost:4000/2020/12/03/transformer.html" rel="alternate" type="text/html" title="Attention Is All You Need - Transformer" /><published>2020-12-03T00:00:00-06:00</published><updated>2020-12-03T00:00:00-06:00</updated><id>http://localhost:4000/2020/12/03/transformer</id><content type="html" xml:base="http://localhost:4000/2020/12/03/transformer.html">&lt;h3 id=&quot;thoughts&quot;&gt;Thoughts&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-23T08:44:57-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Understanding Autograd in PyTorch</title><link href="http://localhost:4000/2020/12/23/pytorch-autograd.html" rel="alternate" type="text/html" title="Understanding Autograd in PyTorch" /><published>2020-12-23T00:00:00-06:00</published><updated>2020-12-23T00:00:00-06:00</updated><id>http://localhost:4000/2020/12/23/pytorch-autograd</id><content type="html" xml:base="http://localhost:4000/2020/12/23/pytorch-autograd.html">&lt;p&gt;I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.
+Accurately, autograd is an engine for Jacobian-vector product (JVP).
+I will cover two things, cycle of its operation and JVP&lt;/p&gt;
+&lt;h3 id=&quot;operation-cycle&quot;&gt;Operation Cycle&lt;/h3&gt;
+&lt;p&gt;Autograd is possible because operations on Tensors are recorded, and a directed acyclic graph (DAG), or more specifically dynamic computational graph (DCG), is craeted along with it.
+In a view of graph, nodes are Tensors, and edges are operations.&lt;/p&gt;
+
+&lt;p&gt;Tensor holds the following important information:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;em&gt;data&lt;/em&gt;: value a Tensor is holding.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;requires_grad&lt;/em&gt;: &lt;em&gt;VERY IMPORTANT!&lt;/em&gt; tracks operation and forms backward graph which allows backpropagation.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;grad&lt;/em&gt;: stores computed gradient.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;grad_fn&lt;/em&gt;: backward function used to compute gradient.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;is_leaf&lt;/em&gt;: tells if the node is leaf of DCG&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;While the importance of other attributes are self explanatory, it seems odd to store &lt;em&gt;is_leaf&lt;/em&gt;.
+However, this becomes an important bit because gradient of Tensor is populated only if &lt;em&gt;requires_grad&lt;/em&gt; and &lt;em&gt;is_leaf&lt;/em&gt; are set to True.&lt;/p&gt;
+
+&lt;h3 id=&quot;jvp&quot;&gt;JVP&lt;/h3&gt;
+&lt;p&gt;When I was going through &lt;a href=&quot;https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py&quot;&gt;tutorials&lt;/a&gt; on PyTorch, I found this part very weird and arbitrary.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0001&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This explains the case when we call &lt;em&gt;backward()&lt;/em&gt; function from non-scalar output. 
+To understand this, I had to learn PyTorch does not (or cannot) compute Jacobian directly to purse simplicity and efficiency.
+It uses JVP instead which simply is an inner product of vector and Jacobian.
+Normally, the root of DAG, or DCG, of autograd is an output from loss function, simply a scalar value.
+This kind of eliminates a reason to compute Jacobian directly and lets us assume computation of gradient always start from a scalar value.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/JVP.png&quot; alt=&quot;JVP&quot; width=&quot;30%&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This does not mean we cannot compute Jacobian.
+An example by &lt;a href=&quot;https://stackoverflow.com/questions/43451125/pytorch-what-are-the-gradient-arguments/47026836&quot;&gt;jdhao&lt;/a&gt; gives an intuitive explanation on why and how to directly compute Jacobian.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.autograd&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;loss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dim&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# do backward for first element of z
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#remove gradient in x.grad, or it will be accumulated
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# do backward for second element of z
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# do backward for all elements of z, with weight equal to the derivative of
+# loss w.r.t z_1, z_2, z_3 and z_4
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# or we can directly backprop using loss
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# equivalent to loss.backward(torch.FloatTensor([1.0]))
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This gives an output,&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tensor&lt;span class=&quot;o&quot;&gt;([[&lt;/span&gt;2., 0., 0., 0.]]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+tensor&lt;span class=&quot;o&quot;&gt;([[&lt;/span&gt;0., 2., 0., 0.]]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+tensor&lt;span class=&quot;o&quot;&gt;([[&lt;/span&gt;2., 2., 2., 2.]]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+tensor&lt;span class=&quot;o&quot;&gt;([[&lt;/span&gt;2., 2., 2., 2.]]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This is easy to understand with some math.&lt;/p&gt;
+
+\[\bf x = \begin{bmatrix} 1 &amp;amp; 2 &amp;amp; 3 &amp;amp; 4\end{bmatrix}\]
+
+\[{\bf z} = 2 \odot x\quad (element\ wise)\]
+
+\[{\partial \bf z \over \partial \bf x} =  \begin{bmatrix} {\partial z_1 \over \partial \bf x} &amp;amp; {\partial z_2 \over \partial \bf x} &amp;amp; {\partial z_3 \over \partial \bf x} &amp;amp; {\partial z_4 \over \partial \bf x}\end{bmatrix}\]
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backwardtorch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Then, this will mean,&lt;/p&gt;
+
+\[{\partial z_1 \over \partial \bf x} =  \begin{bmatrix} {\partial z_1 \over \partial x_1} &amp;amp; {\partial z_1 \over \partial x_2} &amp;amp; {\partial z_1 \over \partial x_3} &amp;amp; {\partial z_1 \over \partial x_4}\end{bmatrix}\]
+
+&lt;p&gt;Thus, outcome will be,&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; tensor&lt;span class=&quot;o&quot;&gt;([[&lt;/span&gt;2., 0., 0., 0.]]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
+&lt;p&gt;My confusion on how autograd works was greatly solved by &lt;a href=&quot;https://towardsdatascience.com/pytorch-autograd-understanding-the-heart-of-pytorchs-magic-2686cd94ec95&quot;&gt;Vaibhav Kumar’s blog post&lt;/a&gt;. My post is a note on what I find important from it and added an example and mathematic explanation that were not covered in the blog.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="pytorch" /><summary type="html">I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us. Accurately, autograd is an engine for Jacobian-vector product (JVP). I will cover two things, cycle of its operation and JVP Operation Cycle Autograd is possible because operations on Tensors are recorded, and a directed acyclic graph (DAG), or more specifically dynamic computational graph (DCG), is craeted along with it. In a view of graph, nodes are Tensors, and edges are operations.</summary></entry><entry><title type="html">Attention Is All You Need - Transformer</title><link href="http://localhost:4000/2020/12/03/transformer.html" rel="alternate" type="text/html" title="Attention Is All You Need - Transformer" /><published>2020-12-03T00:00:00-06:00</published><updated>2020-12-03T00:00:00-06:00</updated><id>http://localhost:4000/2020/12/03/transformer</id><content type="html" xml:base="http://localhost:4000/2020/12/03/transformer.html">&lt;h3 id=&quot;thoughts&quot;&gt;Thoughts&lt;/h3&gt;
 &lt;p&gt;The paper, “Attention Is All You Need”, is the first to present transformer architecture.
 The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
 This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
@@ -297,26 +386,4 @@ you really need to.&lt;/p&gt;</content><author><name></name></author><category t
 
 &lt;p&gt;Ones I found easy to understand and important were Thread, Timer, and Event. One thing I found interesting is that standard way of terminating a thread is not provided in the document. There are few suggestions from online like causing exception, or hidden function _stop().&lt;/p&gt;
 
-&lt;p&gt;Python’s queue package can be used to manage data between threads.&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</summary></entry><entry><title type="html">AWS Deployment, Check for Compatibility</title><link href="http://localhost:4000/2020/05/27/django-aws-compatibility.html" rel="alternate" type="text/html" title="AWS Deployment, Check for Compatibility" /><published>2020-05-27T00:00:00-05:00</published><updated>2020-05-27T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/27/django-aws-compatibility</id><content type="html" xml:base="http://localhost:4000/2020/05/27/django-aws-compatibility.html">&lt;p&gt;I used Django 3.0.5 to develop my portfolio website originally.
-Unfortunately, I overlooked the version compatibility of AWS with Django.
-The specified version was 2.1.1 with Python 3.6 the latest.
-This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root.
-I think one of the reasons why AWS is maintaining such compatibility is due to SQLite.
-Once I did&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;eb logs
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;I found out that SQLite 3.8 which is a default db provided by Django is not provided by AWS
-(it still maintained 3.7 version).&lt;/p&gt;
-
-&lt;p&gt;This made me reconsider the value of virtualenv sciprt.&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pyenv
-pyenv &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;3.6
-virtualenv &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;LOCATION_OF_PYTHON_INSTALLED]/bin/python.3.6 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;VIRTUAL_ENVIRONMENT]
-&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;VIRTUAL_ENVIRONMENT]/bin/activate
-...
-
-deactivate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This gets very handy when I have to face compatibility issue.&lt;/p&gt;</content><author><name></name></author><category term="aws" /><category term="django" /><category term="python" /><summary type="html">I used Django 3.0.5 to develop my portfolio website originally. Unfortunately, I overlooked the version compatibility of AWS with Django. The specified version was 2.1.1 with Python 3.6 the latest. This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root. I think one of the reasons why AWS is maintaining such compatibility is due to SQLite. Once I did</summary></entry></feed>
+&lt;p&gt;Python’s queue package can be used to manage data between threads.&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</summary></entry></feed>

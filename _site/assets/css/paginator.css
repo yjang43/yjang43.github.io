@@ -1,0 +1,14 @@
+.pagination {
+    background-color: rgb(4, 7, 20);
+    padding: 10px;
+}
+
+.page_num {
+    font-size: large;
+    color: beige;
+    padding-right: 10px;
+}
+
+.page_num a{
+    color: beige
+}
