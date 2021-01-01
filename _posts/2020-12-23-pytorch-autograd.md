@@ -96,3 +96,5 @@ Thus, outcome will be,
 
 ### Reference
 My confusion on how autograd works was greatly solved by [Vaibhav Kumar's blog post](https://towardsdatascience.com/pytorch-autograd-understanding-the-heart-of-pytorchs-magic-2686cd94ec95). My post is a note on what I find important from it and added an example and mathematic explanation that were not covered in the blog. 
+
+[To learn more about autograd mechanics](https://pytorch.org/docs/stable/notes/autograd.html)
