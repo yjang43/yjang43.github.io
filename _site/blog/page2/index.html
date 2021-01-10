@@ -85,6 +85,77 @@
 </div>
 <div class="container-sm">
     
+    <h1>Vanilla RNN</h1>
+    21 Nov 2020<br><br>
+    <h3 id="motif">Motif</h3>
+<p>Language model is the probability of a sequence.
+This can be approximated as the product of <em>n</em>-gram,</p>
+
+\[P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\]
+
+<p>So, <em>n</em>-gram was a natural approach to do language modeling.
+However, this traditional approach has two limitations.</p>
+<ul>
+  <li>sparsity of <em>n</em>-gram</li>
+  <li>exponential growth in model size as <em>n</em> increases</li>
+</ul>
+
+<h3 id="vanila-rnn">Vanila RNN</h3>
+<p align="center">
+    <img src="/assets/img/rnn_structure.png" alt="RNN structure" width="40%" />
+</p>
+
+<p>In contrast to the complex network of RNN,
+equations to express the network is surprisingly very simple.
+This is because weights are repeated used throughout timestamps.</p>
+
+\[h_t=\sigma(W_hh_{t-1} + W_ex_t)\]
+
+\[\hat{y}=softmax(Uh_t)\]
+
+<p>Here are short description of dimensions of each parameter.</p>
+
+\[x_t\in\mathbb{R}^d\]
+
+\[W_e\in\mathbb{R}^{D_h\times d}\]
+
+\[W_h\in\mathbb{R}^{D_h\times D_h}\]
+
+\[h_{t-1}\in\mathbb{R}^{D_h}\]
+
+\[\hat{y}\in\mathbb{R}^{|V|}\]
+
+\[U\in\mathbb{R}^{|V| \times D_h}\]
+
+<p>\(d\) indicates dimension of word embeddings <em>(possibly with Word2Vec)</em>, 
+\(D_h\) is a dimension chosen in design. 
+\(|V|\) is the cardinality of the corpus.</p>
+
+<p>Now the structure of RNN is clear, I will discuss the loss and gradient of RNN.
+First, loss function looks like this.</p>
+
+\[J^{(t)}(\Theta) = - \sum^{|V|}_{j=1}y_{t,j}\times log(\hat{y}_{t,j})\]
+
+\[J = {1\over T} \sum^{T}_{t=1}J^{(t)}(\Theta)\]
+
+<p>Here, cross entropy is used to define a distance of proabability.
+The loss function of RNN looks a little bit complicated, but it is explained intuitively by looking at the structure of RNN.
+\(J^{(t)}\) indicates a loss at a timestamp \(t\). 
+Then \(J\) indicates the overall loss of the RNN which is a summation over each timeframe and averaged by dividing the sum by the corpus size.</p>
+
+<p>Second, gradient looks complicated as well.</p>
+
+\[{\partial J \over \partial W} = \sum^T_{t=1}{\partial J_t \over \partial W}\]
+
+\[{\partial J_t \over \partial W} = \sum^t_{k=1} {\partial J_t \over \partial y_t}{\partial y_t \over \partial h_t}{\partial h_t \over \partial h_k}{\partial h_k \over \partial W}\]
+
+<p>However, this again is explained intuitively. Similar to how loss at each timestamp is added for an overall loss, overall gradient can decompose into a sum of gradient at each timestamp. Then, gradient at each timestamp is a sum of gradient that imposes change to \(y_t\). This is a multiplication of local gradients in sequence.</p>
+
+<h3 id="problem-with-vanila-rnn">Problem With Vanila RNN</h3>
+<p>With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call <em>exploding gradient</em> and <em>vanishing gradient</em> respectively. Thus, variation of RNNs are devised in newer literatures.</p>
+
+    <div class="post-border"></div>
+    
     <h1>Bifrost, Possible Solution for DApp</h1>
     20 Jun 2020<br><br>
     <p>The whole reason I came across the idea of DApp is because of the interview
@@ -160,46 +231,6 @@ the max margin.</p>
 
     <div class="post-border"></div>
     
-    <h1>Readings about Object Detection</h1>
-    01 Jun 2020<br><br>
-    <p>I am reading a journal from <em>IEEE</em> and decided to 
-record some of the learning points from the reading.
-<em>Object Detection With Deep Learning: A Review</em> by Zhao
-and others thoroughly reviews on the development of
-object detection and its future as well.</p>
-
-<p>There are two requirements to detect object:</p>
-<ol>
-  <li><em>object localization</em> - where the object is located
-from the frame</li>
-  <li><em>object classification</em> - what is the object</li>
-</ol>
-
-<p>The author states that <em>supported vector machine</em> (SVM)
-was used often for classification, so let’s learn more
-about that.</p>
-
-<p>SVM is a classification technique that can be used
-in supervised learning model. The idea is that
-if there are <em>k</em>-dimension vectors than it separates
-vectors with <em>(k-1)</em>-dimension hyperplane that 
-maximizes distance from nearest data point from
-each side is maximized.</p>
-
-<p>However, occurrence of convolutional neural network (CNN)
-was the game changer. Changing technology brings
-these advantages to CNN:</p>
-<ol>
-  <li>ImageNet - big ass data set to train the model</li>
-  <li>faster GPU specs</li>
-  <li>better design of structures like <em>autoencoder</em> or 
-<em>restricted Boltzmann machine</em> to avoid preexisting
-issues</li>
-</ol>
-
-
-    <div class="post-border"></div>
-    
 </div>
 
 <div class="pagination">
@@ -225,6 +256,12 @@ issues</li>
     
       <span class=page_num>
         <a href="/blog/page3/">3 </a>
+      </span>
+    
+  
+    
+      <span class=page_num>
+        <a href="/blog/page4/">4 </a>
       </span>
     
   

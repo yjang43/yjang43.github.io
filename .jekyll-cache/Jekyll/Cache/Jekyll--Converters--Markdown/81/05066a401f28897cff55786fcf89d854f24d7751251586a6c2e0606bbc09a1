@@ -1,0 +1,93 @@
+I")<p>I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.
+Accurately, autograd is an engine for Jacobian-vector product (JVP).
+I will cover two things, cycle of its operation and JVP</p>
+<h3 id="operation-cycle">Operation Cycle</h3>
+<p>Autograd is possible because operations on Tensors are recorded, and a directed acyclic graph (DAG), or more specifically dynamic computational graph (DCG), is craeted along with it.
+In a view of graph, nodes are Tensors, and edges are operations.</p>
+
+<p>Tensor holds the following important information:</p>
+<ol>
+  <li><em>data</em>: value a Tensor is holding.</li>
+  <li><em>requires_grad</em>: <em>VERY IMPORTANT!</em> tracks operation and forms backward graph which allows backpropagation.</li>
+  <li><em>grad</em>: stores computed gradient.</li>
+  <li><em>grad_fn</em>: backward function used to compute gradient.</li>
+  <li><em>is_leaf</em>: tells if the node is leaf of DCG</li>
+</ol>
+
+<p>While the importance of other attributes are self explanatory, it seems odd to store <em>is_leaf</em>.
+However, this becomes an important bit because gradient of Tensor is populated only if <em>requires_grad</em> and <em>is_leaf</em> are set to True.</p>
+
+<h3 id="jvp">JVP</h3>
+<p>When I was going through <a href="https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py">tutorials</a> on PyTorch, I found this part very weird and arbitrary.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">y</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+<p>This explains the case when we call <em>backward()</em> function from non-scalar output. 
+To understand this, I had to learn PyTorch does not (or cannot) compute Jacobian directly to purse simplicity and efficiency.
+It uses JVP instead which simply is an inner product of vector and Jacobian.
+Normally, the root of DAG, or DCG, of autograd is an output from loss function, simply a scalar value.
+This kind of eliminates a reason to compute Jacobian directly and lets us assume computation of gradient always start from a scalar value.</p>
+
+<p align="center">
+    <img src="/assets/img/JVP.png" alt="JVP" width="30%" />
+</p>
+
+<p>This does not mean we cannot compute Jacobian.
+An example by <a href="https://stackoverflow.com/questions/43451125/pytorch-what-are-the-gradient-arguments/47026836">jdhao</a> gives an intuitive explanation on why and how to directly compute Jacobian.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># do backward for first element of z
+</span><span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span> <span class="c1">#remove gradient in x.grad, or it will be accumulated
+</span>
+<span class="c1"># do backward for second element of z
+</span><span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span>
+
+<span class="c1"># do backward for all elements of z, with weight equal to the derivative of
+# loss w.r.t z_1, z_2, z_3 and z_4
+</span><span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span>
+
+<span class="c1"># or we can directly backprop using loss
+</span><span class="n">loss</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span> <span class="c1"># equivalent to loss.backward(torch.FloatTensor([1.0]))
+</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>  
+</code></pre></div></div>
+<p>This gives an output,</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tensor<span class="o">([[</span>2., 0., 0., 0.]]<span class="o">)</span>
+tensor<span class="o">([[</span>0., 2., 0., 0.]]<span class="o">)</span>
+tensor<span class="o">([[</span>2., 2., 2., 2.]]<span class="o">)</span>
+tensor<span class="o">([[</span>2., 2., 2., 2.]]<span class="o">)</span>
+</code></pre></div></div>
+<p>This is easy to understand with some math.</p>
+
+\[\bf x = \begin{bmatrix} 1 &amp; 2 &amp; 3 &amp; 4\end{bmatrix}\]
+
+\[{\bf z} = 2 \odot x\quad (element\ wise)\]
+
+\[{\partial \bf z \over \partial \bf x} =  \begin{bmatrix} {\partial z_1 \over \partial \bf x} &amp; {\partial z_2 \over \partial \bf x} &amp; {\partial z_3 \over \partial \bf x} &amp; {\partial z_4 \over \partial \bf x}\end{bmatrix}\]
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z</span><span class="p">.</span><span class="n">backwardtorch</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+</code></pre></div></div>
+<p>Then, this will mean,</p>
+
+\[{\partial z_1 \over \partial \bf x} =  \begin{bmatrix} {\partial z_1 \over \partial x_1} &amp; {\partial z_1 \over \partial x_2} &amp; {\partial z_1 \over \partial x_3} &amp; {\partial z_1 \over \partial x_4}\end{bmatrix}\]
+
+<p>Thus, outcome will be,</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> tensor<span class="o">([[</span>2., 0., 0., 0.]]<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="reference">Reference</h3>
+<p>My confusion on how autograd works was greatly solved by <a href="https://towardsdatascience.com/pytorch-autograd-understanding-the-heart-of-pytorchs-magic-2686cd94ec95">Vaibhav Kumar’s blog post</a>. My post is a note on what I find important from it and added an example and mathematic explanation that were not covered in the blog.</p>
+
+<p><a href="https://pytorch.org/docs/stable/notes/autograd.html">To learn more about autograd mechanics</a></p>
+:ET

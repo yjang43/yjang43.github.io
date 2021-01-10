@@ -85,6 +85,46 @@
 </div>
 <div class="container-sm">
     
+    <h1>Readings about Object Detection</h1>
+    01 Jun 2020<br><br>
+    <p>I am reading a journal from <em>IEEE</em> and decided to 
+record some of the learning points from the reading.
+<em>Object Detection With Deep Learning: A Review</em> by Zhao
+and others thoroughly reviews on the development of
+object detection and its future as well.</p>
+
+<p>There are two requirements to detect object:</p>
+<ol>
+  <li><em>object localization</em> - where the object is located
+from the frame</li>
+  <li><em>object classification</em> - what is the object</li>
+</ol>
+
+<p>The author states that <em>supported vector machine</em> (SVM)
+was used often for classification, so let’s learn more
+about that.</p>
+
+<p>SVM is a classification technique that can be used
+in supervised learning model. The idea is that
+if there are <em>k</em>-dimension vectors than it separates
+vectors with <em>(k-1)</em>-dimension hyperplane that 
+maximizes distance from nearest data point from
+each side is maximized.</p>
+
+<p>However, occurrence of convolutional neural network (CNN)
+was the game changer. Changing technology brings
+these advantages to CNN:</p>
+<ol>
+  <li>ImageNet - big ass data set to train the model</li>
+  <li>faster GPU specs</li>
+  <li>better design of structures like <em>autoencoder</em> or 
+<em>restricted Boltzmann machine</em> to avoid preexisting
+issues</li>
+</ol>
+
+
+    <div class="post-border"></div>
+    
     <h1>How to Properly Use Relative Import</h1>
     31 May 2020<br><br>
     <p>As I learn more about file control in Python, I
@@ -182,27 +222,6 @@ deactivate
 
     <div class="post-border"></div>
     
-    <h1>Jekyll to GitHub Pages</h1>
-    26 May 2020<br><br>
-    <p>GitHub page is not something new to me. When I first
-learned about HTML and CSS, like all others wanted to do,
-I tried to create a phat personal website.
-However, I knew so little to make it look okay.</p>
-
-<p>Several months later, as I learn more about website hosting
-and etc. I realized there is no cheap way <em>for a college student like me</em>
-to host a dynamic web sites. Reason is simple, you need a computer to
-compute and render. So, I came back to GitHub page because they are free.
-Then, I looked for static site generator that GitHub supports.</p>
-
-<p>Jekyll was a standard one and very easy to understand. Some of the terms
-were quite knew to me because Jekyll was a Ruby product, but many of them
-can be disregarded without backfiring at your project.</p>
-
-<p><a href="https://jekyllrb.com/">Check out Jekyll.</a></p>
-
-    <div class="post-border"></div>
-    
 </div>
 
 <div class="pagination">
@@ -231,10 +250,16 @@ can be disregarded without backfiring at your project.</p>
       </span>
     
   
+    
+      <span class=page_num>
+        <a href="/blog/page4/">4 </a>
+      </span>
+    
+  
 
   
     <span class=page_num>
-      <span>Next &raquo;</span>
+      <a href="/blog/page4/">Next &raquo;</a>
     </span>
   
 </div>

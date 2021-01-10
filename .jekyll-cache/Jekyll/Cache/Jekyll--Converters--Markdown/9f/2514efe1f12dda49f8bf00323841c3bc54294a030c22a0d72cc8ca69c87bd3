@@ -1,0 +1,5 @@
+I"�<p>Learning PyTorch, I happened to come across a function called <em>reset_parameters()</em>.
+This function included xavier initalization instead of standard initialization.
+So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”.
+The origin paper of Xavier intialization gave me great undersatnding of its objective.</p>
+:ET

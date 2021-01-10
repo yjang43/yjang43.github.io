@@ -85,6 +85,57 @@
 </div>
 <div class="container-sm">
     
+    <h1>Learning Xavier Initialization</h1>
+    10 Jan 2021<br><br>
+    <p>Learning PyTorch, I happened to come across a function called <em>reset_parameters()</em>.
+This function included xavier initalization instead of standard initialization.
+So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”.
+The origin paper of Xavier intialization gave me great undersatnding of its objective.</p>
+
+<h3 id="xavier-initialization">Xavier Initialization</h3>
+
+<p>Objectives of Xavier initialization are simply all about managing variance,</p>
+
+<ol>
+  <li>
+    <p>Maintaining variance of forward propagation.<br />
+Each neuron should equally contribute to right prediction.</p>
+  </li>
+  <li>
+    <p>Maintaining variance of backward propagation<br />
+Back propagation should not be susceptible to vanishing and exploding gradient.</p>
+  </li>
+</ol>
+
+<p>The part that interested me the most is how variance can be calculated and multiplied and added according to the number of layers and hidden neurons within each layer.</p>
+
+\[Var[z^i]  = Var[x]\prod^{i-1}_{i^{'}=0}n_{i^{'}}Var[W^{i^{'}}]\]
+
+<p>Moving forward, the authors present the following way to intialize weights from such distribution,</p>
+
+\[W \sim U\Big[-{\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}, {\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}\Big]\]
+
+<h3 id="additional-study">Additional Study</h3>
+<p>Although introduction of Xavier initialization is the main meal of the paper, I enjoyed learning other points made by the authors.</p>
+<ul>
+  <li>
+    <p>It is important to choose a good activation function.
+<br />
+For example, sigmoid shows a quick saturation of hidden layer in the output.
+It makes sense because in the early training period, bias overrules features in neurons.
+This restricts lower layers to learn meaningful features, and thus slower learning.
+Choosing zero-mean activation function line tanh can avoid the problem.</p>
+  </li>
+  <li>
+    <p>It is important to choose a right loss function.
+<br />
+The authors compared the result between quadratic(LSE) and cross entropy. 
+Result shows quadratic loss function gives more plateaus, which I assume it means slower training (flatness gives smaller gradient).</p>
+  </li>
+</ul>
+
+    <div class="post-border"></div>
+    
     <h1>Understanding Autograd in PyTorch</h1>
     23 Dec 2020<br><br>
     <p>I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.
@@ -177,6 +228,8 @@ tensor<span class="o">([[</span>2., 2., 2., 2.]]<span class="o">)</span>
 
 <h3 id="reference">Reference</h3>
 <p>My confusion on how autograd works was greatly solved by <a href="https://towardsdatascience.com/pytorch-autograd-understanding-the-heart-of-pytorchs-magic-2686cd94ec95">Vaibhav Kumar’s blog post</a>. My post is a note on what I find important from it and added an example and mathematic explanation that were not covered in the blog.</p>
+
+<p><a href="https://pytorch.org/docs/stable/notes/autograd.html">To learn more about autograd mechanics</a></p>
 
     <div class="post-border"></div>
     
@@ -282,77 +335,6 @@ simple as that.</p>
 
     <div class="post-border"></div>
     
-    <h1>Vanilla RNN</h1>
-    21 Nov 2020<br><br>
-    <h3 id="motif">Motif</h3>
-<p>Language model is the probability of a sequence.
-This can be approximated as the product of <em>n</em>-gram,</p>
-
-\[P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\]
-
-<p>So, <em>n</em>-gram was a natural approach to do language modeling.
-However, this traditional approach has two limitations.</p>
-<ul>
-  <li>sparsity of <em>n</em>-gram</li>
-  <li>exponential growth in model size as <em>n</em> increases</li>
-</ul>
-
-<h3 id="vanila-rnn">Vanila RNN</h3>
-<p align="center">
-    <img src="/assets/img/rnn_structure.png" alt="RNN structure" width="40%" />
-</p>
-
-<p>In contrast to the complex network of RNN,
-equations to express the network is surprisingly very simple.
-This is because weights are repeated used throughout timestamps.</p>
-
-\[h_t=\sigma(W_hh_{t-1} + W_ex_t)\]
-
-\[\hat{y}=softmax(Uh_t)\]
-
-<p>Here are short description of dimensions of each parameter.</p>
-
-\[x_t\in\mathbb{R}^d\]
-
-\[W_e\in\mathbb{R}^{D_h\times d}\]
-
-\[W_h\in\mathbb{R}^{D_h\times D_h}\]
-
-\[h_{t-1}\in\mathbb{R}^{D_h}\]
-
-\[\hat{y}\in\mathbb{R}^{|V|}\]
-
-\[U\in\mathbb{R}^{|V| \times D_h}\]
-
-<p>\(d\) indicates dimension of word embeddings <em>(possibly with Word2Vec)</em>, 
-\(D_h\) is a dimension chosen in design. 
-\(|V|\) is the cardinality of the corpus.</p>
-
-<p>Now the structure of RNN is clear, I will discuss the loss and gradient of RNN.
-First, loss function looks like this.</p>
-
-\[J^{(t)}(\Theta) = - \sum^{|V|}_{j=1}y_{t,j}\times log(\hat{y}_{t,j})\]
-
-\[J = {1\over T} \sum^{T}_{t=1}J^{(t)}(\Theta)\]
-
-<p>Here, cross entropy is used to define a distance of proabability.
-The loss function of RNN looks a little bit complicated, but it is explained intuitively by looking at the structure of RNN.
-\(J^{(t)}\) indicates a loss at a timestamp \(t\). 
-Then \(J\) indicates the overall loss of the RNN which is a summation over each timeframe and averaged by dividing the sum by the corpus size.</p>
-
-<p>Second, gradient looks complicated as well.</p>
-
-\[{\partial J \over \partial W} = \sum^T_{t=1}{\partial J_t \over \partial W}\]
-
-\[{\partial J_t \over \partial W} = \sum^t_{k=1} {\partial J_t \over \partial y_t}{\partial y_t \over \partial h_t}{\partial h_t \over \partial h_k}{\partial h_k \over \partial W}\]
-
-<p>However, this again is explained intuitively. Similar to how loss at each timestamp is added for an overall loss, overall gradient can decompose into a sum of gradient at each timestamp. Then, gradient at each timestamp is a sum of gradient that imposes change to \(y_t\). This is a multiplication of local gradients in sequence.</p>
-
-<h3 id="problem-with-vanila-rnn">Problem With Vanila RNN</h3>
-<p>With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call <em>exploding gradient</em> and <em>vanishing gradient</em> respectively. Thus, variation of RNNs are devised in newer literatures.</p>
-
-    <div class="post-border"></div>
-    
 </div>
 
 <div class="pagination">
@@ -378,6 +360,12 @@ Then \(J\) indicates the overall loss of the RNN which is a summation over each 
     
       <span class=page_num>
         <a href="/blog/page3/">3 </a>
+      </span>
+    
+  
+    
+      <span class=page_num>
+        <a href="/blog/page4/">4 </a>
       </span>
     
   

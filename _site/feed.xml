@@ -1,4 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-23T09:36:44-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Understanding Autograd in PyTorch</title><link href="http://localhost:4000/2020/12/23/pytorch-autograd.html" rel="alternate" type="text/html" title="Understanding Autograd in PyTorch" /><published>2020-12-23T00:00:00-06:00</published><updated>2020-12-23T00:00:00-06:00</updated><id>http://localhost:4000/2020/12/23/pytorch-autograd</id><content type="html" xml:base="http://localhost:4000/2020/12/23/pytorch-autograd.html">&lt;p&gt;I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-10T08:39:18-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Learning Xavier Initialization</title><link href="http://localhost:4000/2021/01/10/xavier-init.html" rel="alternate" type="text/html" title="Learning Xavier Initialization" /><published>2021-01-10T00:00:00-06:00</published><updated>2021-01-10T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/10/xavier-init</id><content type="html" xml:base="http://localhost:4000/2021/01/10/xavier-init.html">&lt;p&gt;Learning PyTorch, I happened to come across a function called &lt;em&gt;reset_parameters()&lt;/em&gt;.
+This function included xavier initalization instead of standard initialization.
+So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”.
+The origin paper of Xavier intialization gave me great undersatnding of its objective.&lt;/p&gt;
+
+&lt;h3 id=&quot;xavier-initialization&quot;&gt;Xavier Initialization&lt;/h3&gt;
+
+&lt;p&gt;Objectives of Xavier initialization are simply all about managing variance,&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Maintaining variance of forward propagation.&lt;br /&gt;
+Each neuron should equally contribute to right prediction.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Maintaining variance of backward propagation&lt;br /&gt;
+Back propagation should not be susceptible to vanishing and exploding gradient.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The part that interested me the most is how variance can be calculated and multiplied and added according to the number of layers and hidden neurons within each layer.&lt;/p&gt;
+
+\[Var[z^i]  = Var[x]\prod^{i-1}_{i^{&apos;}=0}n_{i^{&apos;}}Var[W^{i^{&apos;}}]\]
+
+&lt;p&gt;Moving forward, the authors present the following way to intialize weights from such distribution,&lt;/p&gt;
+
+\[W \sim U\Big[-{\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}, {\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}\Big]\]
+
+&lt;h3 id=&quot;additional-study&quot;&gt;Additional Study&lt;/h3&gt;
+&lt;p&gt;Although introduction of Xavier initialization is the main meal of the paper, I enjoyed learning other points made by the authors.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;It is important to choose a good activation function.
+&lt;br /&gt;
+For example, sigmoid shows a quick saturation of hidden layer in the output.
+It makes sense because in the early training period, bias overrules features in neurons.
+This restricts lower layers to learn meaningful features, and thus slower learning.
+Choosing zero-mean activation function line tanh can avoid the problem.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It is important to choose a right loss function.
+&lt;br /&gt;
+The authors compared the result between quadratic(LSE) and cross entropy. 
+Result shows quadratic loss function gives more plateaus, which I assume it means slower training (flatness gives smaller gradient).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="ml" /><summary type="html">Learning PyTorch, I happened to come across a function called reset_parameters(). This function included xavier initalization instead of standard initialization. So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”. The origin paper of Xavier intialization gave me great undersatnding of its objective.</summary></entry><entry><title type="html">Understanding Autograd in PyTorch</title><link href="http://localhost:4000/2020/12/23/pytorch-autograd.html" rel="alternate" type="text/html" title="Understanding Autograd in PyTorch" /><published>2020-12-23T00:00:00-06:00</published><updated>2020-12-23T00:00:00-06:00</updated><id>http://localhost:4000/2020/12/23/pytorch-autograd</id><content type="html" xml:base="http://localhost:4000/2020/12/23/pytorch-autograd.html">&lt;p&gt;I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.
 Accurately, autograd is an engine for Jacobian-vector product (JVP).
 I will cover two things, cycle of its operation and JVP&lt;/p&gt;
 &lt;h3 id=&quot;operation-cycle&quot;&gt;Operation Cycle&lt;/h3&gt;
@@ -87,7 +132,9 @@ tensor&lt;span class=&quot;o&quot;&gt;([[&lt;/span&gt;2., 2., 2., 2.]]&lt;span c
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
-&lt;p&gt;My confusion on how autograd works was greatly solved by &lt;a href=&quot;https://towardsdatascience.com/pytorch-autograd-understanding-the-heart-of-pytorchs-magic-2686cd94ec95&quot;&gt;Vaibhav Kumar’s blog post&lt;/a&gt;. My post is a note on what I find important from it and added an example and mathematic explanation that were not covered in the blog.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="pytorch" /><summary type="html">I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us. Accurately, autograd is an engine for Jacobian-vector product (JVP). I will cover two things, cycle of its operation and JVP Operation Cycle Autograd is possible because operations on Tensors are recorded, and a directed acyclic graph (DAG), or more specifically dynamic computational graph (DCG), is craeted along with it. In a view of graph, nodes are Tensors, and edges are operations.</summary></entry><entry><title type="html">Attention Is All You Need - Transformer</title><link href="http://localhost:4000/2020/12/03/transformer.html" rel="alternate" type="text/html" title="Attention Is All You Need - Transformer" /><published>2020-12-03T00:00:00-06:00</published><updated>2020-12-03T00:00:00-06:00</updated><id>http://localhost:4000/2020/12/03/transformer</id><content type="html" xml:base="http://localhost:4000/2020/12/03/transformer.html">&lt;h3 id=&quot;thoughts&quot;&gt;Thoughts&lt;/h3&gt;
+&lt;p&gt;My confusion on how autograd works was greatly solved by &lt;a href=&quot;https://towardsdatascience.com/pytorch-autograd-understanding-the-heart-of-pytorchs-magic-2686cd94ec95&quot;&gt;Vaibhav Kumar’s blog post&lt;/a&gt;. My post is a note on what I find important from it and added an example and mathematic explanation that were not covered in the blog.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://pytorch.org/docs/stable/notes/autograd.html&quot;&gt;To learn more about autograd mechanics&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="pytorch" /><summary type="html">I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us. Accurately, autograd is an engine for Jacobian-vector product (JVP). I will cover two things, cycle of its operation and JVP Operation Cycle Autograd is possible because operations on Tensors are recorded, and a directed acyclic graph (DAG), or more specifically dynamic computational graph (DCG), is craeted along with it. In a view of graph, nodes are Tensors, and edges are operations.</summary></entry><entry><title type="html">Attention Is All You Need - Transformer</title><link href="http://localhost:4000/2020/12/03/transformer.html" rel="alternate" type="text/html" title="Attention Is All You Need - Transformer" /><published>2020-12-03T00:00:00-06:00</published><updated>2020-12-03T00:00:00-06:00</updated><id>http://localhost:4000/2020/12/03/transformer</id><content type="html" xml:base="http://localhost:4000/2020/12/03/transformer.html">&lt;h3 id=&quot;thoughts&quot;&gt;Thoughts&lt;/h3&gt;
 &lt;p&gt;The paper, “Attention Is All You Need”, is the first to present transformer architecture.
 The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
 This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
@@ -260,23 +307,7 @@ chain platforms in parallel from my understanding. My first concern was decrease
 its efficiency due to running two platforms compared to one, but they are working on
 creating its own language called &lt;em&gt;Recipe&lt;/em&gt; that optimizes its performance.&lt;/p&gt;
 
-&lt;p&gt;I am excited to learn more about this technology in the future.&lt;/p&gt;</content><author><name></name></author><category term="blockchain" /><category term="dapp" /><summary type="html">The whole reason I came across the idea of DApp is because of the interview with a company called Pilab. This company tries to seek a solution for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</summary></entry><entry><title type="html">Training Hyperplane for Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/training-svm-hyperplane.html" rel="alternate" type="text/html" title="Training Hyperplane for Support Vector Machine" /><published>2020-06-19T00:00:00-05:00</published><updated>2020-06-19T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/19/training-svm-hyperplane</id><content type="html" xml:base="http://localhost:4000/2020/06/19/training-svm-hyperplane.html">&lt;p&gt;We have this simple function of an hyperplane.
-\(\mathbf{\omega \cdot x} + b = 0\)
-However, getting the optimized hyperplane for SVM
-is not so easy as this function looks.&lt;/p&gt;
-
-&lt;p&gt;To get an hyperplane that meets the condition,
-\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
-and maximum margin, one can approach by minimizing a loss function of this
-operation.&lt;/p&gt;
-
-\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
-+ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
-
-&lt;p&gt;This can be solved by (sub-) gradient descent methods. A &lt;a href=&quot;https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf&quot;&gt;lecture note from
-University of Utah&lt;/a&gt;
-explains the procedure well. The lecture note suggests stochastic 
-gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry><entry><title type="html">Primal Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/primal-support-vector-machine.html" rel="alternate" type="text/html" title="Primal Support Vector Machine" /><published>2020-06-19T00:00:00-05:00</published><updated>2020-06-19T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/19/primal-support-vector-machine</id><content type="html" xml:base="http://localhost:4000/2020/06/19/primal-support-vector-machine.html">&lt;p&gt;In a case where you need to draw a hyperplane that does
+&lt;p&gt;I am excited to learn more about this technology in the future.&lt;/p&gt;</content><author><name></name></author><category term="blockchain" /><category term="dapp" /><summary type="html">The whole reason I came across the idea of DApp is because of the interview with a company called Pilab. This company tries to seek a solution for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</summary></entry><entry><title type="html">Primal Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/primal-support-vector-machine.html" rel="alternate" type="text/html" title="Primal Support Vector Machine" /><published>2020-06-19T00:00:00-05:00</published><updated>2020-06-19T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/19/primal-support-vector-machine</id><content type="html" xml:base="http://localhost:4000/2020/06/19/primal-support-vector-machine.html">&lt;p&gt;In a case where you need to draw a hyperplane that does
 binary classification, there can be multiple hyperplanes.
 Primal SVM is one way to solve this issue by bringing the
 concept that maximizes a margin of the hyper vector.&lt;/p&gt;
@@ -298,7 +329,23 @@ minimal value of&lt;/p&gt;
 This seems to contradict the goal, to find the max
 margin. Through mathematical tweaks, however, this
 equation is equivalent to the meaning of getting
-the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry><entry><title type="html">Readings about Object Detection</title><link href="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html" rel="alternate" type="text/html" title="Readings about Object Detection" /><published>2020-06-01T00:00:00-05:00</published><updated>2020-06-01T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1</id><content type="html" xml:base="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html">&lt;p&gt;I am reading a journal from &lt;em&gt;IEEE&lt;/em&gt; and decided to 
+the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry><entry><title type="html">Training Hyperplane for Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/training-svm-hyperplane.html" rel="alternate" type="text/html" title="Training Hyperplane for Support Vector Machine" /><published>2020-06-19T00:00:00-05:00</published><updated>2020-06-19T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/19/training-svm-hyperplane</id><content type="html" xml:base="http://localhost:4000/2020/06/19/training-svm-hyperplane.html">&lt;p&gt;We have this simple function of an hyperplane.
+\(\mathbf{\omega \cdot x} + b = 0\)
+However, getting the optimized hyperplane for SVM
+is not so easy as this function looks.&lt;/p&gt;
+
+&lt;p&gt;To get an hyperplane that meets the condition,
+\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
+and maximum margin, one can approach by minimizing a loss function of this
+operation.&lt;/p&gt;
+
+\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
+
+&lt;p&gt;This can be solved by (sub-) gradient descent methods. A &lt;a href=&quot;https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf&quot;&gt;lecture note from
+University of Utah&lt;/a&gt;
+explains the procedure well. The lecture note suggests stochastic 
+gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry><entry><title type="html">Readings about Object Detection</title><link href="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html" rel="alternate" type="text/html" title="Readings about Object Detection" /><published>2020-06-01T00:00:00-05:00</published><updated>2020-06-01T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1</id><content type="html" xml:base="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html">&lt;p&gt;I am reading a journal from &lt;em&gt;IEEE&lt;/em&gt; and decided to 
 record some of the learning points from the reading.
 &lt;em&gt;Object Detection With Deep Learning: A Review&lt;/em&gt; by Zhao
 and others thoroughly reviews on the development of
@@ -380,10 +427,4 @@ was found &lt;em&gt;way to early&lt;/em&gt; according to https://stackoverflow.c
 &lt;p&gt;The link explains nitty gritty of why Python throws
 such error. I think the best to avoid is to understand
 the caveat of relative import and don’t use it unless
-you really need to.&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="module" /><summary type="html">As I learn more about file control in Python, I stumbled upon two options for import: absolute import and relative import.</summary></entry><entry><title type="html">Python Standard Library - threading.py</title><link href="http://localhost:4000/2020/05/27/python-standard-library-threading.html" rel="alternate" type="text/html" title="Python Standard Library - threading.py" /><published>2020-05-27T00:00:00-05:00</published><updated>2020-05-27T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/27/python-standard-library-threading</id><content type="html" xml:base="http://localhost:4000/2020/05/27/python-standard-library-threading.html">&lt;p&gt;Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.&lt;/p&gt;
-
-&lt;p&gt;There is a package called threading. Thread instance can be created with Thread class and other instances for communication between threads can be created.&lt;/p&gt;
-
-&lt;p&gt;Ones I found easy to understand and important were Thread, Timer, and Event. One thing I found interesting is that standard way of terminating a thread is not provided in the document. There are few suggestions from online like causing exception, or hidden function _stop().&lt;/p&gt;
-
-&lt;p&gt;Python’s queue package can be used to manage data between threads.&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</summary></entry></feed>
+you really need to.&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="module" /><summary type="html">As I learn more about file control in Python, I stumbled upon two options for import: absolute import and relative import.</summary></entry></feed>
