@@ -1,0 +1,47 @@
+---
+layout: project
+title: NLP Friends
+repo_url: https://github.com/yjang43/nlp_friends
+---
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="project-image" src="/assets/img/nlp_friends.png" alt="NLP Friends">
+            <br><br>
+            <h4>Technologies Used</h4>
+            <ul class="tech">
+                <li>python</li>
+                <li>NLP (Transformer, Word2Vec)</li>
+                <li>pytorch</li>
+                <li>tensorboard</li>
+                <li>matplotlib</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h4>Project Description</h4>
+            <p>
+                The project trains Transformer model with word embeddings pretrained with Word2Vec(CBOW) model.
+                Scripts from the TV show Friends are used as data.
+                Once training is done, user can talk to the computer.
+                Although it was challenging to build a model mostly referring to Aswani's paper <a href=https://arxiv.org/abs/1706.03762>"Attention is All You Need</a>,
+                time and effort spent on this project defintely helped me grow.
+            </p>
+            <h4>Project Difficulty and Solutions</h4>
+            <p>
+                As this was my first serious NLP project. I had encountered many challenges.
+                One major issue was that it required too much time to train a model due to the comlexity of models and limitation of local machine's computing power.
+                This naturally forced me to look into other platforms to train the models.
+                To resolve this issue, I used Google Colab which provides free GPU virtual machines.
+                In the future, I hope to use AWS service once I become familiar with that.
+            </p>
+            <h4>Improvements to Be Made</h4>
+            <p>
+                There are several improvements that can be made. First, I have omitted cross validation step, 
+                so Transformer model may have an overfitting issue. 
+                Also, instead of greedy decoding, other decoding algorithms such as Beam search can be considered.
+                As the main goal of this project was to have NLP model working, it lacks performance metric or introduction of baseline.
+                It will be beneficial for the performance to include those aspects.
+            </p>
+        </div>
+    </div>
+</div>

@@ -40,45 +40,97 @@
     <div class="container-sm">
     
     <br>
-<h1>SSCC Web Revamp <a href="https://github.com/yjang43/ssc_project"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<h1>NLP Friends <a href="https://github.com/yjang43/nlp_friends"><img src="/assets/img/blacktocat-32.png"></a></h1>
 <br>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <img class="project-image" src="/assets/img/sscc_project.png" alt="sscc project image">
+            <img class="project-image" src="/assets/img/nlp_friends.png" alt="NLP Friends">
+            <br><br>
             <h4>Technologies Used</h4>
             <ul class="tech">
                 <li>python</li>
-                <li>BeautifulSoup</li>
-                <li>selenium</li>
-                <li>Web crawl</li>
+                <li>NLP (Transformer, Word2Vec)</li>
+                <li>pytorch</li>
+                <li>tensorboard</li>
+                <li>matplotlib</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h4>Project Description</h4>
+            <p>
+                The project trains Transformer model with word embeddings pretrained with Word2Vec(CBOW) model.
+                Scripts from the TV show Friends are used as data.
+                Once training is done, user can talk to the computer.
+                Although it was challenging to build a model mostly referring to Aswani's paper <a href=https://arxiv.org/abs/1706.03762>"Attention is All You Need</a>,
+                time and effort spent on this project defintely helped me grow.
+            </p>
+            <h4>Project Difficulty and Solutions</h4>
+            <p>
+                As this was my first serious NLP project. I had encountered many challenges.
+                One major issue was that it required too much time to train a model due to the comlexity of models and limitation of local machine's computing power.
+                This naturally forced me to look into other platforms to train the models.
+                To resolve this issue, I used Google Colab which provides free GPU virtual machines.
+                In the future, I hope to use AWS service once I become familiar with that.
+            </p>
+            <h4>Improvements to Be Made</h4>
+            <p>
+                There are several improvements that can be made. First, I have omitted cross validation step, 
+                so Transformer model may have an overfitting issue. 
+                Also, instead of greedy decoding, other decoding algorithms such as Beam search can be considered.
+                As the main goal of this project was to have NLP model working, it lacks performance metric or introduction of baseline.
+                It will be beneficial for the performance to include those aspects.
+            </p>
+        </div>
+    </div>
+</div>
+    <div class="post-border"></div>
+    
+    <br>
+<h1>Oracle Simulator <a href="https://github.com/bifrost-platform/Oracle-Simulator"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="project-image" src="/assets/img/oracle_simulator.png" alt="oracle simulator">
+            <h4>Technologies Used</h4>
+            <ul class="tech">
+                <li>python</li>
+                <li>bokeh</li>
+                <li>ccxt</li>
+                <li>Blockchain</li>
             </ul>
         </div>
         <div class="col-sm-6">
             <h4>My Role</h4>
             <p>
-                To Social Science Computing Cooperative, UW-Madison, I provided a python code to parse and export
-                numerous HTML files into an XML file.
-                This allowed to automate and fasten the process of migrating around 200 documents.
+                As an intern at PiLab, I was given a task to develop an efficient algorithm to return a price
+                <a href=https://arxiv.org/abs/2004.07140>Oracle</a> for a DeFi project.
+                Learning that it lacks the definition of what the correct Oracle is, I had to set my own definition
+                to seek for the best algorithm: resistance to market noise.
+                Then, I made a simulator to visualize how each algorithm copes with market noise.
             </p>
             <h4>Project Description</h4>
             <p>
-                The script reformats HTML documents into XML so that they can be migrated to a new KB site. Prior to this,
-                the script crawled <a href="https://ssc.wisc.edu">https://ssc.wisc.edu</a> to receive all the documents
-                within the domain, and then parsed to fit the required format.
+                The project can retrieve and organize current market data into a pickle format that can be fed through
+                the simulator. Then, it allows users to tweak each market data by clicking options. Then, by pressing
+                an Oracle button, the program tells how resistant the Oracle is to the market noise.
             </p>
             <h4>Project Difficulty</h4>
             <p>
-                Web migration is a tricky operation to first-comer of such project because the project always sits on
-                the risk of starting from the beginning if one does not know what's ahead. For example, we needed to
-                preserve the mapping of our website because links within each document breaks without a proper mapping.
+                Blockchain was an unfamiliar concept to me, and it required some time to understand the basics of
+                technology and importance of Oracle. Make matters worse, as there is no clear discrete answer to such
+                ambiguous problem (what is "the" oracle), it was difficult to set a direction in the beginning.
             </p>
             <h4>My Solution</h4>
             <p>
-                There were many articles regarding the web migration, so I read to prevent us from slowing down the project.
-                Also, I addressed the possible issues to my coworkers and mostly was able to find a better solution. through
-                out communication.
+                From a Blockchain context, it can never be a perfect Oracle only with an algorithmic approach as
+                <a href="https://en.wikipedia.org/wiki/Byzantine_fault">Byzantine Environment</a> needs to be
+                considered. It requires network or hardware approach as
+                well. Aside from such limitation, however, I read academic paper, articles, and compared with Oracle
+                solutions of other DeFi examples to come out with the best algorithmic approach and realistic solution.
             </p>
         </div>
     </div>
@@ -87,7 +139,7 @@
     <div class="post-border"></div>
     
     <br>
-<h1>Algotrade <a href="https://github.com/yjang43/algotrade"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<h1>03 algotrade <a href="https://github.com/yjang43/algotrade"><img src="/assets/img/blacktocat-32.png"></a></h1>
 <br>
 
 <div class="container">
@@ -174,49 +226,45 @@
     <div class="post-border"></div>
     
     <br>
-<h1>Oracle Simulator <a href="https://github.com/bifrost-platform/Oracle-Simulator"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<h1>SSCC Web Revamp <a href="https://github.com/yjang43/ssc_project"><img src="/assets/img/blacktocat-32.png"></a></h1>
 <br>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <img class="project-image" src="/assets/img/oracle_simulator.png" alt="oracle simulator">
+            <img class="project-image" src="/assets/img/sscc_project.png" alt="sscc project image">
             <h4>Technologies Used</h4>
             <ul class="tech">
                 <li>python</li>
-                <li>bokeh</li>
-                <li>ccxt</li>
-                <li>Blockchain</li>
+                <li>BeautifulSoup</li>
+                <li>selenium</li>
+                <li>Web crawl</li>
             </ul>
         </div>
         <div class="col-sm-6">
             <h4>My Role</h4>
             <p>
-                As an intern at PiLab, I was given a task to develop an efficient algorithm to return a price
-                <a href=https://arxiv.org/abs/2004.07140>Oracle</a> for a DeFi project.
-                Learning that it lacks the definition of what the correct Oracle is, I had to set my own definition
-                to seek for the best algorithm: resistance to market noise.
-                Then, I made a simulator to visualize how each algorithm copes with market noise.
+                To Social Science Computing Cooperative, UW-Madison, I provided a python code to parse and export
+                numerous HTML files into an XML file.
+                This allowed to automate and fasten the process of migrating around 200 documents.
             </p>
             <h4>Project Description</h4>
             <p>
-                The project can retrieve and organize current market data into a pickle format that can be fed through
-                the simulator. Then, it allows users to tweak each market data by clicking options. Then, by pressing
-                an Oracle button, the program tells how resistant the Oracle is to the market noise.
+                The script reformats HTML documents into XML so that they can be migrated to a new KB site. Prior to this,
+                the script crawled <a href="https://ssc.wisc.edu">https://ssc.wisc.edu</a> to receive all the documents
+                within the domain, and then parsed to fit the required format.
             </p>
             <h4>Project Difficulty</h4>
             <p>
-                Blockchain was an unfamiliar concept to me, and it required some time to understand the basics of
-                technology and importance of Oracle. Make matters worse, as there is no clear discrete answer to such
-                ambiguous problem (what is "the" oracle), it was difficult to set a direction in the beginning.
+                Web migration is a tricky operation to first-comer of such project because the project always sits on
+                the risk of starting from the beginning if one does not know what's ahead. For example, we needed to
+                preserve the mapping of our website because links within each document breaks without a proper mapping.
             </p>
             <h4>My Solution</h4>
             <p>
-                From a Blockchain context, it can never be a perfect Oracle only with an algorithmic approach as
-                <a href="https://en.wikipedia.org/wiki/Byzantine_fault">Byzantine Environment</a> needs to be
-                considered. It requires network or hardware approach as
-                well. Aside from such limitation, however, I read academic paper, articles, and compared with Oracle
-                solutions of other DeFi examples to come out with the best algorithmic approach and realistic solution.
+                There were many articles regarding the web migration, so I read to prevent us from slowing down the project.
+                Also, I addressed the possible issues to my coworkers and mostly was able to find a better solution. through
+                out communication.
             </p>
         </div>
     </div>
