@@ -2,7 +2,7 @@
 layout: base
 title: Home
 ---
-<div class="container-sm">
+<div class="container-fluid home">
     <div class="row" id="intro">
         <div class="multiple-columns">
             <h1>Hi!</h1>
@@ -23,6 +23,42 @@ title: Home
                     and to posts daily knowledge.
                     Please feel free to look around, and contact me for any questions
                 </p>
+        </div>
+    </div>
+    <div class="row justify-content-center coursework">
+        <div class="container">
+            <div class="row coursework-title">
+                <h2 class="col">Relevant Coursework</h2>
+            </div>
+            <div class="row btn-group-vertical course-btn-group justify-content-center" role="group" aria-label="course label">
+                {% for course in site.courses_cs %}
+                <button type="button" class="btn col course-btn-whole" onclick="toggle_visibility('{{ course.course }}')">
+                    <div class="course-btn">
+                        {{ course.course }} - {{ course.title }}
+                    </div>
+                    <div class="course-content" id="{{ course.course }}">
+                        <p>
+                            {{ course }}
+                        </p>
+                    </div>
+                </button>
+                {% endfor %}
+                {% for course in site.courses_math %}
+                <button type="button" class="btn col course-btn-whole" onclick="toggle_visibility('{{ course.course }}')">
+                    <div class="course-btn">
+                        {{ course.course }} - {{ course.title }}
+                    </div>
+                    <div class="course-content" id="{{ course.course }}">
+                        <p>
+                            {{ course }}
+                        </p>
+                    </div>
+                </button>
+                {% endfor %}
+            </div>
+            <div class="row justify-content-center">
+                <a href="https://www.wisc.edu/"><img src="assets/img/uw-logo.png" alt="uw-madison logo" height="100px;"></a>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center" id="contact">
@@ -46,3 +82,22 @@ title: Home
         </form>
     </div>
 </div>
+
+<script>
+    toggled = null
+    function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        if (toggled != null && toggled != id) {
+            var t = document.getElementById(toggled);
+            t.style.display = 'none'
+        }
+        if(e.style.display == 'block') {
+            e.style.display = 'none';
+            toggled = null
+        }
+        else {
+            e.style.display = 'block';
+            toggled = id
+        }
+    }
+</script>
