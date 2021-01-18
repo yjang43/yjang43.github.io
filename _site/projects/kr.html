@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Projects</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/paginator.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">YJ</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link py-0" href="/projects/">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link py-0" href="/blog/">Blog</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="jumbotron jumbotron-fluid shadow-lg jumbotron-img">
+        <div class="container">
+            <div class="row">
+                <h1>Projects</h1>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <p>One of the joys of knowing how to program is that we put lives into ideas and make them real. These are some of my projects I worked on.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-sm">
+    <div class="row justify-content-end" style="padding-right: 10px;">
+        <a href="/projects/">
+            <button class="btn btn-primary">English</button>
+        </a>
+    </div>
+    
+    <div>
+        <br>
+<h1>NLP Friends <a href="https://github.com/yjang43/nlp_friends"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="project-image" src="/assets/img/nlp_friends.png" alt="NLP Friends">
+            <br><br>
+            <h4>Technologies Used</h4>
+            <ul class="tech">
+                <li>python</li>
+                <li>NLP (Transformer, Word2Vec)</li>
+                <li>pytorch</li>
+                <li>tensorboard</li>
+                <li>matplotlib</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h4>Project Description</h4>
+            <p>
+                이 프로젝트는 Transformer 모델을 Word2Vec(CBOW) 임베딩을 사용하여 훈련시킵니다. 
+                TV 쇼 프렌즈에서 나오는 대사를 데이터로 사용하였습니다.
+                훈련이 끝나면, 유저는 컴퓨터와 대화를 할 수 있습니다.
+                <a href=https://arxiv.org/abs/1706.03762>Aswani 의 논문을</a> 통해서만 모델을 짓는다는 것은 어려웠지만,
+                이 프로젝트에 쓰인 시간과 노력은 저를 더욱 성장 시켰습니다. 
+            </p>
+            <h4>Project Difficulty and Solution</h4>
+            <p>
+                이 프로젝트가 저의 첫번째 딥러닝 NLP 프로젝트이기에, 몇가지 다소 까다로운 사항들이 있었습니다.
+                한가지 사항은 모델들의 복잡성과 로컬 컴퓨터의 낮은 컴퓨팅 파워 때문에 훈련하기에 너무 오랜 시간이 걸리는 것 이었습니다.
+                이는 데이터 양을 작게 제한 시킬 수 밖에 없었고 퍼포먼스 또한 좋지 않았습니다.
+                이러한 사항 때문에 저는 다른 플랫폼에서 모델들을 훈련 시켜야 했습니다. 
+                이것을 해결하기 위해, 무료 GPU 머신을 제공하는 Google Colab 를 사용하였고,
+                미래에는 AWS 서비스를 사용하려고 합니다.
+            </p>
+            <h4>Improvements to Be Made</h4>
+            <p>
+                이 프로젝트에는 여러가지 개선사항들이 있습니다. 첫째, 저는 cross validation 단계를 포함 시키지 않았습니다.
+                그러므로, Transformer 모델은 overfitting 문제가 있을 것 입니다.
+                또한, 프로젝트에서는 greedy decoding 이 사용 되고 있지만, Beam search 와 같은 다른 알고리즘이 사용 될 수 있을 것입니다.
+                이 프로젝트의 핵심은 NLP 모델을 작동시키는 것 입니다. 그래서, performance metric 과 baseline 등 평가지표가 부재합니다. 
+                이러한 양상을 포함 시키는 것이 퍼포먼스 향상에 도움이 될 것입니다.
+            </p>
+        </div>
+    </div>
+</div>
+        <div class="post-border"></div>
+        
+    <div>
+        <br>
+<h1>Algotrade <a href="https://github.com/yjang43/algotrade"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="project-image" src="/assets/img/algotrade.png" alt="algotrade image">
+            <br><br>
+            <h4>Technologies used</h4>
+            <ul class="tech">
+                <li>python</li>
+                <li>statsmodels</li>
+                <li>PyQt5</li>
+                <li>ccxt</li>
+                <li>ema-sma</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h4>My Role</h4>
+            <p>
+                저는 프로젝트의 계획과 프로그램 플로우 디자인을 하였습니다. 또한, 그래프 시각화, threading, UI 를 포함하는 GUI 부분을 담당하였습니다.
+            </p>
+            <h4>Project Description</h4>
+            <p>
+                Algotrade 는 암호화폐 거래를 유저가 선택한 알고리즘으로 자동화 시켜주는 python 프로그램 입니다.
+                프로젝트는 더욱 다양한 알고리즘을 위하여 추후에 계속 진행될 예정입니다.
+            </p>
+            <h4>Project Difficulty and Solution</h4>
+            <p>
+                점점 기능을 추가시키며 개발할수록 스케일이 커지는 프로젝트를 통제하는 것은 쉽지 않았습니다.
+                특히나, file control 과 code tracing 은 시간소요가 컸으며, 이전 구성에 조정이 필요하였습니다.
+                이를 해결하기 위해 저희는 프로젝트를 더욱 모듈화 시켜서 신속한 조정이 어느때나 가능하도록 하였습니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+        <div class="post-border"></div>
+        
+    <div>
+        <br>
+<h1>Data Scrape <a href="https://github.com/yjang43/DataScrape"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="project-image" src="/assets/img/datascrape.png" alt="data scrape image">
+            <h4>Technologies Used</h4>
+            <ul class="tech">
+                <li>python</li>
+                <li>Clustering</li>
+                <li>PCA</li>
+                <li>Machine Learning</li>
+                <li>matplotlib</li>
+                <li>Data mining</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h4>Project Description</h4>
+            <p>
+                인터넷에는 정말 많은 데이터들이 존재합니다. 하지만, 데이터가 Neural Network 에 사용 되기 위해서는 data cleaning 필요합니다.
+                clean data 의 부족을 해결 하기 위해, 저는 hierarchical clustering 알고리즘을 PCA 와 사용하여 컴퓨터가 데이터를 labeling 할 수 있도록 하였습니다.
+            </p>
+            <h4>Limitation to Note</h4>
+            <p>
+                이 프로젝트의 결과물은 저의 기대를 미치지 못했습니다. 오직 소수의 기존 데이터 만이 프로그램에 의해 labeling 이 될 수 있었습니다.
+                또한, PCA 가 data transformation 단계에서 생성하는 모호성 때문에 몇 컴퓨터의 classification 은 사람에게 의미가 없을 수 있습니다.
+            </p>
+            <h4>Result</h4>
+            <p>
+                비록 프로젝트가 저의 기대에 미치지지는 않았지만, 저는 머신러닝 문제를 과학적으로 접근하는 방법에 대해 배웠습니다. 
+                그리고 이 프로젝트는 머신러닝을 향한 저의 여정의 시작에 불과합니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+        <div class="post-border"></div>
+        
+    <div>
+        <br>
+<h1>Oracle Simulator <a href="https://github.com/bifrost-platform/Oracle-Simulator"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="project-image" src="/assets/img/oracle_simulator.png" alt="oracle simulator">
+            <br><br>
+            <h4>Technologies Used</h4>
+            <ul class="tech">
+                <li>python</li>
+                <li>bokeh</li>
+                <li>ccxt</li>
+                <li>Blockchain</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h4>My Role</h4>
+            <p>
+                파이랩테크놀로지의 인턴으로서, 저는 DeFi 제품의 <a href=https://arxiv.org/abs/2004.07140>가격 오라클</a> 값을 효율적으로 얻을 수 있는 방법을 연구하는 작업을 맡았습니다.
+                무엇이 '맞는' 오라클인지에 대한 정의가 부족하다는 것을 배운 이후, 저는 DeFi 에 적합한 market noise 에 취약하지 않은 알고리즘을 대상으로 연구 하였습니다.
+                그리고, 시뮬레이터를 만든 이후, 각 알고리즘이 market noise 에 어떻게 반응을 하는지 시각화 하였습니다.
+            </p>
+            <h4>Project Description</h4>
+            <p>
+                이 프로젝트는 현재 시장 데이터를 시리얼 데이터로 만든 이후 시뮬레이터에 주입합니다. 이후, 유저가 옵션을 정하여 마켓 데이터를 조정하는 것이 가능합니다.
+                마지막으로, 오라클 버튼을 누름으로서, 프로그램이 maket noise 로부터 오라클이 얼마나 영향을 받는지 보여줍니다.
+            </p>
+            <h4>Project Difficulty</h4>
+            <p>
+                블록체인은 저에게 익숙하지 않은 주제였습니다. 그리고 이 기술의 기초와 오라클의 중요성을 이해하기 위해서 시간이 필요했습니다.
+                추가적으로, '맞는' 오라클 이라는 정의의 부재에 의해 처음 개발 방향을 잡는것은 매우 어려웠습니다.
+            </p>
+            <h4>My Solution</h4>
+            <p>
+                블록체인에서의 완벽한 오라클은 오직 알고리즘적 접근만으로는 절대 도달할 수 없습니다. 이는 네트워크나 하드웨어적 접근 또한 필요합니다. 
+                하지만, 이러한 제한적인 사항 이외에 저는 다른 DeFi 얘시와 비교하고 논문을 참고하여 가장 현실직인 알고리즘적 해결책에 도달하였습니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+        <div class="post-border"></div>
+        
+    <div>
+        <br>
+<h1>SSCC Web Revamp <a href="https://github.com/yjang43/ssc_project"><img src="/assets/img/blacktocat-32.png"></a></h1>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="project-image" src="/assets/img/sscc_project.png" alt="sscc project image">
+            <br><br>
+            <h4>Technologies Used</h4>
+            <ul class="tech">
+                <li>python</li>
+                <li>BeautifulSoup</li>
+                <li>selenium</li>
+                <li>Web crawl</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h4>My Role</h4>
+            <p>
+                UW-Madison 의 Social Science Computing Cooperative 에 저는 다량의 HTML 파일을 parsing 하여 XML file 로 추출하는 python 코드를 제공 하였습니다.
+                이로 인해 약 200개 가량의 문서 이동을 자동화하여 Web Revamp 프로젝트를 빠르게 완료할 수 있었습니다.
+            </p>
+            <h4>Project Description</h4>
+            <p>
+                프로그램은 HTML 문서들을 KB 사이트에 이주를 할 수 있도록 XML 파일로 전환을 시켜줍니다. 
+                그 이전에 프로그램은 <a href="https://ssc.wisc.edu">https://ssc.wisc.edu</a> 를 
+                web crawl 하여 그 도메인 안에 문서들을 전부 저장하고 필요한 형식에 맞도록 parsing 을 합니다.
+            </p>
+            <h4>Project Difficulty</h4>
+            <p>
+                web migration 이라는 작업은 이전 경험 잆이 진행하게 되면 굉장히 까다로운 작업입니다. 
+                예를 들어, 문서간의 링크가 깨지지 않기 위해서 도메인의 문서들간 맵핑이 잘 되어있어야 하는 것 등 여러 주의사항들이 있습니다.
+            </p>
+            <h4>My Solution</h4>
+            <p>
+                저는 web migration 에 대한 자료들을 참고하여, 프로젝트를 늦추는 불상사가 생기지 않도록 여러 주의사항들 인지하였습니다.
+                또한, 이러한 정보들을 회사 동료들에게 전달하여 보다 나은 해결책을 제공할 수 있었습니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+        <div class="post-border"></div>
+        
+    </div>
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -36,6 +36,7 @@ plugins:
 
 collections:
   - projects
+  - projects_kr
   - courses_cs
   - courses_math
 

@@ -6,12 +6,12 @@ intro: One of the joys of knowing how to program is that we put lives into ideas
 
 <div class="container-sm">
     <div class="row justify-content-end" style="padding-right: 10px;">
-        <a href="/projects/kr">
-            <button class="btn btn-primary" >Korean</button>
+        <a href="/projects/">
+            <button class="btn btn-primary">English</button>
         </a>
     </div>
-    {% for project in site.projects %}
-    <div class="justify-content-start">
+    {% for project in site.projects_kr %}
+    <div>
         {{ project }}
         <div class="post-border"></div>
         {% endfor %}

@@ -1,0 +1,48 @@
+---
+layout: project
+title: NLP Friends
+repo_url: https://github.com/yjang43/nlp_friends
+---
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="project-image" src="/assets/img/nlp_friends.png" alt="NLP Friends">
+            <br><br>
+            <h4>Technologies Used</h4>
+            <ul class="tech">
+                <li>python</li>
+                <li>NLP (Transformer, Word2Vec)</li>
+                <li>pytorch</li>
+                <li>tensorboard</li>
+                <li>matplotlib</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h4>Project Description</h4>
+            <p>
+                이 프로젝트는 Transformer 모델을 Word2Vec(CBOW) 임베딩을 사용하여 훈련시킵니다. 
+                TV 쇼 프렌즈에서 나오는 대사를 데이터로 사용하였습니다.
+                훈련이 끝나면, 유저는 컴퓨터와 대화를 할 수 있습니다.
+                <a href=https://arxiv.org/abs/1706.03762>Aswani 의 논문을</a> 통해서만 모델을 짓는다는 것은 어려웠지만,
+                이 프로젝트에 쓰인 시간과 노력은 저를 더욱 성장 시켰습니다. 
+            </p>
+            <h4>Project Difficulty and Solution</h4>
+            <p>
+                이 프로젝트가 저의 첫번째 딥러닝 NLP 프로젝트이기에, 몇가지 다소 까다로운 사항들이 있었습니다.
+                한가지 사항은 모델들의 복잡성과 로컬 컴퓨터의 낮은 컴퓨팅 파워 때문에 훈련하기에 너무 오랜 시간이 걸리는 것 이었습니다.
+                이는 데이터 양을 작게 제한 시킬 수 밖에 없었고 퍼포먼스 또한 좋지 않았습니다.
+                이러한 사항 때문에 저는 다른 플랫폼에서 모델들을 훈련 시켜야 했습니다. 
+                이것을 해결하기 위해, 무료 GPU 머신을 제공하는 Google Colab 를 사용하였고,
+                미래에는 AWS 서비스를 사용하려고 합니다.
+            </p>
+            <h4>Improvements to Be Made</h4>
+            <p>
+                이 프로젝트에는 여러가지 개선사항들이 있습니다. 첫째, 저는 cross validation 단계를 포함 시키지 않았습니다.
+                그러므로, Transformer 모델은 overfitting 문제가 있을 것 입니다.
+                또한, 프로젝트에서는 greedy decoding 이 사용 되고 있지만, Beam search 와 같은 다른 알고리즘이 사용 될 수 있을 것입니다.
+                이 프로젝트의 핵심은 NLP 모델을 작동시키는 것 입니다. 그래서, performance metric 과 baseline 등 평가지표가 부재합니다. 
+                이러한 양상을 포함 시키는 것이 퍼포먼스 향상에 도움이 될 것입니다.
+            </p>
+        </div>
+    </div>
+</div>
