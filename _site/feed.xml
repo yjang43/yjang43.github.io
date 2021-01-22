@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-16T00:45:22-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Learning Xavier Initialization</title><link href="http://localhost:4000/2021/01/10/xavier-init.html" rel="alternate" type="text/html" title="Learning Xavier Initialization" /><published>2021-01-10T00:00:00-06:00</published><updated>2021-01-10T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/10/xavier-init</id><content type="html" xml:base="http://localhost:4000/2021/01/10/xavier-init.html">&lt;p&gt;Learning PyTorch, I happened to come across a function called &lt;em&gt;reset_parameters()&lt;/em&gt;.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-22T11:46:48-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Autoencoders and Transfer Learning</title><link href="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html" rel="alternate" type="text/html" title="Autoencoders and Transfer Learning" /><published>2021-01-22T00:00:00-06:00</published><updated>2021-01-22T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning</id><content type="html" xml:base="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html">&lt;h2 id=&quot;autoencoders&quot;&gt;Autoencoders&lt;/h2&gt;
+&lt;p&gt;Autoencoders is an unsupervised learning method to reduce a dimensionality of input.
+The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. 
+The main idea is to reconstruct an input with limitted features.
+Here is a diagram of a simple autoencoder.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/autoencoder.png&quot; alt=&quot;JVP&quot; width=&quot;50%&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Basically, the network is composed of encoder and decoder, and lantent features (code) gives a high-level representation of input. 
+Some tricks on autoencoder can result in better representation of latent features.
+One I will mention is denosing autoencoders invented by Vincet(2008). By masking portion of input, it provides robust representation to partially destructed input, which aligns with the definition author proposed to be a “good” representation. Here is a &lt;a href=&quot;https://github.com/yjang43/ml_practice/blob/master/autoencoder.ipynb&quot;&gt;link&lt;/a&gt; that compares the results of autoencoders and desnoising autoencoder.&lt;/p&gt;
+
+&lt;h2 id=&quot;transfer-learning-with-autoencoder&quot;&gt;Transfer Learning with Autoencoder&lt;/h2&gt;
+&lt;p&gt;Transfer learning is to use information from source domains, abundant data, to support tasks in target domains, small data.
+Glorot(2011) proposes that stacked denoising autoencoder (SDA) can extract intermediate representations from both source and target domain, and use that to help classfication task in target domain.
+This idea extends to transfer learning with deep autoencoders (TLDA) by Zhuang (2015), which is a form of supervised learning unlike the usual approach with autoencoder. I have conducted an experiment to check its better performance &lt;a href=&quot;https://github.com/yjang43/ml_practice/blob/master/TLDA.ipynb&quot;&gt;here&lt;/a&gt;.
+Instead of using the same dataset from the paper, I used MNIST data.
+The task was to check if a binary classfication of a number (ex. is the input ‘1’ when compared with ‘3’) can be transfered to another binary classification (ex. is the input ‘1’ when compared with ‘5’). 
+Surprisingly, TLDA performed much better than the baseline, in which I shared parameters trained in simple DNN to another task.
+Here is a comparsion of learned feature between TLDA and baseline.
+You can see the learned feature from TLDA is more generalized to both the source and target domains.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/tlda_result.png&quot; alt=&quot;JVP&quot; width=&quot;100%&quot; /&gt;
+&lt;/p&gt;</content><author><name></name></author><category term="ml" /><summary type="html">Autoencoders Autoencoders is an unsupervised learning method to reduce a dimensionality of input. The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. The main idea is to reconstruct an input with limitted features. Here is a diagram of a simple autoencoder.</summary></entry><entry><title type="html">Learning Xavier Initialization</title><link href="http://localhost:4000/2021/01/10/xavier-init.html" rel="alternate" type="text/html" title="Learning Xavier Initialization" /><published>2021-01-10T00:00:00-06:00</published><updated>2021-01-10T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/10/xavier-init</id><content type="html" xml:base="http://localhost:4000/2021/01/10/xavier-init.html">&lt;p&gt;Learning PyTorch, I happened to come across a function called &lt;em&gt;reset_parameters()&lt;/em&gt;.
 This function included xavier initalization instead of standard initialization.
 So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”.
 The origin paper of Xavier intialization gave me great undersatnding of its objective.&lt;/p&gt;
@@ -378,53 +404,4 @@ these advantages to CNN:&lt;/p&gt;
   &lt;li&gt;better design of structures like &lt;em&gt;autoencoder&lt;/em&gt; or 
 &lt;em&gt;restricted Boltzmann machine&lt;/em&gt; to avoid preexisting
 issues&lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="paper" /><summary type="html">I am reading a journal from IEEE and decided to record some of the learning points from the reading. Object Detection With Deep Learning: A Review by Zhao and others thoroughly reviews on the development of object detection and its future as well.</summary></entry><entry><title type="html">How to Properly Use Relative Import</title><link href="http://localhost:4000/2020/05/31/python-relative-import.html" rel="alternate" type="text/html" title="How to Properly Use Relative Import" /><published>2020-05-31T00:00:00-05:00</published><updated>2020-05-31T00:00:00-05:00</updated><id>http://localhost:4000/2020/05/31/python-relative-import</id><content type="html" xml:base="http://localhost:4000/2020/05/31/python-relative-import.html">&lt;p&gt;As I learn more about file control in Python, I
-stumbled upon two options for import: absolute
-import and relative import.&lt;/p&gt;
-
-&lt;p&gt;Prior to that, there is a need of understanding 
-how import system works in Python.&lt;/p&gt;
-
-&lt;p&gt;When import occurs, Python finds the package, module
-, resource, or whatever you attempt to retrieve
-in the order of sys.modules(cache for modules),
-built-in modules, and list of directories defined
-by sys.path (current directory and etc.).&lt;/p&gt;
-
-&lt;p&gt;With this in mind, absolute import is done by showing
-import path starting from any directory found from
-the process above. Otherwise, relative path gives
-freedom to import sources relative to the file
-location.&lt;/p&gt;
-
-&lt;p&gt;This is useful but there are caveats.&lt;/p&gt;
-
-&lt;p&gt;When I tried to achieve relative import, it caused
-an error as such:&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Traceback &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;s2&quot;&gt;&quot;test.py&quot;&lt;/span&gt;, line 1, &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &amp;lt;module&amp;gt;
-    from .word_vector import &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
-ImportError: attempted relative import with no known parent package
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;my file structure looked like this:&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nlpyj
-    &lt;span class=&quot;nt&quot;&gt;-text&lt;/span&gt;
-        -...
-    &lt;span class=&quot;nt&quot;&gt;-word_vector&lt;/span&gt;.py
-    &lt;span class=&quot;nt&quot;&gt;-test&lt;/span&gt;.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;and with in test.py&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# test.py
-&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.word_vector&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The problem was that my test.py file ran
-within the package and it prevented Python to realize
-word_vector.py is a part of the package. word_vector.py
-was found &lt;em&gt;way to early&lt;/em&gt; according to https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time.&lt;/p&gt;
-
-&lt;p&gt;The link explains nitty gritty of why Python throws
-such error. I think the best to avoid is to understand
-the caveat of relative import and don’t use it unless
-you really need to.&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="module" /><summary type="html">As I learn more about file control in Python, I stumbled upon two options for import: absolute import and relative import.</summary></entry></feed>
+&lt;/ol&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="paper" /><summary type="html">I am reading a journal from IEEE and decided to record some of the learning points from the reading. Object Detection With Deep Learning: A Review by Zhao and others thoroughly reviews on the development of object detection and its future as well.</summary></entry></feed>

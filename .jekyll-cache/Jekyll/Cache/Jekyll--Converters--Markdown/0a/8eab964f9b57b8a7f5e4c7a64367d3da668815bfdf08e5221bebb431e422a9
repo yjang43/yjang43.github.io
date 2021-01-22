@@ -1,0 +1,6 @@
+I"r<h2 id="autoencoders">Autoencoders</h2>
+<p>Autoencoders is an unsupervised learning method to reduce a dimensionality of input.
+The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. 
+The main idea is to reconstruct an input with limitted features.
+Here is a diagram of a simple autoencoder.</p>
+:ET

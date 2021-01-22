@@ -85,6 +85,38 @@
 </div>
 <div class="container-sm">
     
+    <h1>Autoencoders and Transfer Learning</h1>
+    22 Jan 2021<br><br>
+    <h2 id="autoencoders">Autoencoders</h2>
+<p>Autoencoders is an unsupervised learning method to reduce a dimensionality of input.
+The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. 
+The main idea is to reconstruct an input with limitted features.
+Here is a diagram of a simple autoencoder.</p>
+
+<p align="center">
+    <img src="/assets/img/autoencoder.png" alt="JVP" width="50%" />
+</p>
+
+<p>Basically, the network is composed of encoder and decoder, and lantent features (code) gives a high-level representation of input. 
+Some tricks on autoencoder can result in better representation of latent features.
+One I will mention is denosing autoencoders invented by Vincet(2008). By masking portion of input, it provides robust representation to partially destructed input, which aligns with the definition author proposed to be a “good” representation. Here is a <a href="https://github.com/yjang43/ml_practice/blob/master/autoencoder.ipynb">link</a> that compares the results of autoencoders and desnoising autoencoder.</p>
+
+<h2 id="transfer-learning-with-autoencoder">Transfer Learning with Autoencoder</h2>
+<p>Transfer learning is to use information from source domains, abundant data, to support tasks in target domains, small data.
+Glorot(2011) proposes that stacked denoising autoencoder (SDA) can extract intermediate representations from both source and target domain, and use that to help classfication task in target domain.
+This idea extends to transfer learning with deep autoencoders (TLDA) by Zhuang (2015), which is a form of supervised learning unlike the usual approach with autoencoder. I have conducted an experiment to check its better performance <a href="https://github.com/yjang43/ml_practice/blob/master/TLDA.ipynb">here</a>.
+Instead of using the same dataset from the paper, I used MNIST data.
+The task was to check if a binary classfication of a number (ex. is the input ‘1’ when compared with ‘3’) can be transfered to another binary classification (ex. is the input ‘1’ when compared with ‘5’). 
+Surprisingly, TLDA performed much better than the baseline, in which I shared parameters trained in simple DNN to another task.
+Here is a comparsion of learned feature between TLDA and baseline.
+You can see the learned feature from TLDA is more generalized to both the source and target domains.</p>
+
+<p align="center">
+    <img src="/assets/img/tlda_result.png" alt="JVP" width="100%" />
+</p>
+
+    <div class="post-border"></div>
+    
     <h1>Learning Xavier Initialization</h1>
     10 Jan 2021<br><br>
     <p>Learning PyTorch, I happened to come across a function called <em>reset_parameters()</em>.
@@ -277,61 +309,6 @@ Attention layer for connecting encoder and decoder is different to other attenti
 <p><em>Paper: <a href="https://arxiv.org/pdf/1706.03762.pdf">https://arxiv.org/pdf/1706.03762.pdf</a></em></p>
 
 <p><em>YouTube: <a href="https://www.youtube.com/watch?v=4Bdc55j80l8">https://www.youtube.com/watch?v=4Bdc55j80l8</a></em></p>
-
-    <div class="post-border"></div>
-    
-    <h1>Hidden Markov Model and Algorithms - 1</h1>
-    23 Nov 2020<br><br>
-    <h3 id="hidden-markov-model">Hidden Markov Model</h3>
-<p>HMM is easy to understand knowing its components first.
-HMM can represent a sequence of <em>states</em> and <em>symbol</em>.
-Symbol is what we observe, 
-and state is an information about the symbol.
-Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</p>
-
-<p>If state at location <em>i</em> is denoted as \(\pi_i\).
-Probability of a state <em>k</em> to state <em>l</em> is expressed as,</p>
-
-\[a_{kl} = P(\pi=l|\pi=k)\]
-
-<p>This is called <em>transition probability</em> and carries an important role in explaining the first part of HMM, states.
-Next, the probability of a symbol in a given state can be denoted as,</p>
-
-<p>\(e_k(b) = P(x_i=b|\pi=k)\)
-This is called <em>emission probability</em> and likewise this explains the second part of HMM, symbol.</p>
-
-<h3 id="viterbi">Viterbi</h3>
-<p>One question to ask while working with a squential data whose formation is determined by probability is, 
-“what is the most probable meaning of the observed sequence?”
-This in other words is to ask what the most probable <em>state path</em> is.</p>
-
-\[\tilde{\pi} = argmax_\pi P(x, \pi)\]
-
-<p>Viterbi algorithm provides a solution to this question. The heart of the algorithm is dynamic programming, and the idea comes from the following:</p>
-
-<p><em>If the last state \(\pi_n\) completes the most probable state path, it is completed by connecting to the most probable state path up to \(\pi_{n-1}\)</em></p>
-
-\[v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})\]
-
-<p>Here <em>i</em>, <em>l</em>, <em>k</em> indicate a position in the squence, a state in question, and a previous state respectively.</p>
-
-<h3 id="forward-algorithm">Forward Algorithm</h3>
-
-<p>Forward algorithm gives a probabilty of a sequence, \(P(x)\) 
-simple as that.</p>
-
-\[P(x)=\sum_\pi P(x, \pi)\]
-
-<p>This is a marginalization of states. This can be solved with dynamic programming because \(P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)\).</p>
-
-<p>Thus,</p>
-
-\[when \ f_k(i) = P(x_1...x_i, \pi_i=k)\]
-
-\[f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}\]
-
-<p>The weighted sum of the probabilities of previous sequence from each state is quite intuitive.</p>
-
 
     <div class="post-border"></div>
     
