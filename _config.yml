@@ -40,7 +40,7 @@ collections:
   - courses_cs
   - courses_math
 
-paginate: 4
+paginate: 10
 paginate_path: "/blog/page:num/"
 
 # Conversion

@@ -18,19 +18,10 @@ my_tag:
 </div>
 <div class="container-sm">
     {% for post in paginator.posts %}
+    <h1>{{ post.title }}</h1>
+    {{ post.date | date_to_string }}<br><br>
+    {{ post.content }}
     <div class="post-border"></div>
-    <button class="row not-a-button" onclick="location.href='{{ post.url }}'" type="button">
-        <div class="col-sm-4">
-            <img class="blog-img" src="{{ post.img_url }}" alt="{{ post.title }} image">
-        </div>
-        <div class="col-sm-8">
-            <h4>{{ post.title }}</h4>
-            <div class="blog-summary">
-                {{ post.content }}
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </button>
     {% endfor %}
 </div>
 {% if paginator.total_pages > 1 %}

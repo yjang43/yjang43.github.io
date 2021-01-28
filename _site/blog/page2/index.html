@@ -85,178 +85,159 @@
 </div>
 <div class="container-sm">
     
-    <h1>Hidden Markov Model and Algorithms - 1</h1>
-    23 Nov 2020<br><br>
-    <h3 id="hidden-markov-model">Hidden Markov Model</h3>
-<p>HMM is easy to understand knowing its components first.
-HMM can represent a sequence of <em>states</em> and <em>symbol</em>.
-Symbol is what we observe, 
-and state is an information about the symbol.
-Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</p>
-
-<p>If state at location <em>i</em> is denoted as \(\pi_i\).
-Probability of a state <em>k</em> to state <em>l</em> is expressed as,</p>
-
-\[a_{kl} = P(\pi=l|\pi=k)\]
-
-<p>This is called <em>transition probability</em> and carries an important role in explaining the first part of HMM, states.
-Next, the probability of a symbol in a given state can be denoted as,</p>
-
-<p>\(e_k(b) = P(x_i=b|\pi=k)\)
-This is called <em>emission probability</em> and likewise this explains the second part of HMM, symbol.</p>
-
-<h3 id="viterbi">Viterbi</h3>
-<p>One question to ask while working with a squential data whose formation is determined by probability is, 
-“what is the most probable meaning of the observed sequence?”
-This in other words is to ask what the most probable <em>state path</em> is.</p>
-
-\[\tilde{\pi} = argmax_\pi P(x, \pi)\]
-
-<p>Viterbi algorithm provides a solution to this question. The heart of the algorithm is dynamic programming, and the idea comes from the following:</p>
-
-<p><em>If the last state \(\pi_n\) completes the most probable state path, it is completed by connecting to the most probable state path up to \(\pi_{n-1}\)</em></p>
-
-\[v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})\]
-
-<p>Here <em>i</em>, <em>l</em>, <em>k</em> indicate a position in the squence, a state in question, and a previous state respectively.</p>
-
-<h3 id="forward-algorithm">Forward Algorithm</h3>
-
-<p>Forward algorithm gives a probabilty of a sequence, \(P(x)\) 
-simple as that.</p>
-
-\[P(x)=\sum_\pi P(x, \pi)\]
-
-<p>This is a marginalization of states. This can be solved with dynamic programming because \(P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)\).</p>
-
-<p>Thus,</p>
-
-\[when \ f_k(i) = P(x_1...x_i, \pi_i=k)\]
-
-\[f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}\]
-
-<p>The weighted sum of the probabilities of previous sequence from each state is quite intuitive.</p>
-
-
     <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/05/31/python-relative-import.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="How to Properly Use Relative Import image">
+        </div>
+        <div class="col-sm-8">
+            <h4>How to Properly Use Relative Import</h4>
+            <div class="blog-summary">
+                <p>As I learn more about file control in Python, I
+stumbled upon two options for import: absolute
+import and relative import.</p>
+
+<p>Prior to that, there is a need of understanding 
+how import system works in Python.</p>
+
+<p>When import occurs, Python finds the package, module
+, resource, or whatever you attempt to retrieve
+in the order of sys.modules(cache for modules),
+built-in modules, and list of directories defined
+by sys.path (current directory and etc.).</p>
+
+<p>With this in mind, absolute import is done by showing
+import path starting from any directory found from
+the process above. Otherwise, relative path gives
+freedom to import sources relative to the file
+location.</p>
+
+<p>This is useful but there are caveats.</p>
+
+<p>When I tried to achieve relative import, it caused
+an error as such:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"test.py"</span>, line 1, <span class="k">in</span> &lt;module&gt;
+    from .word_vector import <span class="k">*</span>
+ImportError: attempted relative import with no known parent package
+</code></pre></div></div>
+<p>my file structure looked like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nlpyj
+    <span class="nt">-text</span>
+        -...
+    <span class="nt">-word_vector</span>.py
+    <span class="nt">-test</span>.py
+</code></pre></div></div>
+<p>and with in test.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># test.py
+</span><span class="kn">from</span> <span class="nn">.word_vector</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>The problem was that my test.py file ran
+within the package and it prevented Python to realize
+word_vector.py is a part of the package. word_vector.py
+was found <em>way to early</em> according to https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time.</p>
+
+<p>The link explains nitty gritty of why Python throws
+such error. I think the best to avoid is to understand
+the caveat of relative import and don’t use it unless
+you really need to.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
-    <h1>Vanilla RNN</h1>
-    21 Nov 2020<br><br>
-    <h3 id="motif">Motif</h3>
-<p>Language model is the probability of a sequence.
-This can be approximated as the product of <em>n</em>-gram,</p>
-
-\[P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\]
-
-<p>So, <em>n</em>-gram was a natural approach to do language modeling.
-However, this traditional approach has two limitations.</p>
-<ul>
-  <li>sparsity of <em>n</em>-gram</li>
-  <li>exponential growth in model size as <em>n</em> increases</li>
-</ul>
-
-<h3 id="vanila-rnn">Vanila RNN</h3>
-<p align="center">
-    <img src="/assets/img/rnn_structure.png" alt="RNN structure" width="40%" />
-</p>
-
-<p>In contrast to the complex network of RNN,
-equations to express the network is surprisingly very simple.
-This is because weights are repeated used throughout timestamps.</p>
-
-\[h_t=\sigma(W_hh_{t-1} + W_ex_t)\]
-
-\[\hat{y}=softmax(Uh_t)\]
-
-<p>Here are short description of dimensions of each parameter.</p>
-
-\[x_t\in\mathbb{R}^d\]
-
-\[W_e\in\mathbb{R}^{D_h\times d}\]
-
-\[W_h\in\mathbb{R}^{D_h\times D_h}\]
-
-\[h_{t-1}\in\mathbb{R}^{D_h}\]
-
-\[\hat{y}\in\mathbb{R}^{|V|}\]
-
-\[U\in\mathbb{R}^{|V| \times D_h}\]
-
-<p>\(d\) indicates dimension of word embeddings <em>(possibly with Word2Vec)</em>, 
-\(D_h\) is a dimension chosen in design. 
-\(|V|\) is the cardinality of the corpus.</p>
-
-<p>Now the structure of RNN is clear, I will discuss the loss and gradient of RNN.
-First, loss function looks like this.</p>
-
-\[J^{(t)}(\Theta) = - \sum^{|V|}_{j=1}y_{t,j}\times log(\hat{y}_{t,j})\]
-
-\[J = {1\over T} \sum^{T}_{t=1}J^{(t)}(\Theta)\]
-
-<p>Here, cross entropy is used to define a distance of proabability.
-The loss function of RNN looks a little bit complicated, but it is explained intuitively by looking at the structure of RNN.
-\(J^{(t)}\) indicates a loss at a timestamp \(t\). 
-Then \(J\) indicates the overall loss of the RNN which is a summation over each timeframe and averaged by dividing the sum by the corpus size.</p>
-
-<p>Second, gradient looks complicated as well.</p>
-
-\[{\partial J \over \partial W} = \sum^T_{t=1}{\partial J_t \over \partial W}\]
-
-\[{\partial J_t \over \partial W} = \sum^t_{k=1} {\partial J_t \over \partial y_t}{\partial y_t \over \partial h_t}{\partial h_t \over \partial h_k}{\partial h_k \over \partial W}\]
-
-<p>However, this again is explained intuitively. Similar to how loss at each timestamp is added for an overall loss, overall gradient can decompose into a sum of gradient at each timestamp. Then, gradient at each timestamp is a sum of gradient that imposes change to \(y_t\). This is a multiplication of local gradients in sequence.</p>
-
-<h3 id="problem-with-vanila-rnn">Problem With Vanila RNN</h3>
-<p>With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call <em>exploding gradient</em> and <em>vanishing gradient</em> respectively. Thus, variation of RNNs are devised in newer literatures.</p>
-
     <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/05/27/python-standard-library-threading.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Python Standard Library - threading.py image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Python Standard Library - threading.py</h4>
+            <div class="blog-summary">
+                <p>Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.</p>
+
+<p>There is a package called threading. Thread instance can be created with Thread class and other instances for communication between threads can be created.</p>
+
+<p>Ones I found easy to understand and important were Thread, Timer, and Event. One thing I found interesting is that standard way of terminating a thread is not provided in the document. There are few suggestions from online like causing exception, or hidden function _stop().</p>
+
+<p>Python’s queue package can be used to manage data between threads.</p>
+
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
-    <h1>Bifrost, Possible Solution for DApp</h1>
-    20 Jun 2020<br><br>
-    <p>The whole reason I came across the idea of DApp is because of the interview
-with a company called <em><a href="https://pilab.co/">Pilab</a></em>. This company tries to seek a solution
-for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</p>
-
-<p><em><a href="https://thebifrost.io/static/Bifrost_WP_Eng.pdf">Bifrost’s white paper</a></em> was interesting reading.
-Even if I lacked a DApp background, with a simple understanding of block chain in general, and private and public
-block chain, I was able to understand what problem Bifrost intend to solve.</p>
-
-<p>According to the document, each block chain platform has a different focus as to
-its implementation and ecosystem. Some focuses on scalability, and other focuses
-on security and beyond.</p>
-
-<p>As a programmer that needs to choose solely one platform, the risk or loss for
-completely giving in one platform is a huge risk. Bifrost comes into place and solve
-this dilemma by suggesting a framework, so to speak, that allows running two block
-chain platforms in parallel from my understanding. My first concern was decrease in
-its efficiency due to running two platforms compared to one, but they are working on
-creating its own language called <em>Recipe</em> that optimizes its performance.</p>
-
-<p>I am excited to learn more about this technology in the future.</p>
-
     <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/05/27/django-aws-compatibility.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="AWS Deployment, Check for Compatibility image">
+        </div>
+        <div class="col-sm-8">
+            <h4>AWS Deployment, Check for Compatibility</h4>
+            <div class="blog-summary">
+                <p>I used Django 3.0.5 to develop my portfolio website originally.
+Unfortunately, I overlooked the version compatibility of AWS with Django.
+The specified version was 2.1.1 with Python 3.6 the latest.
+This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root.
+I think one of the reasons why AWS is maintaining such compatibility is due to SQLite.
+Once I did</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb logs
+</code></pre></div></div>
+<p>I found out that SQLite 3.8 which is a default db provided by Django is not provided by AWS
+(it still maintained 3.7 version).</p>
+
+<p>This made me reconsider the value of virtualenv sciprt.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>pyenv
+pyenv <span class="nb">install </span>3.6
+virtualenv <span class="nt">-p</span> <span class="o">[</span>LOCATION_OF_PYTHON_INSTALLED]/bin/python.3.6 <span class="o">[</span>VIRTUAL_ENVIRONMENT]
+<span class="nb">source</span> <span class="o">[</span>VIRTUAL_ENVIRONMENT]/bin/activate
+...
+
+deactivate
+</code></pre></div></div>
+
+<p>This gets very handy when I have to face compatibility issue.</p>
+
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
-    <h1>Training Hyperplane for Support Vector Machine</h1>
-    19 Jun 2020<br><br>
-    <p>We have this simple function of an hyperplane.
-\(\mathbf{\omega \cdot x} + b = 0\)
-However, getting the optimized hyperplane for SVM
-is not so easy as this function looks.</p>
-
-<p>To get an hyperplane that meets the condition,
-\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
-and maximum margin, one can approach by minimizing a loss function of this
-operation.</p>
-
-\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
-+ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
-
-<p>This can be solved by (sub-) gradient descent methods. A <a href="https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf">lecture note from
-University of Utah</a>
-explains the procedure well. The lecture note suggests stochastic 
-gradient descent for the computation speed.</p>
-
     <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/05/26/jekyll-to-github-pages.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Jekyll to GitHub Pages image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Jekyll to GitHub Pages</h4>
+            <div class="blog-summary">
+                <p>GitHub page is not something new to me. When I first
+learned about HTML and CSS, like all others wanted to do,
+I tried to create a phat personal website.
+However, I knew so little to make it look okay.</p>
+
+<p>Several months later, as I learn more about website hosting
+and etc. I realized there is no cheap way <em>for a college student like me</em>
+to host a dynamic web sites. Reason is simple, you need a computer to
+compute and render. So, I came back to GitHub page because they are free.
+Then, I looked for static site generator that GitHub supports.</p>
+
+<p>Jekyll was a standard one and very easy to understand. Some of the terms
+were quite knew to me because Jekyll was a Ruby product, but many of them
+can be disregarded without backfiring at your project.</p>
+
+<p><a href="https://jekyllrb.com/">Check out Jekyll.</a></p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
 </div>
 
@@ -280,22 +261,10 @@ gradient descent for the computation speed.</p>
       </span>
     
   
-    
-      <span class=page_num>
-        <a href="/blog/page3/">3 </a>
-      </span>
-    
-  
-    
-      <span class=page_num>
-        <a href="/blog/page4/">4 </a>
-      </span>
-    
-  
 
   
     <span class=page_num>
-      <a href="/blog/page3/">Next &raquo;</a>
+      <span>Next &raquo;</span>
     </span>
   
 </div>

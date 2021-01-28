@@ -85,9 +85,15 @@
 </div>
 <div class="container-sm">
     
-    <h1>Autoencoders and Transfer Learning</h1>
-    22 Jan 2021<br><br>
-    <h2 id="autoencoders">Autoencoders</h2>
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2021/01/22/autoencoders-and-transfer-learning.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="/assets/img/autoencoder.png" alt="Autoencoders and Transfer Learning image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Autoencoders and Transfer Learning</h4>
+            <div class="blog-summary">
+                <h2 id="autoencoders">Autoencoders</h2>
 <p>Autoencoders is an unsupervised learning method to reduce a dimensionality of input.
 The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. 
 The main idea is to reconstruct an input with limitted features.
@@ -115,11 +121,20 @@ You can see the learned feature from TLDA is more generalized to both the source
     <img src="/assets/img/tlda_result.png" alt="JVP" width="100%" />
 </p>
 
-    <div class="post-border"></div>
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
-    <h1>Learning Xavier Initialization</h1>
-    10 Jan 2021<br><br>
-    <p>Learning PyTorch, I happened to come across a function called <em>reset_parameters()</em>.
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2021/01/10/xavier-init.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Learning Xavier Initialization image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Learning Xavier Initialization</h4>
+            <div class="blog-summary">
+                <p>Learning PyTorch, I happened to come across a function called <em>reset_parameters()</em>.
 This function included xavier initalization instead of standard initialization.
 So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”.
 The origin paper of Xavier intialization gave me great undersatnding of its objective.</p>
@@ -166,11 +181,20 @@ Result shows quadratic loss function gives more plateaus, which I assume it mean
   </li>
 </ul>
 
-    <div class="post-border"></div>
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
-    <h1>Understanding Autograd in PyTorch</h1>
-    23 Dec 2020<br><br>
-    <p>I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/12/23/pytorch-autograd.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Understanding Autograd in PyTorch image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Understanding Autograd in PyTorch</h4>
+            <div class="blog-summary">
+                <p>I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.
 Accurately, autograd is an engine for Jacobian-vector product (JVP).
 I will cover two things, cycle of its operation and JVP</p>
 <h3 id="operation-cycle">Operation Cycle</h3>
@@ -263,11 +287,20 @@ tensor<span class="o">([[</span>2., 2., 2., 2.]]<span class="o">)</span>
 
 <p><a href="https://pytorch.org/docs/stable/notes/autograd.html">To learn more about autograd mechanics</a></p>
 
-    <div class="post-border"></div>
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
-    <h1>Attention Is All You Need - Transformer</h1>
-    03 Dec 2020<br><br>
-    <h3 id="thoughts">Thoughts</h3>
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/12/03/transformer.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Attention Is All You Need - Transformer image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Attention Is All You Need - Transformer</h4>
+            <div class="blog-summary">
+                <h3 id="thoughts">Thoughts</h3>
 <p>The paper, “Attention Is All You Need”, is the first to present transformer architecture.
 The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
 This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
@@ -310,7 +343,305 @@ Attention layer for connecting encoder and decoder is different to other attenti
 
 <p><em>YouTube: <a href="https://www.youtube.com/watch?v=4Bdc55j80l8">https://www.youtube.com/watch?v=4Bdc55j80l8</a></em></p>
 
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
+    
     <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/11/23/hidden-markov-model-and-algorithms.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Hidden Markov Model and Algorithms - 1 image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Hidden Markov Model and Algorithms - 1</h4>
+            <div class="blog-summary">
+                <h3 id="hidden-markov-model">Hidden Markov Model</h3>
+<p>HMM is easy to understand knowing its components first.
+HMM can represent a sequence of <em>states</em> and <em>symbol</em>.
+Symbol is what we observe, 
+and state is an information about the symbol.
+Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</p>
+
+<p>If state at location <em>i</em> is denoted as \(\pi_i\).
+Probability of a state <em>k</em> to state <em>l</em> is expressed as,</p>
+
+\[a_{kl} = P(\pi=l|\pi=k)\]
+
+<p>This is called <em>transition probability</em> and carries an important role in explaining the first part of HMM, states.
+Next, the probability of a symbol in a given state can be denoted as,</p>
+
+<p>\(e_k(b) = P(x_i=b|\pi=k)\)
+This is called <em>emission probability</em> and likewise this explains the second part of HMM, symbol.</p>
+
+<h3 id="viterbi">Viterbi</h3>
+<p>One question to ask while working with a squential data whose formation is determined by probability is, 
+“what is the most probable meaning of the observed sequence?”
+This in other words is to ask what the most probable <em>state path</em> is.</p>
+
+\[\tilde{\pi} = argmax_\pi P(x, \pi)\]
+
+<p>Viterbi algorithm provides a solution to this question. The heart of the algorithm is dynamic programming, and the idea comes from the following:</p>
+
+<p><em>If the last state \(\pi_n\) completes the most probable state path, it is completed by connecting to the most probable state path up to \(\pi_{n-1}\)</em></p>
+
+\[v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})\]
+
+<p>Here <em>i</em>, <em>l</em>, <em>k</em> indicate a position in the squence, a state in question, and a previous state respectively.</p>
+
+<h3 id="forward-algorithm">Forward Algorithm</h3>
+
+<p>Forward algorithm gives a probabilty of a sequence, \(P(x)\) 
+simple as that.</p>
+
+\[P(x)=\sum_\pi P(x, \pi)\]
+
+<p>This is a marginalization of states. This can be solved with dynamic programming because \(P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)\).</p>
+
+<p>Thus,</p>
+
+\[when \ f_k(i) = P(x_1...x_i, \pi_i=k)\]
+
+\[f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}\]
+
+<p>The weighted sum of the probabilities of previous sequence from each state is quite intuitive.</p>
+
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/11/21/vanila-RNN.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Vanilla RNN image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Vanilla RNN</h4>
+            <div class="blog-summary">
+                <h3 id="motif">Motif</h3>
+<p>Language model is the probability of a sequence.
+This can be approximated as the product of <em>n</em>-gram,</p>
+
+\[P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\]
+
+<p>So, <em>n</em>-gram was a natural approach to do language modeling.
+However, this traditional approach has two limitations.</p>
+<ul>
+  <li>sparsity of <em>n</em>-gram</li>
+  <li>exponential growth in model size as <em>n</em> increases</li>
+</ul>
+
+<h3 id="vanila-rnn">Vanila RNN</h3>
+<p align="center">
+    <img src="/assets/img/rnn_structure.png" alt="RNN structure" width="40%" />
+</p>
+
+<p>In contrast to the complex network of RNN,
+equations to express the network is surprisingly very simple.
+This is because weights are repeated used throughout timestamps.</p>
+
+\[h_t=\sigma(W_hh_{t-1} + W_ex_t)\]
+
+\[\hat{y}=softmax(Uh_t)\]
+
+<p>Here are short description of dimensions of each parameter.</p>
+
+\[x_t\in\mathbb{R}^d\]
+
+\[W_e\in\mathbb{R}^{D_h\times d}\]
+
+\[W_h\in\mathbb{R}^{D_h\times D_h}\]
+
+\[h_{t-1}\in\mathbb{R}^{D_h}\]
+
+\[\hat{y}\in\mathbb{R}^{|V|}\]
+
+\[U\in\mathbb{R}^{|V| \times D_h}\]
+
+<p>\(d\) indicates dimension of word embeddings <em>(possibly with Word2Vec)</em>, 
+\(D_h\) is a dimension chosen in design. 
+\(|V|\) is the cardinality of the corpus.</p>
+
+<p>Now the structure of RNN is clear, I will discuss the loss and gradient of RNN.
+First, loss function looks like this.</p>
+
+\[J^{(t)}(\Theta) = - \sum^{|V|}_{j=1}y_{t,j}\times log(\hat{y}_{t,j})\]
+
+\[J = {1\over T} \sum^{T}_{t=1}J^{(t)}(\Theta)\]
+
+<p>Here, cross entropy is used to define a distance of proabability.
+The loss function of RNN looks a little bit complicated, but it is explained intuitively by looking at the structure of RNN.
+\(J^{(t)}\) indicates a loss at a timestamp \(t\). 
+Then \(J\) indicates the overall loss of the RNN which is a summation over each timeframe and averaged by dividing the sum by the corpus size.</p>
+
+<p>Second, gradient looks complicated as well.</p>
+
+\[{\partial J \over \partial W} = \sum^T_{t=1}{\partial J_t \over \partial W}\]
+
+\[{\partial J_t \over \partial W} = \sum^t_{k=1} {\partial J_t \over \partial y_t}{\partial y_t \over \partial h_t}{\partial h_t \over \partial h_k}{\partial h_k \over \partial W}\]
+
+<p>However, this again is explained intuitively. Similar to how loss at each timestamp is added for an overall loss, overall gradient can decompose into a sum of gradient at each timestamp. Then, gradient at each timestamp is a sum of gradient that imposes change to \(y_t\). This is a multiplication of local gradients in sequence.</p>
+
+<h3 id="problem-with-vanila-rnn">Problem With Vanila RNN</h3>
+<p>With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call <em>exploding gradient</em> and <em>vanishing gradient</em> respectively. Thus, variation of RNNs are devised in newer literatures.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/06/20/solution-for-dapp.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Bifrost, Possible Solution for DApp image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Bifrost, Possible Solution for DApp</h4>
+            <div class="blog-summary">
+                <p>The whole reason I came across the idea of DApp is because of the interview
+with a company called <em><a href="https://pilab.co/">Pilab</a></em>. This company tries to seek a solution
+for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</p>
+
+<p><em><a href="https://thebifrost.io/static/Bifrost_WP_Eng.pdf">Bifrost’s white paper</a></em> was interesting reading.
+Even if I lacked a DApp background, with a simple understanding of block chain in general, and private and public
+block chain, I was able to understand what problem Bifrost intend to solve.</p>
+
+<p>According to the document, each block chain platform has a different focus as to
+its implementation and ecosystem. Some focuses on scalability, and other focuses
+on security and beyond.</p>
+
+<p>As a programmer that needs to choose solely one platform, the risk or loss for
+completely giving in one platform is a huge risk. Bifrost comes into place and solve
+this dilemma by suggesting a framework, so to speak, that allows running two block
+chain platforms in parallel from my understanding. My first concern was decrease in
+its efficiency due to running two platforms compared to one, but they are working on
+creating its own language called <em>Recipe</em> that optimizes its performance.</p>
+
+<p>I am excited to learn more about this technology in the future.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/06/19/training-svm-hyperplane.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Training Hyperplane for Support Vector Machine image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Training Hyperplane for Support Vector Machine</h4>
+            <div class="blog-summary">
+                <p>We have this simple function of an hyperplane.
+\(\mathbf{\omega \cdot x} + b = 0\)
+However, getting the optimized hyperplane for SVM
+is not so easy as this function looks.</p>
+
+<p>To get an hyperplane that meets the condition,
+\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
+and maximum margin, one can approach by minimizing a loss function of this
+operation.</p>
+
+\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
+
+<p>This can be solved by (sub-) gradient descent methods. A <a href="https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf">lecture note from
+University of Utah</a>
+explains the procedure well. The lecture note suggests stochastic 
+gradient descent for the computation speed.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/06/19/primal-support-vector-machine.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Primal Support Vector Machine image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Primal Support Vector Machine</h4>
+            <div class="blog-summary">
+                <p>In a case where you need to draw a hyperplane that does
+binary classification, there can be multiple hyperplanes.
+Primal SVM is one way to solve this issue by bringing the
+concept that maximizes a margin of the hyper vector.</p>
+
+<p>Before anything, definition of margin needs to be settled.
+Margin is a distance from a hyperplane to its closest data points.</p>
+
+<p><em>“Vladimir Vapnik and Alexey Chervonenkis said when the margin
+is large, the “complexity” of the function is low, and hence learning
+is possible.”</em></p>
+
+<p>From one of the methods that derives the margin called
+<em>hard margin SVM</em>, you see it focuses on getting the
+minimal value of</p>
+
+\[{1 \over 2} \|\omega\|^{2}\]
+
+<p>while assuming the set margin of length 1.
+This seems to contradict the goal, to find the max
+margin. Through mathematical tweaks, however, this
+equation is equivalent to the meaning of getting
+the max margin.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/06/01/object-detection-with-deep-learning-1.html'" type="button">
+        <div class="col-sm-4">
+            <img class="blog-img" src="" alt="Readings about Object Detection image">
+        </div>
+        <div class="col-sm-8">
+            <h4>Readings about Object Detection</h4>
+            <div class="blog-summary">
+                <p>I am reading a journal from <em>IEEE</em> and decided to 
+record some of the learning points from the reading.
+<em>Object Detection With Deep Learning: A Review</em> by Zhao
+and others thoroughly reviews on the development of
+object detection and its future as well.</p>
+
+<p>There are two requirements to detect object:</p>
+<ol>
+  <li><em>object localization</em> - where the object is located
+from the frame</li>
+  <li><em>object classification</em> - what is the object</li>
+</ol>
+
+<p>The author states that <em>supported vector machine</em> (SVM)
+was used often for classification, so let’s learn more
+about that.</p>
+
+<p>SVM is a classification technique that can be used
+in supervised learning model. The idea is that
+if there are <em>k</em>-dimension vectors than it separates
+vectors with <em>(k-1)</em>-dimension hyperplane that 
+maximizes distance from nearest data point from
+each side is maximized.</p>
+
+<p>However, occurrence of convolutional neural network (CNN)
+was the game changer. Changing technology brings
+these advantages to CNN:</p>
+<ol>
+  <li>ImageNet - big ass data set to train the model</li>
+  <li>faster GPU specs</li>
+  <li>better design of structures like <em>autoencoder</em> or 
+<em>restricted Boltzmann machine</em> to avoid preexisting
+issues</li>
+</ol>
+
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
 </div>
 
@@ -331,18 +662,6 @@ Attention layer for connecting encoder and decoder is different to other attenti
     
       <span class=page_num>
         <a href="/blog/page2/">2 </a>
-      </span>
-    
-  
-    
-      <span class=page_num>
-        <a href="/blog/page3/">3 </a>
-      </span>
-    
-  
-    
-      <span class=page_num>
-        <a href="/blog/page4/">4 </a>
       </span>
     
   
