@@ -1,6 +1,7 @@
 ---
 title: Readings about Object Detection
 tags: ml ai paper
+img_url: /assets/img/object_detection.jpeg
 ---
 
 I am reading a journal from _IEEE_ and decided to 

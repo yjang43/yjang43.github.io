@@ -1,6 +1,7 @@
 ---
 title: Vanilla RNN
 tags: ml, nlp
+img_url: /assets/img/rnn.png
 ---
 
 ### Motif

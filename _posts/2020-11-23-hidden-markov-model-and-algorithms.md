@@ -1,6 +1,7 @@
 ---
 title: Hidden Markov Model and Algorithms - 1
 tags: ml, hmm
+img_url: /assets/img/hmm.png
 ---
 
 ### Hidden Markov Model

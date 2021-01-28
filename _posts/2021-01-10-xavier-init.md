@@ -1,6 +1,7 @@
 ---
 title: Learning Xavier Initialization
 tags: ml
+img_url: /assets/img/xavier_init.png
 ---
 
 Learning PyTorch, I happened to come across a function called _reset_parameters()_.

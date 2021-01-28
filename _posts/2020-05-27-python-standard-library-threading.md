@@ -1,6 +1,7 @@
 ---
 title: Python Standard Library - threading.py
 tags: python
+img_url: /assets/img/python.png
 ---
 
 Python is my favorite language and yet I know so small compared to my passion for it. So, I looked through python documents because I recently stumbled upon socket programming and package in python and realized there are so many interesting built-in packages in python.

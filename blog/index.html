@@ -21,9 +21,13 @@ my_tag:
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='{{ post.url }}'" type="button">
         <div class="col-sm-4">
-            <img class="blog-img" src="{{ post.img_url }}" alt="{{ post.title }} image">
+            {% if post.img_url %}
+                <img class="blog-img" src="{{ post.img_url }}" alt="{{ post.title }} image">
+            {% else %}
+                <img class="blog-img" src="/assets/img/default.png" alt="{{ post.title }} image">
+            {% endif %}
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 blog-summary-container">
             <h4>{{ post.title }}</h4>
             <div class="blog-summary">
                 {{ post.content }}

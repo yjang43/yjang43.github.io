@@ -1,6 +1,7 @@
 ---
 title: AWS Deployment, Check for Compatibility
 tags: aws django python
+img_url: /assets/img/aws.png
 ---
 
 I used Django 3.0.5 to develop my portfolio website originally.

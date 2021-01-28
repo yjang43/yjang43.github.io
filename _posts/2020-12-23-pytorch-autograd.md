@@ -1,6 +1,7 @@
 ---
 title: Understanding Autograd in PyTorch
 tags: ml, pytorch
+img_url: /assets/img/pytorch_autograd.png
 ---
 
 I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.

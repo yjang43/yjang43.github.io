@@ -1,6 +1,7 @@
 ---
 title: Training Hyperplane for Support Vector Machine
 tags: ml ai svm
+img_url: /assets/img/svm.png
 ---
 
 We have this simple function of an hyperplane.

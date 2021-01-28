@@ -1,6 +1,7 @@
 ---
 title: Primal Support Vector Machine
 tags: ml ai
+img_url: /assets/img/svm.png
 ---
 
 In a case where you need to draw a hyperplane that does

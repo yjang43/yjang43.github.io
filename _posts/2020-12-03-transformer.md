@@ -1,6 +1,7 @@
 ---
 title: Attention Is All You Need - Transformer
 tags: ml, nlp, transformer
+img_url: /assets/img/transformer.jpeg
 ---
 ### Thoughts
 The paper, "Attention Is All You Need", is the first to present transformer architecture.

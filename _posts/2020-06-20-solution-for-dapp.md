@@ -1,6 +1,7 @@
 ---
 title: Bifrost, Possible Solution for DApp
 tags: blockchain dapp
+img_url: /assets/img/bifrost.png
 ---
 
 The whole reason I came across the idea of DApp is because of the interview
