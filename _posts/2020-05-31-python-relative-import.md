@@ -2,6 +2,7 @@
 title: How to Properly Use Relative Import
 tags: python module
 img_url: /assets/img/python.png
+layout: blog
 ---
 
 As I learn more about file control in Python, I

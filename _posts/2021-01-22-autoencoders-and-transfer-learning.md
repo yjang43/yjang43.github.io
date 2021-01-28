@@ -2,6 +2,7 @@
 title: Autoencoders and Transfer Learning
 tags: ml
 img_url: /assets/img/autoencoder.png
+layout: blog
 ---
 
 ## Autoencoders

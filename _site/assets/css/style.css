@@ -200,6 +200,12 @@
     height: 100%;
 }
 
+.content-pad {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 50px;
+}
+
 
 @media only screen and (max-width: 768px) {
   .multiple-columns {

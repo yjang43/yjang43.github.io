@@ -2,6 +2,7 @@
 title: Jekyll to GitHub Pages
 tags: jekyll github
 img_url: /assets/img/jekyll.jpeg
+layout: blog
 ---
 
 GitHub page is not something new to me. When I first
