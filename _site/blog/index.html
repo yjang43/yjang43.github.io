@@ -86,6 +86,92 @@
 <div class="container-sm">
     
     <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2021/02/03/bpe.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/bpe.png" alt="Byte Pair Encoding in NLP image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <h4>Byte Pair Encoding in NLP</h4>
+            <div class="blog-summary">
+                <p>This is a short summary of a paper, <em>Neural Machine Translation of Rare Words with Subwords Units</em> by <em>Sennrich (2016)</em>.
+The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite words with subwords.</p>
+
+<h2 id="motivation">Motivation</h2>
+<p>Before the dicussion of its algorithm, it will be better to tackle on why new approach of formulating vocabulary is desired.
+Original works include having UNK vocabulary or back-off strategy to cope with OOV cases.
+These issues were brought forth due to their fixed vocabulary size.
+Using subwords, however, can avoid this because combinations of subwords can create infinite number of words, and to make subwords, we need to segment words into smaller pieces.</p>
+
+<p>However, one question can follow: would it work better?
+The answer to that question is simply, yes (in neural translation model specifically).
+Languages, not limited only to English, contains such common cases: named entities, cognates and loanwords, morphologically complex words. And, these narrow down to two things to consider: <em>compounding</em> which is to combine words for a more complex word (air + plane -&gt; airplane) and <em>transliteration</em> which is a translation from letter to letter (g, b -&gt; ㄱ, ㅂ).</p>
+
+<p>BPE is not a magic that solves any issues unless the balance is found. Size of vocabulary may be small (even down to alphabet level size), and it will still cover limitless words. This of course will be able to maximize time and space efficiency, but with the major cost of delievering information in the sequence.
+In other words, small size words will result the same input to be a longer sequence than bigger size words, in which it becomes more dfficult to contain information from its vicinity.</p>
+
+<h2 id="algorithm">Algorithm</h2>
+<p>BPE encoding is a compression algorithm that iteratively pairs with the most frequent pairs. In my opinion, this distinct itself from WPM because Schuster (2012) picks pair that optimize language model rather than sepcifically for pair’s frequency.
+The code is provided in the paper like the following:</p>
+
+<!-- ``` python -->
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span><span class="p">,</span> <span class="n">collections</span>
+
+<span class="k">def</span> <span class="nf">get_stats</span><span class="p">(</span><span class="n">vocab</span><span class="p">):</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">vocab</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">symbols</span> <span class="o">=</span> <span class="n">word</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">pairs</span><span class="p">[</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">freq</span>
+    <span class="k">return</span> <span class="n">pairs</span>
+
+<span class="k">def</span> <span class="nf">merge_vocab</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">v_in</span><span class="p">):</span>
+    <span class="n">v_out</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">escape</span><span class="p">(</span><span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">pair</span><span class="p">))</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="sa">r</span><span class="s">'(?&lt;!\S)'</span> <span class="o">+</span> <span class="n">bigram</span> <span class="o">+</span> <span class="sa">r</span><span class="s">'(?!\S)'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">v_in</span><span class="p">:</span>
+        <span class="n">w_out</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">pair</span><span class="p">),</span> <span class="n">word</span><span class="p">)</span>
+        <span class="n">v_out</span><span class="p">[</span><span class="n">w_out</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_in</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">v_out</span>
+
+<span class="n">vocab</span> <span class="o">=</span> <span class="p">{</span><span class="s">'l o w &lt;/w&gt;'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">'l o w e r &lt;/w&gt;'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+         <span class="s">'n e w e s t &lt;/w&gt;'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">'w i d e s t &lt;/w&gt;'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="n">num_merges</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_merges</span><span class="p">):</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">get_stats</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">pairs</span><span class="p">.</span><span class="n">get</span><span class="p">)</span>
+    <span class="n">vocab</span> <span class="o">=</span> <span class="n">merge_vocab</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">vocab</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">best</span><span class="p">)</span></code></pre></figure>
+
+<!-- ``` -->
+
+<p>When the code is run, we get the ouput like the following.</p>
+
+<div style="text-align: center;">
+('e', 's')<br />
+('es', 't')<br />
+<b>('est', '&lt;/w&gt;')</b><br />
+('l', 'o')<br />
+('lo', 'w')<br />
+('n', 'e')<br />
+('ne', 'w')<br />
+<b>('new', 'est&lt;/w&gt;')</b><br />
+('low', '&lt;/w&gt;')<br />
+('w', 'i')<br />
+<br />
+</div>
+<p>Note that ‘est’ which has occurred frequently later combine with ‘new’ and ‘low’ as a whole.
+The role of comparison ‘est’ is cached and combination with other subwords shows a transparent transformation and later help transparent translation, meaning <em>“adjective + ‘est’“</em> is <em>"’가장’ + 형용사”</em> in Korean and parrallel translation can be found within.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
+    
+    <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2021/01/22/autoencoders-and-transfer-learning.html'" type="button">
         <div class="col-sm-4">
             
@@ -606,57 +692,6 @@ This seems to contradict the goal, to find the max
 margin. Through mathematical tweaks, however, this
 equation is equivalent to the meaning of getting
 the max margin.</p>
-
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </button>
-    
-    <div class="post-border"></div>
-    <button class="row not-a-button" onclick="location.href='/2020/06/01/object-detection-with-deep-learning-1.html'" type="button">
-        <div class="col-sm-4">
-            
-                <img class="blog-img" src="/assets/img/object_detection.jpeg" alt="Readings about Object Detection image">
-            
-        </div>
-        <div class="col-sm-8 blog-summary-container">
-            <h4>Readings about Object Detection</h4>
-            <div class="blog-summary">
-                <p>I am reading a journal from <em>IEEE</em> and decided to 
-record some of the learning points from the reading.
-<em>Object Detection With Deep Learning: A Review</em> by Zhao
-and others thoroughly reviews on the development of
-object detection and its future as well.</p>
-
-<p>There are two requirements to detect object:</p>
-<ol>
-  <li><em>object localization</em> - where the object is located
-from the frame</li>
-  <li><em>object classification</em> - what is the object</li>
-</ol>
-
-<p>The author states that <em>supported vector machine</em> (SVM)
-was used often for classification, so let’s learn more
-about that.</p>
-
-<p>SVM is a classification technique that can be used
-in supervised learning model. The idea is that
-if there are <em>k</em>-dimension vectors than it separates
-vectors with <em>(k-1)</em>-dimension hyperplane that 
-maximizes distance from nearest data point from
-each side is maximized.</p>
-
-<p>However, occurrence of convolutional neural network (CNN)
-was the game changer. Changing technology brings
-these advantages to CNN:</p>
-<ol>
-  <li>ImageNet - big ass data set to train the model</li>
-  <li>faster GPU specs</li>
-  <li>better design of structures like <em>autoencoder</em> or 
-<em>restricted Boltzmann machine</em> to avoid preexisting
-issues</li>
-</ol>
-
 
                 <div class="overlay"></div>
             </div>

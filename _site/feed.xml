@@ -1,4 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-28T02:46:57-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Autoencoders and Transfer Learning</title><link href="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html" rel="alternate" type="text/html" title="Autoencoders and Transfer Learning" /><published>2021-01-22T00:00:00-06:00</published><updated>2021-01-22T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning</id><content type="html" xml:base="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html">&lt;h2 id=&quot;autoencoders&quot;&gt;Autoencoders&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-03T08:51:07-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Byte Pair Encoding in NLP</title><link href="http://localhost:4000/2021/02/03/bpe.html" rel="alternate" type="text/html" title="Byte Pair Encoding in NLP" /><published>2021-02-03T00:00:00-06:00</published><updated>2021-02-03T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/03/bpe</id><content type="html" xml:base="http://localhost:4000/2021/02/03/bpe.html">&lt;p&gt;This is a short summary of a paper, &lt;em&gt;Neural Machine Translation of Rare Words with Subwords Units&lt;/em&gt; by &lt;em&gt;Sennrich (2016)&lt;/em&gt;.
+The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite words with subwords.&lt;/p&gt;
+
+&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;Before the dicussion of its algorithm, it will be better to tackle on why new approach of formulating vocabulary is desired.
+Original works include having UNK vocabulary or back-off strategy to cope with OOV cases.
+These issues were brought forth due to their fixed vocabulary size.
+Using subwords, however, can avoid this because combinations of subwords can create infinite number of words, and to make subwords, we need to segment words into smaller pieces.&lt;/p&gt;
+
+&lt;p&gt;However, one question can follow: would it work better?
+The answer to that question is simply, yes (in neural translation model specifically).
+Languages, not limited only to English, contains such common cases: named entities, cognates and loanwords, morphologically complex words. And, these narrow down to two things to consider: &lt;em&gt;compounding&lt;/em&gt; which is to combine words for a more complex word (air + plane -&amp;gt; airplane) and &lt;em&gt;transliteration&lt;/em&gt; which is a translation from letter to letter (g, b -&amp;gt; ㄱ, ㅂ).&lt;/p&gt;
+
+&lt;p&gt;BPE is not a magic that solves any issues unless the balance is found. Size of vocabulary may be small (even down to alphabet level size), and it will still cover limitless words. This of course will be able to maximize time and space efficiency, but with the major cost of delievering information in the sequence.
+In other words, small size words will result the same input to be a longer sequence than bigger size words, in which it becomes more dfficult to contain information from its vicinity.&lt;/p&gt;
+
+&lt;h2 id=&quot;algorithm&quot;&gt;Algorithm&lt;/h2&gt;
+&lt;p&gt;BPE encoding is a compression algorithm that iteratively pairs with the most frequent pairs. In my opinion, this distinct itself from WPM because Schuster (2012) picks pair that optimize language model rather than sepcifically for pair’s frequency.
+The code is provided in the paper like the following:&lt;/p&gt;
+
+&lt;!-- ``` python --&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;collections&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;collections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;defaultdict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge_vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;v_out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;bigram&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;escape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos; &apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;(?&amp;lt;!\S)&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bigram&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;sa&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;(?!\S)&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;w_out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;v_out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_out&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;l o w &amp;lt;/w&amp;gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;l o w e r &amp;lt;/w&amp;gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+         &lt;span class=&quot;s&quot;&gt;&apos;n e w e s t &amp;lt;/w&amp;gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;w i d e s t &amp;lt;/w&amp;gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;num_merges&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_merges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;best&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;best&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;best&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;p&gt;When the code is run, we get the ouput like the following.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+(&apos;e&apos;, &apos;s&apos;)&lt;br /&gt;
+(&apos;es&apos;, &apos;t&apos;)&lt;br /&gt;
+&lt;b&gt;(&apos;est&apos;, &apos;&amp;lt;/w&amp;gt;&apos;)&lt;/b&gt;&lt;br /&gt;
+(&apos;l&apos;, &apos;o&apos;)&lt;br /&gt;
+(&apos;lo&apos;, &apos;w&apos;)&lt;br /&gt;
+(&apos;n&apos;, &apos;e&apos;)&lt;br /&gt;
+(&apos;ne&apos;, &apos;w&apos;)&lt;br /&gt;
+&lt;b&gt;(&apos;new&apos;, &apos;est&amp;lt;/w&amp;gt;&apos;)&lt;/b&gt;&lt;br /&gt;
+(&apos;low&apos;, &apos;&amp;lt;/w&amp;gt;&apos;)&lt;br /&gt;
+(&apos;w&apos;, &apos;i&apos;)&lt;br /&gt;
+&lt;br /&gt;
+&lt;/div&gt;
+&lt;p&gt;Note that ‘est’ which has occurred frequently later combine with ‘new’ and ‘low’ as a whole.
+The role of comparison ‘est’ is cached and combination with other subwords shows a transparent transformation and later help transparent translation, meaning &lt;em&gt;“adjective + ‘est’“&lt;/em&gt; is &lt;em&gt;&quot;’가장’ + 형용사”&lt;/em&gt; in Korean and parrallel translation can be found within.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="nlp" /><summary type="html">This is a short summary of a paper, Neural Machine Translation of Rare Words with Subwords Units by Sennrich (2016). The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite words with subwords.</summary></entry><entry><title type="html">Autoencoders and Transfer Learning</title><link href="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html" rel="alternate" type="text/html" title="Autoencoders and Transfer Learning" /><published>2021-01-22T00:00:00-06:00</published><updated>2021-01-22T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning</id><content type="html" xml:base="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html">&lt;h2 id=&quot;autoencoders&quot;&gt;Autoencoders&lt;/h2&gt;
 &lt;p&gt;Autoencoders is an unsupervised learning method to reduce a dimensionality of input.
 The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. 
 The main idea is to reconstruct an input with limitted features.
@@ -371,37 +440,4 @@ operation.&lt;/p&gt;
 &lt;p&gt;This can be solved by (sub-) gradient descent methods. A &lt;a href=&quot;https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf&quot;&gt;lecture note from
 University of Utah&lt;/a&gt;
 explains the procedure well. The lecture note suggests stochastic 
-gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry><entry><title type="html">Readings about Object Detection</title><link href="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html" rel="alternate" type="text/html" title="Readings about Object Detection" /><published>2020-06-01T00:00:00-05:00</published><updated>2020-06-01T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1</id><content type="html" xml:base="http://localhost:4000/2020/06/01/object-detection-with-deep-learning-1.html">&lt;p&gt;I am reading a journal from &lt;em&gt;IEEE&lt;/em&gt; and decided to 
-record some of the learning points from the reading.
-&lt;em&gt;Object Detection With Deep Learning: A Review&lt;/em&gt; by Zhao
-and others thoroughly reviews on the development of
-object detection and its future as well.&lt;/p&gt;
-
-&lt;p&gt;There are two requirements to detect object:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;em&gt;object localization&lt;/em&gt; - where the object is located
-from the frame&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;object classification&lt;/em&gt; - what is the object&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The author states that &lt;em&gt;supported vector machine&lt;/em&gt; (SVM)
-was used often for classification, so let’s learn more
-about that.&lt;/p&gt;
-
-&lt;p&gt;SVM is a classification technique that can be used
-in supervised learning model. The idea is that
-if there are &lt;em&gt;k&lt;/em&gt;-dimension vectors than it separates
-vectors with &lt;em&gt;(k-1)&lt;/em&gt;-dimension hyperplane that 
-maximizes distance from nearest data point from
-each side is maximized.&lt;/p&gt;
-
-&lt;p&gt;However, occurrence of convolutional neural network (CNN)
-was the game changer. Changing technology brings
-these advantages to CNN:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;ImageNet - big ass data set to train the model&lt;/li&gt;
-  &lt;li&gt;faster GPU specs&lt;/li&gt;
-  &lt;li&gt;better design of structures like &lt;em&gt;autoencoder&lt;/em&gt; or 
-&lt;em&gt;restricted Boltzmann machine&lt;/em&gt; to avoid preexisting
-issues&lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="paper" /><summary type="html">I am reading a journal from IEEE and decided to record some of the learning points from the reading. Object Detection With Deep Learning: A Review by Zhao and others thoroughly reviews on the development of object detection and its future as well.</summary></entry></feed>
+gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry></feed>
