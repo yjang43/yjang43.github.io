@@ -43,6 +43,8 @@ collections:
 paginate: 10
 paginate_path: "/blog/page:num/"
 
+tag_page_dir: "/tags/"
+
 # Conversion
 markdown:    kramdown
 highlighter: rouge

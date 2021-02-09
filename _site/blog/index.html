@@ -42,46 +42,128 @@
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 <div class="container-fluid">
-    <p class="tag-box">
-        <a href="/tags.html">Tags:</a>
+    <!-- <a href="/tags.html">Tags:</a> -->
+    <ul class="tag-box">
+    Tags:&nbsp&nbsp
+      
+      
         
-        jekyll
+      </li>
         
-        github
+          <li class="tag" data-sort="0005">
+              <!-- ml:<span>11</span>&nbsp -->
+              ml&nbsp
+          </li>
         
-        aws
+          <li class="tag" data-sort="0013">
+              <!-- ai:<span>3</span>&nbsp -->
+              ai&nbsp
+          </li>
         
-        django
+          <li class="tag" data-sort="0013">
+              <!-- nlp:<span>3</span>&nbsp -->
+              nlp&nbsp
+          </li>
         
-        python
+          <li class="tag" data-sort="0013">
+              <!-- python:<span>3</span>&nbsp -->
+              python&nbsp
+          </li>
         
-        module
+          <li class="tag" data-sort="0015">
+              <!-- aws:<span>1</span>&nbsp -->
+              aws&nbsp
+          </li>
         
-        ml
+          <li class="tag" data-sort="0015">
+              <!-- blockchain:<span>1</span>&nbsp -->
+              blockchain&nbsp
+          </li>
         
-        ai
+          <li class="tag" data-sort="0015">
+              <!-- dapp:<span>1</span>&nbsp -->
+              dapp&nbsp
+          </li>
         
-        paper
+          <li class="tag" data-sort="0015">
+              <!-- django:<span>1</span>&nbsp -->
+              django&nbsp
+          </li>
         
-        svm
+          <li class="tag" data-sort="0015">
+              <!-- github:<span>1</span>&nbsp -->
+              github&nbsp
+          </li>
         
-        blockchain
+          <li class="tag" data-sort="0015">
+              <!-- hmm:<span>1</span>&nbsp -->
+              hmm&nbsp
+          </li>
         
-        dapp
+          <li class="tag" data-sort="0015">
+              <!-- jekyll:<span>1</span>&nbsp -->
+              jekyll&nbsp
+          </li>
         
-        ml,
+          <li class="tag" data-sort="0015">
+              <!-- module:<span>1</span>&nbsp -->
+              module&nbsp
+          </li>
         
-        nlp
+          <li class="tag" data-sort="0015">
+              <!-- paper:<span>1</span>&nbsp -->
+              paper&nbsp
+          </li>
         
-        hmm
+          <li class="tag" data-sort="0015">
+              <!-- pytorch:<span>1</span>&nbsp -->
+              pytorch&nbsp
+          </li>
         
-        nlp,
+          <li class="tag" data-sort="0015">
+              <!-- svm:<span>1</span>&nbsp -->
+              svm&nbsp
+          </li>
         
-        transformer
-        
-        pytorch
-        
-    </p>
+          <li class="tag" data-sort="0015">
+              <!-- transformer:<span>1</span>&nbsp -->
+              transformer&nbsp
+          
+    </ul>
+    <!-- Tags:
+    
+    jekyll
+    
+    github
+    
+    aws
+    
+    django
+    
+    python
+    
+    module
+    
+    ml
+    
+    ai
+    
+    paper
+    
+    svm
+    
+    blockchain
+    
+    dapp
+    
+    nlp
+    
+    hmm
+    
+    transformer
+    
+    pytorch
+     -->
 </div>
 <div class="container-sm">
     
@@ -259,12 +341,12 @@ Here is a diagram of a simple autoencoder.</p>
 
 <p>Basically, the network is composed of encoder and decoder, and lantent features (code) gives a high-level representation of input. 
 Some tricks on autoencoder can result in better representation of latent features.
-One I will mention is denosing autoencoders invented by Vincet(2008). By masking portion of input, it provides robust representation to partially destructed input, which aligns with the definition author proposed to be a “good” representation. Here is a <a href="https://github.com/yjang43/ml_practice/blob/master/autoencoder.ipynb">link</a> that compares the results of autoencoders and desnoising autoencoder.</p>
+One I will mention is denosing autoencoders invented by Vincet(2008). By masking portion of input, it provides robust representation to partially destructed input, which aligns with the definition author proposed to be a “good” representation. Here is a <strong><a href="https://github.com/yjang43/ml_practice/blob/master/autoencoder.ipynb">link</a></strong> that compares the results of autoencoders and desnoising autoencoder.</p>
 
 <h2 id="transfer-learning-with-autoencoder">Transfer Learning with Autoencoder</h2>
 <p>Transfer learning is to use information from source domains, abundant data, to support tasks in target domains, small data.
 Glorot(2011) proposes that stacked denoising autoencoder (SDA) can extract intermediate representations from both source and target domain, and use that to help classfication task in target domain.
-This idea extends to transfer learning with deep autoencoders (TLDA) by Zhuang (2015), which is a form of supervised learning unlike the usual approach with autoencoder. I have conducted an experiment to check its better performance <a href="https://github.com/yjang43/ml_practice/blob/master/TLDA.ipynb">here</a>.
+This idea extends to transfer learning with deep autoencoders (TLDA) by Zhuang (2015), which is a form of supervised learning unlike the usual approach with autoencoder. I have conducted an experiment to check its better performance <strong><a href="https://github.com/yjang43/ml_practice/blob/master/TLDA.ipynb">here</a></strong>.
 Instead of using the same dataset from the paper, I used MNIST data.
 The task was to check if a binary classfication of a number (ex. is the input ‘1’ when compared with ‘3’) can be transfered to another binary classification (ex. is the input ‘1’ when compared with ‘5’). 
 Surprisingly, TLDA performed much better than the baseline, in which I shared parameters trained in simple DNN to another task.

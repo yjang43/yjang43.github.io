@@ -9,12 +9,23 @@ my_tag:
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 <div class="container-fluid">
-    <p class="tag-box">
-        <a href="/tags.html">Tags:</a>
+    <!-- <a href="/tags.html">Tags:</a> -->
+    <ul class="tag-box">
+    Tags:&nbsp&nbsp
+      {% capture tags %}
         {% for tag in site.tags %}
-        {{ tag.first }}
+          <li class="tag" data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}">
+              <!-- {{ tag[0] }}:<span>{{ tag[1].size }}</span>&nbsp -->
+              {{ tag[0] }}&nbsp
+          </li>
         {% endfor %}
-    </p>
+      {% endcapture %}
+      {{ tags | split:'</li>' | sort | join:'</li>' }}
+    </ul>
+    <!-- Tags:
+    {% for tag in site.tags %}
+    {{ tag.first }}
+    {% endfor %} -->
 </div>
 <div class="container-sm">
     {% for post in paginator.posts %}

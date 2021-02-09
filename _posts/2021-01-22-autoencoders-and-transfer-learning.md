@@ -18,12 +18,12 @@ Here is a diagram of a simple autoencoder.
 
 Basically, the network is composed of encoder and decoder, and lantent features (code) gives a high-level representation of input. 
 Some tricks on autoencoder can result in better representation of latent features.
-One I will mention is denosing autoencoders invented by Vincet(2008). By masking portion of input, it provides robust representation to partially destructed input, which aligns with the definition author proposed to be a "good" representation. Here is a [link](https://github.com/yjang43/ml_practice/blob/master/autoencoder.ipynb) that compares the results of autoencoders and desnoising autoencoder.
+One I will mention is denosing autoencoders invented by Vincet(2008). By masking portion of input, it provides robust representation to partially destructed input, which aligns with the definition author proposed to be a "good" representation. Here is a __[link](https://github.com/yjang43/ml_practice/blob/master/autoencoder.ipynb)__ that compares the results of autoencoders and desnoising autoencoder.
 
 ## Transfer Learning with Autoencoder
 Transfer learning is to use information from source domains, abundant data, to support tasks in target domains, small data.
 Glorot(2011) proposes that stacked denoising autoencoder (SDA) can extract intermediate representations from both source and target domain, and use that to help classfication task in target domain.
-This idea extends to transfer learning with deep autoencoders (TLDA) by Zhuang (2015), which is a form of supervised learning unlike the usual approach with autoencoder. I have conducted an experiment to check its better performance [here](https://github.com/yjang43/ml_practice/blob/master/TLDA.ipynb).
+This idea extends to transfer learning with deep autoencoders (TLDA) by Zhuang (2015), which is a form of supervised learning unlike the usual approach with autoencoder. I have conducted an experiment to check its better performance __[here](https://github.com/yjang43/ml_practice/blob/master/TLDA.ipynb)__.
 Instead of using the same dataset from the paper, I used MNIST data.
 The task was to check if a binary classfication of a number (ex. is the input '1' when compared with '3') can be transfered to another binary classification (ex. is the input '1' when compared with '5'). 
 Surprisingly, TLDA performed much better than the baseline, in which I shared parameters trained in simple DNN to another task.

@@ -206,6 +206,20 @@
     padding-top: 50px;
 }
 
+/* Tag */
+.tag-box {
+    width:  100%;
+    display: inline-block;
+    text-overflow: scroll;
+}
+.tag {
+    display: inline-block;
+    /* You can also add some margins here to make it look prettier */
+    /* zoom:1; */
+    *display:inline;
+    /* this fix is needed for IE7- */
+}
+
 
 @media only screen and (max-width: 768px) {
   .multiple-columns {

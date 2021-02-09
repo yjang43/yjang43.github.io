@@ -1,6 +1,6 @@
 ---
 title: Understanding Autograd in PyTorch
-tags: ml, pytorch
+tags: ml pytorch
 img_url: /assets/img/pytorch_autograd.png
 layout: blog
 ---

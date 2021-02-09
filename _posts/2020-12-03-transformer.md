@@ -1,6 +1,6 @@
 ---
 title: Attention Is All You Need - Transformer
-tags: ml, nlp, transformer
+tags: ml nlp transformer
 img_url: /assets/img/transformer.jpeg
 layout: blog
 ---
