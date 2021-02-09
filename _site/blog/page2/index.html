@@ -86,6 +86,45 @@
 <div class="container-sm">
     
     <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/06/19/primal-support-vector-machine.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/svm.png" alt="Primal Support Vector Machine image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <h4>Primal Support Vector Machine</h4>
+            <div class="blog-summary">
+                <p>In a case where you need to draw a hyperplane that does
+binary classification, there can be multiple hyperplanes.
+Primal SVM is one way to solve this issue by bringing the
+concept that maximizes a margin of the hyper vector.</p>
+
+<p>Before anything, definition of margin needs to be settled.
+Margin is a distance from a hyperplane to its closest data points.</p>
+
+<p><em>“Vladimir Vapnik and Alexey Chervonenkis said when the margin
+is large, the “complexity” of the function is low, and hence learning
+is possible.”</em></p>
+
+<p>From one of the methods that derives the margin called
+<em>hard margin SVM</em>, you see it focuses on getting the
+minimal value of</p>
+
+\[{1 \over 2} \|\omega\|^{2}\]
+
+<p>while assuming the set margin of length 1.
+This seems to contradict the goal, to find the max
+margin. Through mathematical tweaks, however, this
+equation is equivalent to the meaning of getting
+the max margin.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
+    
+    <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2020/06/01/object-detection-with-deep-learning-1.html'" type="button">
         <div class="col-sm-4">
             

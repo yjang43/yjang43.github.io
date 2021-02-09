@@ -1,3 +1,0 @@
-I"a<p>This is a short summary of a paper, <em>Neural Machine Translation of Rare Words with Subwords Units</em> by <em>Sennrich (2016)</em>.
-The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite with subwords.</p>
-:ET

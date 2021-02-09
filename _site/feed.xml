@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-03T08:51:07-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Byte Pair Encoding in NLP</title><link href="http://localhost:4000/2021/02/03/bpe.html" rel="alternate" type="text/html" title="Byte Pair Encoding in NLP" /><published>2021-02-03T00:00:00-06:00</published><updated>2021-02-03T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/03/bpe</id><content type="html" xml:base="http://localhost:4000/2021/02/03/bpe.html">&lt;p&gt;This is a short summary of a paper, &lt;em&gt;Neural Machine Translation of Rare Words with Subwords Units&lt;/em&gt; by &lt;em&gt;Sennrich (2016)&lt;/em&gt;.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-09T07:32:02-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Distillation in Neural Networks</title><link href="http://localhost:4000/2021/02/09/distilation.html" rel="alternate" type="text/html" title="Distillation in Neural Networks" /><published>2021-02-09T00:00:00-06:00</published><updated>2021-02-09T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/09/distilation</id><content type="html" xml:base="http://localhost:4000/2021/02/09/distilation.html">&lt;p&gt;First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). 
+I decided to learn more about distillation technique, and headed to where the paper directed me: &lt;em&gt;“Distillling the Knowledge in a Neural Network” (Hinton, 2015)&lt;/em&gt;.
+Distillation is one of trasfer learning techniques &lt;strong&gt;to achieve the same or similar performance as big model with a small model.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;motif&quot;&gt;Motif&lt;/h2&gt;
+&lt;p&gt;At a glance, converting a big model to a small model seems redundant because both models’ performance will be similar (becase that is the goal of distillation – duh!). 
+However, distillation provides speed in inference phase, and this is important in real-time applications such as autonomous driving or chatbot customer service.&lt;/p&gt;
+
+&lt;h2 id=&quot;distillation-big-model-to-small-model&quot;&gt;Distillation: Big Model to Small Model&lt;/h2&gt;
+&lt;p&gt;Idea seems direct, big model to small model, but steps need a closer look.
+Prior to the discussion of nitty gritty of its implementation, intuition of where the knowledge comes from is important.
+The authors find this information from soft label, or soft target.
+Unlike hard label that deterministically indicates a label of an input, soft label indicates probability, and what the distribution of probability provides is useful information.
+For example, if model was to classify dogs from other objects such as cats and ships, it may misclassify dogs to be cats rather than to be ships. Probability distribution contains information that describes such cases.&lt;/p&gt;
+
+\[\text{soft label: } \begin{pmatrix}\text{dog: }0.8 &amp;amp; \text{cat: }0.19 &amp;amp; \text{ship: }0.01\end{pmatrix} \\
+\text{hard label: } \begin{pmatrix}\text{dog: }1 &amp;amp; \text{cat: }0 &amp;amp; \text{ship: }0\end{pmatrix}\]
+
+&lt;p&gt;With this intuition, we naturally move towards softmax to generate the probability distribution. However, softmax alone hardly provide a useable distribution. 
+Thus, we need to add and adjust additional term, temperature.
+This is where the word, distillation, comes from&lt;/p&gt;
+
+\[q_i = {exp(z_i/T)\over \sum_j exp(z_j / T)}\text{, T is temperature}\]
+
+&lt;h4 align=&quot;center&quot;&gt;
+    &quot;... to raise the temperature of the final softmax until the cumbersome [big] model produces a suitably soft set of targets&quot;.
+&lt;/h4&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/distillation.jpg&quot; alt=&quot;distillation&quot; width=&quot;50%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Distillation is the process of separating components of a mixture based on different boiling points.&lt;/figcaption&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The result of increaseing a temperature is explained with the following diagram. 
+As temperature rises, more consideration is put on unlikely categories. 
+In other words, when model was to predict an input to be a dog, it more acknowledges the similarity between cats and dogs as temperature grows.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/temperature.png&quot; alt=&quot;probability distribution as temperature increases&quot; width=&quot;80%&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;final-loss-function&quot;&gt;Final Loss Function&lt;/h2&gt;
+&lt;p&gt;There can be many ways to include distillation to reduce big model to smaller model. The authors suggest to take weighted sum of two loss functions for classficiation task.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Set the same temperature for both big and small models and cross entropy of with soft labels.&lt;/li&gt;
+  &lt;li&gt;Like normal classficiation task, cross entropy with hard label.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then, \(T^2\)  should be multiplied to the first loss function as the temperature included in the loss function will decrease the flow of its gradient by \(1 \over T^2\).&lt;/p&gt;</content><author><name></name></author><category term="ml" /><summary type="html">First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). I decided to learn more about distillation technique, and headed to where the paper directed me: “Distillling the Knowledge in a Neural Network” (Hinton, 2015). Distillation is one of trasfer learning techniques to achieve the same or similar performance as big model with a small model.</summary></entry><entry><title type="html">Byte Pair Encoding in NLP</title><link href="http://localhost:4000/2021/02/03/bpe.html" rel="alternate" type="text/html" title="Byte Pair Encoding in NLP" /><published>2021-02-03T00:00:00-06:00</published><updated>2021-02-03T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/03/bpe</id><content type="html" xml:base="http://localhost:4000/2021/02/03/bpe.html">&lt;p&gt;This is a short summary of a paper, &lt;em&gt;Neural Machine Translation of Rare Words with Subwords Units&lt;/em&gt; by &lt;em&gt;Sennrich (2016)&lt;/em&gt;.
 The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite words with subwords.&lt;/p&gt;
 
 &lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
@@ -424,20 +473,4 @@ minimal value of&lt;/p&gt;
 This seems to contradict the goal, to find the max
 margin. Through mathematical tweaks, however, this
 equation is equivalent to the meaning of getting
-the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry><entry><title type="html">Training Hyperplane for Support Vector Machine</title><link href="http://localhost:4000/2020/06/19/training-svm-hyperplane.html" rel="alternate" type="text/html" title="Training Hyperplane for Support Vector Machine" /><published>2020-06-19T00:00:00-05:00</published><updated>2020-06-19T00:00:00-05:00</updated><id>http://localhost:4000/2020/06/19/training-svm-hyperplane</id><content type="html" xml:base="http://localhost:4000/2020/06/19/training-svm-hyperplane.html">&lt;p&gt;We have this simple function of an hyperplane.
-\(\mathbf{\omega \cdot x} + b = 0\)
-However, getting the optimized hyperplane for SVM
-is not so easy as this function looks.&lt;/p&gt;
-
-&lt;p&gt;To get an hyperplane that meets the condition,
-\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
-and maximum margin, one can approach by minimizing a loss function of this
-operation.&lt;/p&gt;
-
-\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
-+ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
-
-&lt;p&gt;This can be solved by (sub-) gradient descent methods. A &lt;a href=&quot;https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf&quot;&gt;lecture note from
-University of Utah&lt;/a&gt;
-explains the procedure well. The lecture note suggests stochastic 
-gradient descent for the computation speed.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><category term="svm" /><summary type="html">We have this simple function of an hyperplane. \(\mathbf{\omega \cdot x} + b = 0\) However, getting the optimized hyperplane for SVM is not so easy as this function looks.</summary></entry></feed>
+the max margin.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="ai" /><summary type="html">In a case where you need to draw a hyperplane that does binary classification, there can be multiple hyperplanes. Primal SVM is one way to solve this issue by bringing the concept that maximizes a margin of the hyper vector.</summary></entry></feed>

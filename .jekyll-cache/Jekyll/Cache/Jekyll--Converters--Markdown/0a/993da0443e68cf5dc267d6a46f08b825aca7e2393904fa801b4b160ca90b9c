@@ -1,0 +1,4 @@
+I"�<p>First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). 
+I decided to learn more about distillation technique, and headed to where the paper directed me: <em>“Distillling the Knowledge in a Neural Network” (Hinton, 2015)</em>.
+Distillation is one of trasfer learning techniques <strong>to achieve the same or similar performance as big model with a small model.</strong></p>
+:ET

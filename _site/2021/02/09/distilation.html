@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Distillation in Neural Networks</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/paginator.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
+    <!--for kramdown math render-->
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">YJ</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link py-0" href="/projects/">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link py-0" href="/blog/">Blog</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- <div class="jumbotron jumbotron-fluid shadow-lg jumbotron-img">
+        <div class="container">
+        </div>
+    </div> -->
+
+    <div class="container-fluid content-pad">
+
+        <h1>Distillation in Neural Networks</h1>
+        <p>First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). 
+I decided to learn more about distillation technique, and headed to where the paper directed me: <em>“Distillling the Knowledge in a Neural Network” (Hinton, 2015)</em>.
+Distillation is one of trasfer learning techniques <strong>to achieve the same or similar performance as big model with a small model.</strong></p>
+
+<h2 id="motif">Motif</h2>
+<p>At a glance, converting a big model to a small model seems redundant because both models’ performance will be similar (becase that is the goal of distillation – duh!). 
+However, distillation provides speed in inference phase, and this is important in real-time applications such as autonomous driving or chatbot customer service.</p>
+
+<h2 id="distillation-big-model-to-small-model">Distillation: Big Model to Small Model</h2>
+<p>Idea seems direct, big model to small model, but steps need a closer look.
+Prior to the discussion of nitty gritty of its implementation, intuition of where the knowledge comes from is important.
+The authors find this information from soft label, or soft target.
+Unlike hard label that deterministically indicates a label of an input, soft label indicates probability, and what the distribution of probability provides is useful information.
+For example, if model was to classify dogs from other objects such as cats and ships, it may misclassify dogs to be cats rather than to be ships. Probability distribution contains information that describes such cases.</p>
+
+\[\text{soft label: } \begin{pmatrix}\text{dog: }0.8 &amp; \text{cat: }0.19 &amp; \text{ship: }0.01\end{pmatrix} \\
+\text{hard label: } \begin{pmatrix}\text{dog: }1 &amp; \text{cat: }0 &amp; \text{ship: }0\end{pmatrix}\]
+
+<p>With this intuition, we naturally move towards softmax to generate the probability distribution. However, softmax alone hardly provide a useable distribution. 
+Thus, we need to add and adjust additional term, temperature.
+This is where the word, distillation, comes from</p>
+
+\[q_i = {exp(z_i/T)\over \sum_j exp(z_j / T)}\text{, T is temperature}\]
+
+<h4 align="center">
+    "... to raise the temperature of the final softmax until the cumbersome [big] model produces a suitably soft set of targets".
+</h4>
+
+<p align="center">
+    <img src="/assets/img/distillation.jpg" alt="distillation" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Distillation is the process of separating components of a mixture based on different boiling points.</figcaption>
+</p>
+
+<p>The result of increaseing a temperature is explained with the following diagram. 
+As temperature rises, more consideration is put on unlikely categories. 
+In other words, when model was to predict an input to be a dog, it more acknowledges the similarity between cats and dogs as temperature grows.</p>
+
+<p align="center">
+    <img src="/assets/img/temperature.png" alt="probability distribution as temperature increases" width="80%" />
+</p>
+
+<h2 id="final-loss-function">Final Loss Function</h2>
+<p>There can be many ways to include distillation to reduce big model to smaller model. The authors suggest to take weighted sum of two loss functions for classficiation task.</p>
+
+<ul>
+  <li>Set the same temperature for both big and small models and cross entropy of with soft labels.</li>
+  <li>Like normal classficiation task, cross entropy with hard label.</li>
+</ul>
+
+<p>Then, \(T^2\)  should be multiplied to the first loss function as the temperature included in the loss function will decrease the flow of its gradient by \(1 \over T^2\).</p>
+
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</html>
