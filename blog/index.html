@@ -39,7 +39,12 @@ my_tag:
             {% endif %}
         </div>
         <div class="col-sm-8 blog-summary-container">
-            <h4>{{ post.title }}</h4>
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>{{ post.title }}</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">{{ post.date | date_to_string }}</div>
+              <div>
+            </div>
             <div class="blog-summary">
                 {{ post.content }}
                 <div class="overlay"></div>
