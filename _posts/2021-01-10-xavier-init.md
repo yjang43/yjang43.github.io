@@ -22,11 +22,15 @@ Back propagation should not be susceptible to vanishing and exploding gradient.
 
 The part that interested me the most is how variance can be calculated and multiplied and added according to the number of layers and hidden neurons within each layer.
 
+<div style="width: 100%; overflow: scroll;">
 $$ Var[z^i]  = Var[x]\prod^{i-1}_{i^{'}=0}n_{i^{'}}Var[W^{i^{'}}]$$
+</div>
 
 Moving forward, the authors present the following way to intialize weights from such distribution,
 
+<div style="width: 100%; overflow: scroll;">
 $$ W \sim U\Big[-{\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}, {\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}\Big] $$
+</div>
 
 ### Additional Study
 Although introduction of Xavier initialization is the main meal of the paper, I enjoyed learning other points made by the authors.

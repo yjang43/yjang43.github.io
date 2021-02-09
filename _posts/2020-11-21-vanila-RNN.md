@@ -9,7 +9,9 @@ layout: blog
 Language model is the probability of a sequence.
 This can be approximated as the product of _n_-gram,
 
+<div style="width: 100%; overflow: scroll;">
 $$P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})$$
+</div>
 
 So, _n_-gram was a natural approach to do language modeling.
 However, this traditional approach has two limitations.

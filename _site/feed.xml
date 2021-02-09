@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-09T08:22:58-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Distillation in Neural Networks</title><link href="http://localhost:4000/2021/02/09/distilation.html" rel="alternate" type="text/html" title="Distillation in Neural Networks" /><published>2021-02-09T00:00:00-06:00</published><updated>2021-02-09T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/09/distilation</id><content type="html" xml:base="http://localhost:4000/2021/02/09/distilation.html">&lt;p&gt;First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-09T08:38:16-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Distillation in Neural Networks</title><link href="http://localhost:4000/2021/02/09/distilation.html" rel="alternate" type="text/html" title="Distillation in Neural Networks" /><published>2021-02-09T00:00:00-06:00</published><updated>2021-02-09T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/09/distilation</id><content type="html" xml:base="http://localhost:4000/2021/02/09/distilation.html">&lt;p&gt;First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). 
 I decided to learn more about distillation technique, and headed to where the paper directed me: &lt;em&gt;“Distillling the Knowledge in a Neural Network” (Hinton, 2015)&lt;/em&gt;.
 Distillation is one of trasfer learning techniques &lt;strong&gt;to achieve the same or similar performance as big model with a small model.&lt;/strong&gt;&lt;/p&gt;
 
@@ -13,14 +13,18 @@ The authors find this information from soft label, or soft target.
 Unlike hard label that deterministically indicates a label of an input, soft label indicates probability, and what the distribution of probability provides is useful information.
 For example, if model was to classify dogs from other objects such as cats and ships, it may misclassify dogs to be cats rather than to be ships. Probability distribution contains information that describes such cases.&lt;/p&gt;
 
-\[\text{soft label: } \begin{pmatrix}\text{dog: }0.8 &amp;amp; \text{cat: }0.19 &amp;amp; \text{ship: }0.01\end{pmatrix} \\
-\text{hard label: } \begin{pmatrix}\text{dog: }1 &amp;amp; \text{cat: }0 &amp;amp; \text{ship: }0\end{pmatrix}\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$ \text{soft label: } \begin{pmatrix}\text{dog: }0.8 &amp;amp; \text{cat: }0.19 &amp;amp; \text{ship: }0.01\end{pmatrix} \\
+\text{hard label: } \begin{pmatrix}\text{dog: }1 &amp;amp; \text{cat: }0 &amp;amp; \text{ship: }0\end{pmatrix} $$
+&lt;/div&gt;
 
 &lt;p&gt;With this intuition, we naturally move towards softmax to generate the probability distribution. However, softmax alone hardly provide a useable distribution. 
 Thus, we need to add and adjust additional term, temperature.
 This is where the word, distillation, comes from&lt;/p&gt;
 
-\[q_i = {exp(z_i/T)\over \sum_j exp(z_j / T)}\text{, T is temperature}\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$ q_i = {exp(z_i/T)\over \sum_j exp(z_j / T)}\text{, T is temperature} $$
+&lt;/div&gt;
 
 &lt;h4 align=&quot;center&quot;&gt;
     &quot;... to raise the temperature of the final softmax until the cumbersome [big] model produces a suitably soft set of targets&quot;.
@@ -164,11 +168,15 @@ Back propagation should not be susceptible to vanishing and exploding gradient.&
 
 &lt;p&gt;The part that interested me the most is how variance can be calculated and multiplied and added according to the number of layers and hidden neurons within each layer.&lt;/p&gt;
 
-\[Var[z^i]  = Var[x]\prod^{i-1}_{i^{&apos;}=0}n_{i^{&apos;}}Var[W^{i^{&apos;}}]\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$ Var[z^i]  = Var[x]\prod^{i-1}_{i^{&apos;}=0}n_{i^{&apos;}}Var[W^{i^{&apos;}}]$$
+&lt;/div&gt;
 
 &lt;p&gt;Moving forward, the authors present the following way to intialize weights from such distribution,&lt;/p&gt;
 
-\[W \sim U\Big[-{\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}, {\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}\Big]\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$ W \sim U\Big[-{\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}, {\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}\Big] $$
+&lt;/div&gt;
 
 &lt;h3 id=&quot;additional-study&quot;&gt;Additional Study&lt;/h3&gt;
 &lt;p&gt;Although introduction of Xavier initialization is the main meal of the paper, I enjoyed learning other points made by the authors.&lt;/p&gt;
@@ -329,26 +337,34 @@ Simply said, HMM focuses on understanding the meaning of the observed sequence (
 &lt;p&gt;If state at location &lt;em&gt;i&lt;/em&gt; is denoted as \(\pi_i\).
 Probability of a state &lt;em&gt;k&lt;/em&gt; to state &lt;em&gt;l&lt;/em&gt; is expressed as,&lt;/p&gt;
 
-\[a_{kl} = P(\pi=l|\pi=k)\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$a_{kl} = P(\pi=l|\pi=k)$$
+&lt;/div&gt;
 
 &lt;p&gt;This is called &lt;em&gt;transition probability&lt;/em&gt; and carries an important role in explaining the first part of HMM, states.
 Next, the probability of a symbol in a given state can be denoted as,&lt;/p&gt;
 
-&lt;p&gt;\(e_k(b) = P(x_i=b|\pi=k)\)
-This is called &lt;em&gt;emission probability&lt;/em&gt; and likewise this explains the second part of HMM, symbol.&lt;/p&gt;
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$e_k(b) = P(x_i=b|\pi=k)$$
+&lt;/div&gt;
+&lt;p&gt;This is called &lt;em&gt;emission probability&lt;/em&gt; and likewise this explains the second part of HMM, symbol.&lt;/p&gt;
 
 &lt;h3 id=&quot;viterbi&quot;&gt;Viterbi&lt;/h3&gt;
 &lt;p&gt;One question to ask while working with a squential data whose formation is determined by probability is, 
 “what is the most probable meaning of the observed sequence?”
 This in other words is to ask what the most probable &lt;em&gt;state path&lt;/em&gt; is.&lt;/p&gt;
 
-\[\tilde{\pi} = argmax_\pi P(x, \pi)\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$\tilde{\pi} = argmax_\pi P(x, \pi)$$
+&lt;/div&gt;
 
 &lt;p&gt;Viterbi algorithm provides a solution to this question. The heart of the algorithm is dynamic programming, and the idea comes from the following:&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;If the last state \(\pi_n\) completes the most probable state path, it is completed by connecting to the most probable state path up to \(\pi_{n-1}\)&lt;/em&gt;&lt;/p&gt;
 
-\[v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})$$
+&lt;/div&gt;
 
 &lt;p&gt;Here &lt;em&gt;i&lt;/em&gt;, &lt;em&gt;l&lt;/em&gt;, &lt;em&gt;k&lt;/em&gt; indicate a position in the squence, a state in question, and a previous state respectively.&lt;/p&gt;
 
@@ -357,21 +373,32 @@ This in other words is to ask what the most probable &lt;em&gt;state path&lt;/em
 &lt;p&gt;Forward algorithm gives a probabilty of a sequence, \(P(x)\) 
 simple as that.&lt;/p&gt;
 
-\[P(x)=\sum_\pi P(x, \pi)\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$P(x)=\sum_\pi P(x, \pi)$$
+&lt;/div&gt;
 
-&lt;p&gt;This is a marginalization of states. This can be solved with dynamic programming because \(P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)\).&lt;/p&gt;
+&lt;p&gt;This is a marginalization of states. This can be solved with dynamic programming because&lt;/p&gt;
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)$$
+&lt;/div&gt;
 
 &lt;p&gt;Thus,&lt;/p&gt;
 
-\[when \ f_k(i) = P(x_1...x_i, \pi_i=k)\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$when \ f_k(i) = P(x_1...x_i, \pi_i=k)$$
+&lt;/div&gt;
 
-\[f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}$$
+&lt;/div&gt;
 
 &lt;p&gt;The weighted sum of the probabilities of previous sequence from each state is quite intuitive.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="hmm" /><summary type="html">Hidden Markov Model HMM is easy to understand knowing its components first. HMM can represent a sequence of states and symbol. Symbol is what we observe, and state is an information about the symbol. Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</summary></entry><entry><title type="html">Vanilla RNN</title><link href="http://localhost:4000/2020/11/21/vanila-RNN.html" rel="alternate" type="text/html" title="Vanilla RNN" /><published>2020-11-21T00:00:00-06:00</published><updated>2020-11-21T00:00:00-06:00</updated><id>http://localhost:4000/2020/11/21/vanila-RNN</id><content type="html" xml:base="http://localhost:4000/2020/11/21/vanila-RNN.html">&lt;h3 id=&quot;motif&quot;&gt;Motif&lt;/h3&gt;
 &lt;p&gt;Language model is the probability of a sequence.
 This can be approximated as the product of &lt;em&gt;n&lt;/em&gt;-gram,&lt;/p&gt;
 
-\[P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\]
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})$$
+&lt;/div&gt;
 
 &lt;p&gt;So, &lt;em&gt;n&lt;/em&gt;-gram was a natural approach to do language modeling.
 However, this traditional approach has two limitations.&lt;/p&gt;

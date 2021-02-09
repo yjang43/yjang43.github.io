@@ -20,14 +20,18 @@ The authors find this information from soft label, or soft target.
 Unlike hard label that deterministically indicates a label of an input, soft label indicates probability, and what the distribution of probability provides is useful information.
 For example, if model was to classify dogs from other objects such as cats and ships, it may misclassify dogs to be cats rather than to be ships. Probability distribution contains information that describes such cases.
 
+<div style="width: 100%; overflow: scroll;">
 $$ \text{soft label: } \begin{pmatrix}\text{dog: }0.8 & \text{cat: }0.19 & \text{ship: }0.01\end{pmatrix} \\
 \text{hard label: } \begin{pmatrix}\text{dog: }1 & \text{cat: }0 & \text{ship: }0\end{pmatrix} $$
+</div>
 
 With this intuition, we naturally move towards softmax to generate the probability distribution. However, softmax alone hardly provide a useable distribution. 
 Thus, we need to add and adjust additional term, temperature.
 This is where the word, distillation, comes from
 
+<div style="width: 100%; overflow: scroll;">
 $$ q_i = {exp(z_i/T)\over \sum_j exp(z_j / T)}\text{, T is temperature} $$
+</div>
 
 <h4 align="center">
     "... to raise the temperature of the final softmax until the cumbersome [big] model produces a suitably soft set of targets".

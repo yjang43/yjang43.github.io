@@ -44,8 +44,10 @@ is not so easy as this function looks.</p>
 and maximum margin, one can approach by minimizing a loss function of this
 operation.</p>
 
-\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
-+ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
+<div style="width: 100%; overflow: scroll;">
+$$min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}$$
+</div>
 
 <p>This can be solved by (sub-) gradient descent methods. A <a href="https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf">lecture note from
 University of Utah</a>

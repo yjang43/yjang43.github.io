@@ -15,8 +15,10 @@ $$y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1 $$
 and maximum margin, one can approach by minimizing a loss function of this
 operation.
 
+<div style="width: 100%; overflow: scroll;">
 $$min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
 + C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}$$
+</div>
 
 This can be solved by (sub-) gradient descent methods. A [lecture note from
 University of Utah](https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf)

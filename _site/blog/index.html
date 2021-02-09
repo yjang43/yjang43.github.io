@@ -192,14 +192,18 @@ The authors find this information from soft label, or soft target.
 Unlike hard label that deterministically indicates a label of an input, soft label indicates probability, and what the distribution of probability provides is useful information.
 For example, if model was to classify dogs from other objects such as cats and ships, it may misclassify dogs to be cats rather than to be ships. Probability distribution contains information that describes such cases.</p>
 
-\[\text{soft label: } \begin{pmatrix}\text{dog: }0.8 &amp; \text{cat: }0.19 &amp; \text{ship: }0.01\end{pmatrix} \\
-\text{hard label: } \begin{pmatrix}\text{dog: }1 &amp; \text{cat: }0 &amp; \text{ship: }0\end{pmatrix}\]
+<div style="width: 100%; overflow: scroll;">
+$$ \text{soft label: } \begin{pmatrix}\text{dog: }0.8 &amp; \text{cat: }0.19 &amp; \text{ship: }0.01\end{pmatrix} \\
+\text{hard label: } \begin{pmatrix}\text{dog: }1 &amp; \text{cat: }0 &amp; \text{ship: }0\end{pmatrix} $$
+</div>
 
 <p>With this intuition, we naturally move towards softmax to generate the probability distribution. However, softmax alone hardly provide a useable distribution. 
 Thus, we need to add and adjust additional term, temperature.
 This is where the word, distillation, comes from</p>
 
-\[q_i = {exp(z_i/T)\over \sum_j exp(z_j / T)}\text{, T is temperature}\]
+<div style="width: 100%; overflow: scroll;">
+$$ q_i = {exp(z_i/T)\over \sum_j exp(z_j / T)}\text{, T is temperature} $$
+</div>
 
 <h4 align="center">
     "... to raise the temperature of the final softmax until the cumbersome [big] model produces a suitably soft set of targets".
@@ -394,11 +398,15 @@ Back propagation should not be susceptible to vanishing and exploding gradient.<
 
 <p>The part that interested me the most is how variance can be calculated and multiplied and added according to the number of layers and hidden neurons within each layer.</p>
 
-\[Var[z^i]  = Var[x]\prod^{i-1}_{i^{'}=0}n_{i^{'}}Var[W^{i^{'}}]\]
+<div style="width: 100%; overflow: scroll;">
+$$ Var[z^i]  = Var[x]\prod^{i-1}_{i^{'}=0}n_{i^{'}}Var[W^{i^{'}}]$$
+</div>
 
 <p>Moving forward, the authors present the following way to intialize weights from such distribution,</p>
 
-\[W \sim U\Big[-{\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}, {\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}\Big]\]
+<div style="width: 100%; overflow: scroll;">
+$$ W \sim U\Big[-{\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}, {\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}\Big] $$
+</div>
 
 <h3 id="additional-study">Additional Study</h3>
 <p>Although introduction of Xavier initialization is the main meal of the paper, I enjoyed learning other points made by the authors.</p>
@@ -610,26 +618,34 @@ Simply said, HMM focuses on understanding the meaning of the observed sequence (
 <p>If state at location <em>i</em> is denoted as \(\pi_i\).
 Probability of a state <em>k</em> to state <em>l</em> is expressed as,</p>
 
-\[a_{kl} = P(\pi=l|\pi=k)\]
+<div style="width: 100%; overflow: scroll;">
+$$a_{kl} = P(\pi=l|\pi=k)$$
+</div>
 
 <p>This is called <em>transition probability</em> and carries an important role in explaining the first part of HMM, states.
 Next, the probability of a symbol in a given state can be denoted as,</p>
 
-<p>\(e_k(b) = P(x_i=b|\pi=k)\)
-This is called <em>emission probability</em> and likewise this explains the second part of HMM, symbol.</p>
+<div style="width: 100%; overflow: scroll;">
+$$e_k(b) = P(x_i=b|\pi=k)$$
+</div>
+<p>This is called <em>emission probability</em> and likewise this explains the second part of HMM, symbol.</p>
 
 <h3 id="viterbi">Viterbi</h3>
 <p>One question to ask while working with a squential data whose formation is determined by probability is, 
 “what is the most probable meaning of the observed sequence?”
 This in other words is to ask what the most probable <em>state path</em> is.</p>
 
-\[\tilde{\pi} = argmax_\pi P(x, \pi)\]
+<div style="width: 100%; overflow: scroll;">
+$$\tilde{\pi} = argmax_\pi P(x, \pi)$$
+</div>
 
 <p>Viterbi algorithm provides a solution to this question. The heart of the algorithm is dynamic programming, and the idea comes from the following:</p>
 
 <p><em>If the last state \(\pi_n\) completes the most probable state path, it is completed by connecting to the most probable state path up to \(\pi_{n-1}\)</em></p>
 
-\[v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})\]
+<div style="width: 100%; overflow: scroll;">
+$$v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})$$
+</div>
 
 <p>Here <em>i</em>, <em>l</em>, <em>k</em> indicate a position in the squence, a state in question, and a previous state respectively.</p>
 
@@ -638,15 +654,24 @@ This in other words is to ask what the most probable <em>state path</em> is.</p>
 <p>Forward algorithm gives a probabilty of a sequence, \(P(x)\) 
 simple as that.</p>
 
-\[P(x)=\sum_\pi P(x, \pi)\]
+<div style="width: 100%; overflow: scroll;">
+$$P(x)=\sum_\pi P(x, \pi)$$
+</div>
 
-<p>This is a marginalization of states. This can be solved with dynamic programming because \(P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)\).</p>
+<p>This is a marginalization of states. This can be solved with dynamic programming because</p>
+<div style="width: 100%; overflow: scroll;">
+$$P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)$$
+</div>
 
 <p>Thus,</p>
 
-\[when \ f_k(i) = P(x_1...x_i, \pi_i=k)\]
+<div style="width: 100%; overflow: scroll;">
+$$when \ f_k(i) = P(x_1...x_i, \pi_i=k)$$
+</div>
 
-\[f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}\]
+<div style="width: 100%; overflow: scroll;">
+$$f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}$$
+</div>
 
 <p>The weighted sum of the probabilities of previous sequence from each state is quite intuitive.</p>
 
@@ -670,7 +695,9 @@ simple as that.</p>
 <p>Language model is the probability of a sequence.
 This can be approximated as the product of <em>n</em>-gram,</p>
 
-\[P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\]
+<div style="width: 100%; overflow: scroll;">
+$$P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})$$
+</div>
 
 <p>So, <em>n</em>-gram was a natural approach to do language modeling.
 However, this traditional approach has two limitations.</p>
@@ -794,8 +821,10 @@ is not so easy as this function looks.</p>
 and maximum margin, one can approach by minimizing a loss function of this
 operation.</p>
 
-\[min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
-+ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}\]
+<div style="width: 100%; overflow: scroll;">
+$$min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}$$
+</div>
 
 <p>This can be solved by (sub-) gradient descent methods. A <a href="https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf">lecture note from
 University of Utah</a>
