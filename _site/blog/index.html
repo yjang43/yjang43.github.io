@@ -50,82 +50,87 @@
         
       </li>
         
-          <li class="tag" data-sort="0005">
+          <li class="tag" data-sort="0006">
               <!-- ml:<span>11</span>&nbsp -->
               ml&nbsp
           </li>
         
           <li class="tag" data-sort="0013">
+              <!-- nlp:<span>4</span>&nbsp -->
+              nlp&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0014">
               <!-- ai:<span>3</span>&nbsp -->
               ai&nbsp
           </li>
         
-          <li class="tag" data-sort="0013">
-              <!-- nlp:<span>3</span>&nbsp -->
-              nlp&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0013">
+          <li class="tag" data-sort="0014">
               <!-- python:<span>3</span>&nbsp -->
               python&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- aws:<span>1</span>&nbsp -->
               aws&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- blockchain:<span>1</span>&nbsp -->
               blockchain&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- dapp:<span>1</span>&nbsp -->
               dapp&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- django:<span>1</span>&nbsp -->
               django&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- github:<span>1</span>&nbsp -->
               github&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- hmm:<span>1</span>&nbsp -->
               hmm&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- jekyll:<span>1</span>&nbsp -->
               jekyll&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
+              <!-- ml,:<span>1</span>&nbsp -->
+              ml,&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0016">
               <!-- module:<span>1</span>&nbsp -->
               module&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- paper:<span>1</span>&nbsp -->
               paper&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- pytorch:<span>1</span>&nbsp -->
               pytorch&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- svm:<span>1</span>&nbsp -->
               svm&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- transformer:<span>1</span>&nbsp -->
               transformer&nbsp
           
@@ -163,9 +168,108 @@
     transformer
     
     pytorch
+    
+    ml,
      -->
 </div>
 <div class="container-sm">
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2021/03/16/benepar.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/benepar.png" alt="Constituency Parsing with Benepar image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>Constituency Parsing with Benepar</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">16 Mar 2021</div>
+              <div>
+            </div>
+            <div class="blog-summary">
+                <p>Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser.
+The implementation of the logic is in a paper by Kitaev (2018), “Constituency Parsing with a Self-Attentive Encoder”.
+In a summary, it is a transformer architecture to made decision on the best constituency tree structure each of which are constructed by CKY (Cocke-Kasami-Younger) algorithm.</p>
+
+<h2 id="context-free-grammar">Context Free Grammar</h2>
+<p>To understand constituency parsing, knowing CFG (Context Free Grammar) is important.
+CFG is a set of grammar rules in which one needs no prior understanding of context of a sentence.
+Here are some examples:</p>
+
+<ul>
+  <li>S → NP VP</li>
+  <li>VP → Verb NP</li>
+</ul>
+
+<p>S, NP, and VP denotes setence, noun phrase, and verb phrase respectively.
+There are many more rules.
+This means, there are multiple formation of parsed tree given a sentence with many grammar rules.</p>
+
+<p align="center">
+    <img src="/assets/img/benepar_example.png" alt="multiple parsed trees" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">an example where multiple parsed trees exist</figcaption>
+</p>
+
+<p>There is a need of scoring system of such that predicts a correct parsed tree, and to do so, neural network comes to the rescue.</p>
+
+<h2 id="model-architecture">Model Architecture</h2>
+<p>Kitaev and his colleagues were inspired by previous works of Stern et al (2017) and Gaddy et al (2018).
+The model Kitaev proposed is very similar to theirs with the only difference in that contextual span embedding is produced by transformer architecture.</p>
+
+<p align="center">
+    <img src="/assets/img/benepar_architecture.png" alt="benepar architecture" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">benepar architecture</figcaption>
+</p>
+
+<p>Despite how well transformer architecture works compared to a previous BiLSTM archtiecture, I personally find the way of producing span representation awkward.</p>
+
+<p>Previsouly in Gaddy et al (2018), span is \(r_{ij} = [f_j - f_i; b_i - b_j]\), which is a concatanation of the difference from point \(i\) to \(j\) of LSTM’s forward and backward direction.
+This formation is very intuitive once understood that forward representation of point \(i\) represents context upto \(i\) and point \(j\) upto \(j\), meaning subtraction of forward pass of \(j\) and \(i\) will result in the portion of representation equivalent to from \(i\) to \(j\).</p>
+
+<p>However, Kitaev mimics the formation of span representation by splitting a token representation in half and pretend each to be forward and backward representation of the token.</p>
+
+<p>Once span representations are produced, score of the span to corresponding label is produced by the following feed forward network:</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$ s(i, j, l) = [W_2g(W_1r_{ij} + z_1) + z_2]_l $$
+</div>
+
+<p>g, z, and W are ReLU activation function, bias, and weight.</p>
+
+<p>By summing span scores, \(s(i, j, l)\), of a tree \(T\), we finally get the score of a tree.</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$ s(T) = \sum_{(i,j,l) \in T} s(i,j,l)$$
+</div>
+
+<p>Here \((i, j, l) \in T\) can be considered as constituents in a candidate parsed tree from CKY algorithm.</p>
+
+<p>And at test time or inference time, the optimal parsed tree will be</p>
+
+\[\hat {T} = arg\max_T s(T)\]
+
+<p>For train time, the model is trained with hinge loss in the following form:</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$ max(0, \max_{T\neq T^*}[s(T) + \Delta(T, T^*)] - s(T^*)) \text{ , where } T^* \text{ is the ground truth parsed tree}$$
+</div>
+
+<p>where \(\Delta\) indicates a hamming loss, which is a commonly used to indicate loss in multi label classification task.
+This makes sense because multiple labelings are conducted on a tree for each constituent - as VB, NP, ADJP, and etc.
+I recommend refering to the paper for more details on the architecture as what drove me to discuss this paper is on the next section.</p>
+
+<h2 id="separating-content-and-position-information">Separating Content and Position Information</h2>
+
+<p>This part is what motivated me to write a summary on the paper due to its novelty.</p>
+
+<p><strong>TBA</strong></p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2021/02/09/distilation.html'" type="button">
@@ -840,46 +944,6 @@ its efficiency due to running two platforms compared to one, but they are workin
 creating its own language called <em>Recipe</em> that optimizes its performance.</p>
 
 <p>I am excited to learn more about this technology in the future.</p>
-
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </button>
-    
-    <div class="post-border"></div>
-    <button class="row not-a-button" onclick="location.href='/2020/06/19/training-svm-hyperplane.html'" type="button">
-        <div class="col-sm-4">
-            
-                <img class="blog-img" src="/assets/img/svm.png" alt="Training Hyperplane for Support Vector Machine image">
-            
-        </div>
-        <div class="col-sm-8 blog-summary-container">
-            <div class="container-md">
-              <div class="row">
-                <div class="col-8"><h4>Training Hyperplane for Support Vector Machine</h4></div>
-                <div class="col-4" style="font-size: 12px; text-align: end;">19 Jun 2020</div>
-              <div>
-            </div>
-            <div class="blog-summary">
-                <p>We have this simple function of an hyperplane.
-\(\mathbf{\omega \cdot x} + b = 0\)
-However, getting the optimized hyperplane for SVM
-is not so easy as this function looks.</p>
-
-<p>To get an hyperplane that meets the condition,
-\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
-and maximum margin, one can approach by minimizing a loss function of this
-operation.</p>
-
-<div style="width: 100%; overflow: scroll;">
-$$min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
-+ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}$$
-</div>
-
-<p>This can be solved by (sub-) gradient descent methods. A <a href="https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf">lecture note from
-University of Utah</a>
-explains the procedure well. The lecture note suggests stochastic 
-gradient descent for the computation speed.</p>
 
                 <div class="overlay"></div>
             </div>

@@ -1,0 +1,29 @@
+I"N<p>Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser.
+The implementation of the logic is in a paper by Kitaev, “Constituency Parsing with a Self-Attentive Encoder”.
+In a summary, it is a transformer architecture to made decision on the best constituency tree structure each of which are constructed by CKY (Cocke-Kasami-Younger) algorithm.</p>
+
+<h2 id="context-free-grammar">Context Free Grammar</h2>
+<p>To understand constituency parsing, knowing CFG (Context Free Grammar) is important.
+CFG is a set of grammar rules in which one needs no prior understanding of context of a sentence.
+Here are some examples:</p>
+
+<ul>
+  <li>S → NP VP</li>
+  <li>VP → Verb NP</li>
+</ul>
+
+<p>S, NP, and VP denotes setence, noun phrase, and verb phrase respectively.
+There are many more rules.
+This means, there are multiple formation of parsed tree given a sentence with many grammar rules.</p>
+
+<p align="center">
+    <img src="/assets/img/benepar_example.png" alt="multiple parsed trees" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">an example where multiple parsed trees exist</figcaption>
+</p>
+
+<p>There is a need of scoring system of such that predicts a correct parsed tree, and to do so, neural network comes to the rescue.</p>
+
+<h2 id="model-architecture">Model Architecture</h2>
+<p>Kitaev and his colleagues were inspired by previous works of Stern et al (2017) and Gaddy et al (2018).
+ The model Kitaev proposed is very similar to theirs with the only difference that contextual span embedding is produced by transformer architecture.</p>
+:ET

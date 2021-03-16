@@ -50,82 +50,87 @@
         
       </li>
         
-          <li class="tag" data-sort="0005">
+          <li class="tag" data-sort="0006">
               <!-- ml:<span>11</span>&nbsp -->
               ml&nbsp
           </li>
         
           <li class="tag" data-sort="0013">
+              <!-- nlp:<span>4</span>&nbsp -->
+              nlp&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0014">
               <!-- ai:<span>3</span>&nbsp -->
               ai&nbsp
           </li>
         
-          <li class="tag" data-sort="0013">
-              <!-- nlp:<span>3</span>&nbsp -->
-              nlp&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0013">
+          <li class="tag" data-sort="0014">
               <!-- python:<span>3</span>&nbsp -->
               python&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- aws:<span>1</span>&nbsp -->
               aws&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- blockchain:<span>1</span>&nbsp -->
               blockchain&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- dapp:<span>1</span>&nbsp -->
               dapp&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- django:<span>1</span>&nbsp -->
               django&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- github:<span>1</span>&nbsp -->
               github&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- hmm:<span>1</span>&nbsp -->
               hmm&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- jekyll:<span>1</span>&nbsp -->
               jekyll&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
+              <!-- ml,:<span>1</span>&nbsp -->
+              ml,&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0016">
               <!-- module:<span>1</span>&nbsp -->
               module&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- paper:<span>1</span>&nbsp -->
               paper&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- pytorch:<span>1</span>&nbsp -->
               pytorch&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- svm:<span>1</span>&nbsp -->
               svm&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- transformer:<span>1</span>&nbsp -->
               transformer&nbsp
           
@@ -163,9 +168,51 @@
     transformer
     
     pytorch
+    
+    ml,
      -->
 </div>
 <div class="container-sm">
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/06/19/training-svm-hyperplane.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/svm.png" alt="Training Hyperplane for Support Vector Machine image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>Training Hyperplane for Support Vector Machine</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">19 Jun 2020</div>
+              <div>
+            </div>
+            <div class="blog-summary">
+                <p>We have this simple function of an hyperplane.
+\(\mathbf{\omega \cdot x} + b = 0\)
+However, getting the optimized hyperplane for SVM
+is not so easy as this function looks.</p>
+
+<p>To get an hyperplane that meets the condition,
+\(y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right) \geq 1\)
+and maximum margin, one can approach by minimizing a loss function of this
+operation.</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$min_{w, b} \: {1 \over 2}\|\omega\|^{2} 
++ C \sum max\{0, 1 - y_n \left( \langle \mathbf{\omega , x_n}\rangle  + b \right)\}$$
+</div>
+
+<p>This can be solved by (sub-) gradient descent methods. A <a href="https://svivek.com/teaching/lectures/slides/svm/svm-sgd.pdf">lecture note from
+University of Utah</a>
+explains the procedure well. The lecture note suggests stochastic 
+gradient descent for the computation speed.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2020/06/19/primal-support-vector-machine.html'" type="button">
