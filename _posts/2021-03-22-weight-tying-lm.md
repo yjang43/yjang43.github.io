@@ -5,18 +5,18 @@ img_url: /assets/img/tying_knot.jpg
 layout: blog
 ---
 
-An input embedding layer is most commonly tied with an output embedding layer in the current language model neural network.
-This is because Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
+An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM).
+This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
 _"Using the Output Embedding to Improve Language Model"_.
-I always had wondered would there be any trade off by deciding to tie the embeddings, and this paper answered my question by experimentally proving there is no side-effect to worry about.
+I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry
 
 ### Benefits
 __The first benefit of weight tying comes in mind is the reduced number of parameters.__
-Within a neural networks langauge model (NNLM) Press and Wolf suggest, it shows upto 51% decrease in the number of parameters.
+Within a NNLM Press and Wolf suggest, it shows upto 51% decrease in the number of parameters.
 This is the case where three-way weight tying is done in machine translation model,
 as same weights are shared across input embedding of encoder, input embedding of decoder, and output embedding of decoder. 
-Generally, I believe this much of parameter reduction is not the case for current deeper architectures.
-However, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting shown by less perplexity in validation set.
+Generally, however, I believe this much of parameter reduction is not the case for the most recent deeper architectures.
+And yet, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting with less perplexity in validation set.
 
 <p align="center">
     <img src="/assets/img/weight_tying.png" alt="weight tying"  width="80%"/>
@@ -35,5 +35,5 @@ Press and Wolf explain this finding by looking into the gradient of each side of
 
 ### Caveat
 Be aware though that weight tying does not apply to word2vec.
-Authors states decoupling of input and output embeddings is required to see a positive impact of weight tying.
-Unlike word2vec, deep neural networks achieve this state, and generally weight tying on input and output embedding is a good rule of thumb.
+Authors states decoupling of input and output embeddings is required to see the positive impact of weight tying.
+Unlike word2vec, deep neural networks achieve this state, and generally weight tying of an input and an output embeddings is a good rule of thumb.
