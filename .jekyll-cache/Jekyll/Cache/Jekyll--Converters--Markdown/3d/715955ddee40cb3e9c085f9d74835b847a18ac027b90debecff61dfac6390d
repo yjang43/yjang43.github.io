@@ -1,40 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Constituency Parsing with Benepar</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/paginator.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
-    <!--for kramdown math render-->
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">YJ</a>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link py-0" href="/projects/">Projects</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link py-0" href="/blog/">Blog</a>
-            </li>
-        </ul>
-    </nav>
-    <!-- <div class="jumbotron jumbotron-fluid shadow-lg jumbotron-img">
-        <div class="container">
-        </div>
-    </div> -->
-
-    <div class="container-fluid content-pad">
-
-        <h1>Constituency Parsing with Benepar</h1>
-        <p>Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser.
+I"�<p>Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser.
 The implementation of the logic is in a paper by Kitaev and Klein (2018), “Constituency Parsing with a Self-Attentive Encoder”.
 In a summary, it is a transformer architecture to made decision on the best constituency tree structure each of which are constructed by CKY (Cocke-Kasami-Younger) algorithm.</p>
 
@@ -123,8 +87,8 @@ throughout attention mechanism, we see they intermingle and loss balance eventua
     $$ q\cdot k = (q^{(c)} + q^{(p)})\cdot (k^{(c)} + k^{(p)}) $$
 </div>
 
-<p>This happens because weights multiplied to key and value are the <em>weighted sum of both</em> content and position information.
-Thus, authors decide to completely <em>factor</em> out each inforamtion by reforming weights operated on input like below,</p>
+<p>This happens because weights multiplied to key and value are the weighted sum of 
+Thus, authors decide to completely factor out each inforamtion by reforming weights operated on input like below,</p>
 
 <div style="width: 100%; overflow: scroll;">
     $$ W = \begin{bmatrix} W^{(c)} &amp; 0 \\ 0 &amp; W^{(p)} \end{bmatrix} $$
@@ -135,13 +99,4 @@ Thus, authors decide to completely <em>factor</em> out each inforamtion by refor
 <div style="width: 100%; overflow: scroll;">
     $$ q\cdot k = q^{(c)}\cdot k^{(c)} + q^{(p)}\cdot k^{(p)}) $$
 </div>
-
-
-    </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-</html>
+:ET
