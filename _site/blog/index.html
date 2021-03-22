@@ -50,87 +50,87 @@
         
       </li>
         
-          <li class="tag" data-sort="0006">
+          <li class="tag" data-sort="0007">
               <!-- ml:<span>11</span>&nbsp -->
               ml&nbsp
           </li>
         
           <li class="tag" data-sort="0013">
-              <!-- nlp:<span>4</span>&nbsp -->
+              <!-- nlp:<span>5</span>&nbsp -->
               nlp&nbsp
           </li>
         
-          <li class="tag" data-sort="0014">
+          <li class="tag" data-sort="0015">
               <!-- ai:<span>3</span>&nbsp -->
               ai&nbsp
           </li>
         
-          <li class="tag" data-sort="0014">
+          <li class="tag" data-sort="0015">
               <!-- python:<span>3</span>&nbsp -->
               python&nbsp
           </li>
         
           <li class="tag" data-sort="0016">
+              <!-- ml,:<span>2</span>&nbsp -->
+              ml,&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0017">
               <!-- aws:<span>1</span>&nbsp -->
               aws&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- blockchain:<span>1</span>&nbsp -->
               blockchain&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- dapp:<span>1</span>&nbsp -->
               dapp&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- django:<span>1</span>&nbsp -->
               django&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- github:<span>1</span>&nbsp -->
               github&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- hmm:<span>1</span>&nbsp -->
               hmm&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- jekyll:<span>1</span>&nbsp -->
               jekyll&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
-              <!-- ml,:<span>1</span>&nbsp -->
-              ml,&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- module:<span>1</span>&nbsp -->
               module&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- paper:<span>1</span>&nbsp -->
               paper&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- pytorch:<span>1</span>&nbsp -->
               pytorch&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- svm:<span>1</span>&nbsp -->
               svm&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- transformer:<span>1</span>&nbsp -->
               transformer&nbsp
           
@@ -173,6 +173,59 @@
      -->
 </div>
 <div class="container-sm">
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2021/03/22/weight-tying-lm.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/tying_knot.jpg" alt="Embedding Weight Tying in Modern Language Models image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>Embedding Weight Tying in Modern Language Models</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">22 Mar 2021</div>
+              <div>
+            </div>
+            <div class="blog-summary">
+                <p>An input embedding layer is most commonly tied with an output embedding layer in the current language model neural network.
+This is because Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
+<em>“Using the Output Embedding to Improve Language Model”</em>.
+I always had wondered would there be any trade off by deciding to tie the embeddings, and this paper answered my question by experimentally proving there is no side-effect to worry about.</p>
+
+<h3 id="benefits">Benefits</h3>
+<p><strong>The first benefit of weight tying comes in mind is the reduced number of parameters.</strong>
+Within a neural networks langauge model (NNLM) Press and Wolf suggest, it shows upto 51% decrease in the number of parameters.
+This is the case where three-way weight tying is done in machine translation model,
+as same weights are shared across input embedding of encoder, input embedding of decoder, and output embedding of decoder. 
+Generally, I believe this much of parameter reduction is not the case for current deeper architectures.
+However, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting shown by less perplexity in validation set.</p>
+
+<p align="center">
+    <img src="/assets/img/weight_tying.png" alt="weight tying" width="80%" />
+</p>
+
+<p><strong>Second benefit, suprisingly, is a better quality of word embeddings.</strong>
+Press and Wolf evaluated this quality by making a correlation of human judgement on relation between words to their consine distance of vector representations.
+One finding within the evaluation is that a word embedding in NNLM resembles more of an output embedding than of an input embedding when weights are tied.
+This implies that an output embedding is actually a better representation of words than an input embedding.
+Press and Wolf explain this finding by looking into the gradient of each side of embedding, in which more information is learned in an output embedding throughout training compared to an input embedding</p>
+
+<p align="center">
+    <img src="/assets/img/weight_tying_equation.png" alt="gradient flow on input and output embedding" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">gradient flow on input and output embedding (from the paper)</figcaption>
+</p>
+
+<h3 id="caveat">Caveat</h3>
+<p>Be aware though that weight tying does not apply to word2vec.
+Authors states decoupling of input and output embeddings is required to see a positive impact of weight tying.
+Unlike word2vec, deep neural networks achieve this state, and generally weight tying on input and output embedding is a good rule of thumb.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2021/03/16/benepar.html'" type="button">
@@ -288,7 +341,7 @@ Thus, authors decide to completely <em>factor</em> out each inforamtion by refor
 <p>Then, \(W c = [W^{(c)}x^{(c)};W^{(p)}x^{(p)}]\), which means unlike their initial approach,</p>
 
 <div style="width: 100%; overflow: scroll;">
-    $$ q\cdot k = q^{(c)}\cdot k^{(c)} + q^{(p)}\cdot k^{(p)}) $$
+    $$ q\cdot k = q^{(c)}\cdot k^{(c)} + q^{(p)}\cdot k^{(p)} $$
 </div>
 
                 <div class="overlay"></div>
@@ -928,47 +981,6 @@ Then \(J\) indicates the overall loss of the RNN which is a summation over each 
 
 <h3 id="problem-with-vanila-rnn">Problem With Vanila RNN</h3>
 <p>With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call <em>exploding gradient</em> and <em>vanishing gradient</em> respectively. Thus, variation of RNNs are devised in newer literatures.</p>
-
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </button>
-    
-    <div class="post-border"></div>
-    <button class="row not-a-button" onclick="location.href='/2020/06/20/solution-for-dapp.html'" type="button">
-        <div class="col-sm-4">
-            
-                <img class="blog-img" src="/assets/img/bifrost.png" alt="Bifrost, Possible Solution for DApp image">
-            
-        </div>
-        <div class="col-sm-8 blog-summary-container">
-            <div class="container-md">
-              <div class="row">
-                <div class="col-8"><h4>Bifrost, Possible Solution for DApp</h4></div>
-                <div class="col-4" style="font-size: 12px; text-align: end;">20 Jun 2020</div>
-              <div>
-            </div>
-            <div class="blog-summary">
-                <p>The whole reason I came across the idea of DApp is because of the interview
-with a company called <em><a href="https://pilab.co/">Pilab</a></em>. This company tries to seek a solution
-for a dilemma that DApp’s platform always have: trade-offs in choosing a platform for the service.</p>
-
-<p><em><a href="https://thebifrost.io/static/Bifrost_WP_Eng.pdf">Bifrost’s white paper</a></em> was interesting reading.
-Even if I lacked a DApp background, with a simple understanding of block chain in general, and private and public
-block chain, I was able to understand what problem Bifrost intend to solve.</p>
-
-<p>According to the document, each block chain platform has a different focus as to
-its implementation and ecosystem. Some focuses on scalability, and other focuses
-on security and beyond.</p>
-
-<p>As a programmer that needs to choose solely one platform, the risk or loss for
-completely giving in one platform is a huge risk. Bifrost comes into place and solve
-this dilemma by suggesting a framework, so to speak, that allows running two block
-chain platforms in parallel from my understanding. My first concern was decrease in
-its efficiency due to running two platforms compared to one, but they are working on
-creating its own language called <em>Recipe</em> that optimizes its performance.</p>
-
-<p>I am excited to learn more about this technology in the future.</p>
 
                 <div class="overlay"></div>
             </div>
