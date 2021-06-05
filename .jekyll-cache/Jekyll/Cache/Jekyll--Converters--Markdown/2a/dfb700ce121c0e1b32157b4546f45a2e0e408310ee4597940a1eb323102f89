@@ -1,0 +1,6 @@
+I"‡<p>Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision.
+The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example.
+In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other.
+In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. 
+Cycle GAN from a paper called, <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Unpaired_Image-To-Image_Translation_ICCV_2017_paper.pdf">Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks</a> demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.</p>
+:ET

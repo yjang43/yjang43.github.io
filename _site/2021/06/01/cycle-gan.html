@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Style Transfer with Cycle GAN</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/paginator.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
+    <!--for kramdown math render-->
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">YJ</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link py-0" href="/projects/">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link py-0" href="/blog/">Blog</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- <div class="jumbotron jumbotron-fluid shadow-lg jumbotron-img">
+        <div class="container">
+        </div>
+    </div> -->
+
+    <div class="container-fluid content-pad">
+
+        <h1>Style Transfer with Cycle GAN</h1>
+        <p>Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision.
+The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example.
+In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other.
+In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. 
+Cycle GAN from a paper called, <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Unpaired_Image-To-Image_Translation_ICCV_2017_paper.pdf">Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks</a> demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.</p>
+
+<h3 id="from-gan-to-cycle-gan">From GAN to Cycle GAN</h3>
+<p>From the name of it, Cycle GAN uses GAN framework like many other generative models. 
+GAN is a framework of two adversarial neural networks to replicate data sampled from a target distribution.</p>
+<p align="center">
+    <img src="/assets/img/gan_structure.png" alt="cartoon of gan structure" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">GAN framework described from Deep Learning with PyTorch by Eli Stevens</figcaption>
+</p>
+<p>This framework is used in Cycle GAN in a sense that generator G generates fake data corresponds to Y domain from X domain, and generator F does vice versa. 
+And provided generated data and real data, discrimnator classify real from fake data.
+Below is the diagram of the flow of the architecture.</p>
+
+<p align="center">
+    <img src="/assets/img/cycle_gan.png" alt="cycle gan flow" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Overview diagram of how Cycle GAN works</figcaption>
+</p>
+<p align="center">
+    <img src="/assets/img/eng-esp.png" alt="english to spanish" width="40%" />
+    <img src="/assets/img/esp-eng.png" alt="spanish to english" width="40%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">English to Spanish and Spanish to English</figcaption>
+</p>
+
+<p>Here, cycle-consistency loss is an auxilary loss to maintain the retractability after a translation just like how normally text-to-text translation can be translated back to a sementically similar text. 
+Thus, on top of a commonly known GAN loss, Binary Cross-Entropy loss, cycle-consistency loss is added like the following.</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$\mathcal{L}_{GAN}(G, D_Y, X, Y) = \mathbb{E}_{y \sim p_{data}(y)}[log D_Y(y)]
+                                  + \mathbb{E}_{x \sim p_{data}(x)}[1 - log D_Y(G(x))]$$
+$$\mathcal{L}_{GAN}(F, D_X, Y, X) = \mathbb{E}_{x \sim p_{data}(x)}[log D_X(x)]
+                                  + \mathbb{E}_{y \sim p_{data}(y)}[1 - log D_X(F(y))]$$
+$$\mathcal{L}_{cyc}(G, F) = \mathbb{E}_{x \sim p_{data}(x)}[\left\Vert F(G(x)) - x \right\Vert_1]
+                          + \mathbb{E}_{y \sim p_{data}(y)}[\left\Vert G(F(y)) - y \right\Vert_1]$$
+$$\mathcal{L}_{tot}(G, F, D_X, D_Y) = \mathcal{L}_{GAN}(G, D_Y, X, Y) + \mathcal{L}_{GAN}(F, D_X, Y, X) + \mathcal{L}_{cyc}(G, F)$$
+</div>
+
+<p>And of course, like any other GAN networks, it will be trained like a minimax updating parameters of generators and discriminators taking turns.</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$G^*, F^* = arg\min_{G,F}\max_{D_X,D_Y} \mathcal{L}(G, F, D_X, D_Y)$$
+</div>
+
+<h3 id="result">Result</h3>
+
+<p>Acknowledging unpaired data is used throughout the training, the outcome of what machine learned is quite fascinating. 
+By having data from X domain to be drawings from Monet, and that from Y domain to be real pictures, machine learns to translate from one domanin to the other, transfering style from each domain.
+This is better understood by the samples of the result presented from the paper.</p>
+
+<p align="center">
+    <img src="/assets/img/cycle_gan_result.png" alt="result of cycle gan" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">The result of image translation from real images to various painters' styles of the images</figcaption>
+</p>
+
+<p>Looking at the results provided by the paper, I see the possibilities of this model used in filming or graphic industires.</p>
+
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</html>

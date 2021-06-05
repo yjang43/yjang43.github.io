@@ -1,40 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Embedding Weight Tying in Modern Language Models</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/paginator.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
-    <!--for kramdown math render-->
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">YJ</a>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link py-0" href="/projects/">Projects</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link py-0" href="/blog/">Blog</a>
-            </li>
-        </ul>
-    </nav>
-    <!-- <div class="jumbotron jumbotron-fluid shadow-lg jumbotron-img">
-        <div class="container">
-        </div>
-    </div> -->
-
-    <div class="container-fluid content-pad">
-
-        <h1>Embedding Weight Tying in Modern Language Models</h1>
-        <p>An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM).
+I"�
+<p>An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM).
 This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
 <em>“Using the Output Embedding to Improve Language Model”</em>.
 I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry</p>
@@ -66,13 +31,4 @@ Press and Wolf explain this finding by looking into the gradient of each side of
 <p>Be aware though that weight tying does not apply to word2vec.
 Authors states decoupling of input and output embeddings is required to see the positive impact of weight tying.
 Unlike word2vec, deep neural networks achieve this state, and generally weight tying of an input and an output embeddings is a good rule of thumb.</p>
-
-
-    </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-</html>
+:ET

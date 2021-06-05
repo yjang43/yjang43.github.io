@@ -50,87 +50,92 @@
         
       </li>
         
-          <li class="tag" data-sort="0007">
+          <li class="tag" data-sort="0008">
               <!-- ml:<span>11</span>&nbsp -->
               ml&nbsp
           </li>
         
-          <li class="tag" data-sort="0013">
+          <li class="tag" data-sort="0014">
               <!-- nlp:<span>5</span>&nbsp -->
               nlp&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
               <!-- ai:<span>3</span>&nbsp -->
               ai&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
+              <!-- ml,:<span>3</span>&nbsp -->
+              ml,&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0016">
               <!-- python:<span>3</span>&nbsp -->
               python&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
-              <!-- ml,:<span>2</span>&nbsp -->
-              ml,&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- aws:<span>1</span>&nbsp -->
               aws&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- blockchain:<span>1</span>&nbsp -->
               blockchain&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- dapp:<span>1</span>&nbsp -->
               dapp&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- django:<span>1</span>&nbsp -->
               django&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
+              <!-- gan:<span>1</span>&nbsp -->
+              gan&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0018">
               <!-- github:<span>1</span>&nbsp -->
               github&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- hmm:<span>1</span>&nbsp -->
               hmm&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- jekyll:<span>1</span>&nbsp -->
               jekyll&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- module:<span>1</span>&nbsp -->
               module&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- paper:<span>1</span>&nbsp -->
               paper&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- pytorch:<span>1</span>&nbsp -->
               pytorch&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- svm:<span>1</span>&nbsp -->
               svm&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- transformer:<span>1</span>&nbsp -->
               transformer&nbsp
           
@@ -170,9 +175,90 @@
     pytorch
     
     ml,
+    
+    gan
      -->
 </div>
 <div class="container-sm">
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2021/06/01/cycle-gan.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/zebra2horse.png" alt="Style Transfer with Cycle GAN image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>Style Transfer with Cycle GAN</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">01 Jun 2021</div>
+              <div>
+            </div>
+            <div class="blog-summary">
+                <p>Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision.
+The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example.
+In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other.
+In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. 
+Cycle GAN from a paper called, <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Unpaired_Image-To-Image_Translation_ICCV_2017_paper.pdf">Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks</a> demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.</p>
+
+<h3 id="from-gan-to-cycle-gan">From GAN to Cycle GAN</h3>
+<p>From the name of it, Cycle GAN uses GAN framework like many other generative models. 
+GAN is a framework of two adversarial neural networks to replicate data sampled from a target distribution.</p>
+<p align="center">
+    <img src="/assets/img/gan_structure.png" alt="cartoon of gan structure" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">GAN framework described from Deep Learning with PyTorch by Eli Stevens</figcaption>
+</p>
+<p>This framework is used in Cycle GAN in a sense that generator G generates fake data corresponds to Y domain from X domain, and generator F does vice versa. 
+And provided generated data and real data, discrimnator classify real from fake data.
+Below is the diagram of the flow of the architecture.</p>
+
+<p align="center">
+    <img src="/assets/img/cycle_gan.png" alt="cycle gan flow" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Overview diagram of how Cycle GAN works</figcaption>
+</p>
+<p align="center">
+    <img src="/assets/img/eng-esp.png" alt="english to spanish" width="40%" />
+    <img src="/assets/img/esp-eng.png" alt="spanish to english" width="40%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">English to Spanish and Spanish to English</figcaption>
+</p>
+
+<p>Here, cycle-consistency loss is an auxilary loss to maintain the retractability after a translation just like how normally text-to-text translation can be translated back to a sementically similar text. 
+Thus, on top of a commonly known GAN loss, Binary Cross-Entropy loss, cycle-consistency loss is added like the following.</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$\mathcal{L}_{GAN}(G, D_Y, X, Y) = \mathbb{E}_{y \sim p_{data}(y)}[log D_Y(y)]
+                                  + \mathbb{E}_{x \sim p_{data}(x)}[1 - log D_Y(G(x))]$$
+$$\mathcal{L}_{GAN}(F, D_X, Y, X) = \mathbb{E}_{x \sim p_{data}(x)}[log D_X(x)]
+                                  + \mathbb{E}_{y \sim p_{data}(y)}[1 - log D_X(F(y))]$$
+$$\mathcal{L}_{cyc}(G, F) = \mathbb{E}_{x \sim p_{data}(x)}[\left\Vert F(G(x)) - x \right\Vert_1]
+                          + \mathbb{E}_{y \sim p_{data}(y)}[\left\Vert G(F(y)) - y \right\Vert_1]$$
+$$\mathcal{L}_{tot}(G, F, D_X, D_Y) = \mathcal{L}_{GAN}(G, D_Y, X, Y) + \mathcal{L}_{GAN}(F, D_X, Y, X) + \mathcal{L}_{cyc}(G, F)$$
+</div>
+
+<p>And of course, like any other GAN networks, it will be trained like a minimax updating parameters of generators and discriminators taking turns.</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$G^*, F^* = arg\min_{G,F}\max_{D_X,D_Y} \mathcal{L}(G, F, D_X, D_Y)$$
+</div>
+
+<h3 id="result">Result</h3>
+
+<p>Acknowledging unpaired data is used throughout the training, the outcome of what machine learned is quite fascinating. 
+By having data from X domain to be drawings from Monet, and that from Y domain to be real pictures, machine learns to translate from one domanin to the other, transfering style from each domain.
+This is better understood by the samples of the result presented from the paper.</p>
+
+<p align="center">
+    <img src="/assets/img/cycle_gan_result.png" alt="result of cycle gan" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">The result of image translation from real images to various painters' styles of the images</figcaption>
+</p>
+
+<p>Looking at the results provided by the paper, I see the possibilities of this model used in filming or graphic industires.</p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2021/03/22/weight-tying-lm.html'" type="button">
@@ -189,18 +275,18 @@
               <div>
             </div>
             <div class="blog-summary">
-                <p>An input embedding layer is most commonly tied with an output embedding layer in the current language model neural network.
-This is because Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
+                <p>An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM).
+This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
 <em>“Using the Output Embedding to Improve Language Model”</em>.
-I always had wondered would there be any trade off by deciding to tie the embeddings, and this paper answered my question by experimentally proving there is no side-effect to worry about.</p>
+I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry</p>
 
 <h3 id="benefits">Benefits</h3>
 <p><strong>The first benefit of weight tying comes in mind is the reduced number of parameters.</strong>
-Within a neural networks langauge model (NNLM) Press and Wolf suggest, it shows upto 51% decrease in the number of parameters.
+Within a NNLM Press and Wolf suggest, it shows upto 51% decrease in the number of parameters.
 This is the case where three-way weight tying is done in machine translation model,
 as same weights are shared across input embedding of encoder, input embedding of decoder, and output embedding of decoder. 
-Generally, I believe this much of parameter reduction is not the case for current deeper architectures.
-However, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting shown by less perplexity in validation set.</p>
+Generally, however, I believe this much of parameter reduction is not the case for the most recent deeper architectures.
+And yet, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting with less perplexity in validation set.</p>
 
 <p align="center">
     <img src="/assets/img/weight_tying.png" alt="weight tying" width="80%" />
@@ -219,8 +305,8 @@ Press and Wolf explain this finding by looking into the gradient of each side of
 
 <h3 id="caveat">Caveat</h3>
 <p>Be aware though that weight tying does not apply to word2vec.
-Authors states decoupling of input and output embeddings is required to see a positive impact of weight tying.
-Unlike word2vec, deep neural networks achieve this state, and generally weight tying on input and output embedding is a good rule of thumb.</p>
+Authors states decoupling of input and output embeddings is required to see the positive impact of weight tying.
+Unlike word2vec, deep neural networks achieve this state, and generally weight tying of an input and an output embeddings is a good rule of thumb.</p>
 
                 <div class="overlay"></div>
             </div>
@@ -892,95 +978,6 @@ $$f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}$$
 
 <p>The weighted sum of the probabilities of previous sequence from each state is quite intuitive.</p>
 
-
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </button>
-    
-    <div class="post-border"></div>
-    <button class="row not-a-button" onclick="location.href='/2020/11/21/vanila-RNN.html'" type="button">
-        <div class="col-sm-4">
-            
-                <img class="blog-img" src="/assets/img/rnn.png" alt="Vanilla RNN image">
-            
-        </div>
-        <div class="col-sm-8 blog-summary-container">
-            <div class="container-md">
-              <div class="row">
-                <div class="col-8"><h4>Vanilla RNN</h4></div>
-                <div class="col-4" style="font-size: 12px; text-align: end;">21 Nov 2020</div>
-              <div>
-            </div>
-            <div class="blog-summary">
-                <h3 id="motif">Motif</h3>
-<p>Language model is the probability of a sequence.
-This can be approximated as the product of <em>n</em>-gram,</p>
-
-<div style="width: 100%; overflow: scroll;">
-$$P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})$$
-</div>
-
-<p>So, <em>n</em>-gram was a natural approach to do language modeling.
-However, this traditional approach has two limitations.</p>
-<ul>
-  <li>sparsity of <em>n</em>-gram</li>
-  <li>exponential growth in model size as <em>n</em> increases</li>
-</ul>
-
-<h3 id="vanila-rnn">Vanila RNN</h3>
-<p align="center">
-    <img src="/assets/img/rnn_structure.png" alt="RNN structure" width="40%" />
-</p>
-
-<p>In contrast to the complex network of RNN,
-equations to express the network is surprisingly very simple.
-This is because weights are repeated used throughout timestamps.</p>
-
-\[h_t=\sigma(W_hh_{t-1} + W_ex_t)\]
-
-\[\hat{y}=softmax(Uh_t)\]
-
-<p>Here are short description of dimensions of each parameter.</p>
-
-\[x_t\in\mathbb{R}^d\]
-
-\[W_e\in\mathbb{R}^{D_h\times d}\]
-
-\[W_h\in\mathbb{R}^{D_h\times D_h}\]
-
-\[h_{t-1}\in\mathbb{R}^{D_h}\]
-
-\[\hat{y}\in\mathbb{R}^{|V|}\]
-
-\[U\in\mathbb{R}^{|V| \times D_h}\]
-
-<p>\(d\) indicates dimension of word embeddings <em>(possibly with Word2Vec)</em>, 
-\(D_h\) is a dimension chosen in design. 
-\(|V|\) is the cardinality of the corpus.</p>
-
-<p>Now the structure of RNN is clear, I will discuss the loss and gradient of RNN.
-First, loss function looks like this.</p>
-
-\[J^{(t)}(\Theta) = - \sum^{|V|}_{j=1}y_{t,j}\times log(\hat{y}_{t,j})\]
-
-\[J = {1\over T} \sum^{T}_{t=1}J^{(t)}(\Theta)\]
-
-<p>Here, cross entropy is used to define a distance of proabability.
-The loss function of RNN looks a little bit complicated, but it is explained intuitively by looking at the structure of RNN.
-\(J^{(t)}\) indicates a loss at a timestamp \(t\). 
-Then \(J\) indicates the overall loss of the RNN which is a summation over each timeframe and averaged by dividing the sum by the corpus size.</p>
-
-<p>Second, gradient looks complicated as well.</p>
-
-\[{\partial J \over \partial W} = \sum^T_{t=1}{\partial J_t \over \partial W}\]
-
-\[{\partial J_t \over \partial W} = \sum^t_{k=1} {\partial J_t \over \partial y_t}{\partial y_t \over \partial h_t}{\partial h_t \over \partial h_k}{\partial h_k \over \partial W}\]
-
-<p>However, this again is explained intuitively. Similar to how loss at each timestamp is added for an overall loss, overall gradient can decompose into a sum of gradient at each timestamp. Then, gradient at each timestamp is a sum of gradient that imposes change to \(y_t\). This is a multiplication of local gradients in sequence.</p>
-
-<h3 id="problem-with-vanila-rnn">Problem With Vanila RNN</h3>
-<p>With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call <em>exploding gradient</em> and <em>vanishing gradient</em> respectively. Thus, variation of RNNs are devised in newer literatures.</p>
 
                 <div class="overlay"></div>
             </div>

@@ -1,0 +1,5 @@
+I"�<p>An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM).
+This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
+<em>“Using the Output Embedding to Improve Language Model”</em>.
+I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry</p>
+:ET

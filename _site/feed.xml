@@ -1,15 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-03-23T01:51:24+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Embedding Weight Tying in Modern Language Models</title><link href="http://localhost:4000/2021/03/22/weight-tying-lm.html" rel="alternate" type="text/html" title="Embedding Weight Tying in Modern Language Models" /><published>2021-03-22T00:00:00+09:00</published><updated>2021-03-22T00:00:00+09:00</updated><id>http://localhost:4000/2021/03/22/weight-tying-lm</id><content type="html" xml:base="http://localhost:4000/2021/03/22/weight-tying-lm.html">&lt;p&gt;An input embedding layer is most commonly tied with an output embedding layer in the current language model neural network.
-This is because Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-05T16:19:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Style Transfer with Cycle GAN</title><link href="http://localhost:4000/2021/06/01/cycle-gan.html" rel="alternate" type="text/html" title="Style Transfer with Cycle GAN" /><published>2021-06-01T00:00:00+09:00</published><updated>2021-06-01T00:00:00+09:00</updated><id>http://localhost:4000/2021/06/01/cycle-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/01/cycle-gan.html">&lt;p&gt;Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision.
+The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example.
+In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other.
+In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. 
+Cycle GAN from a paper called, &lt;a href=&quot;https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Unpaired_Image-To-Image_Translation_ICCV_2017_paper.pdf&quot;&gt;Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks&lt;/a&gt; demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.&lt;/p&gt;
+
+&lt;h3 id=&quot;from-gan-to-cycle-gan&quot;&gt;From GAN to Cycle GAN&lt;/h3&gt;
+&lt;p&gt;From the name of it, Cycle GAN uses GAN framework like many other generative models. 
+GAN is a framework of two adversarial neural networks to replicate data sampled from a target distribution.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/gan_structure.png&quot; alt=&quot;cartoon of gan structure&quot; width=&quot;75%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;GAN framework described from Deep Learning with PyTorch by Eli Stevens&lt;/figcaption&gt;
+&lt;/p&gt;
+&lt;p&gt;This framework is used in Cycle GAN in a sense that generator G generates fake data corresponds to Y domain from X domain, and generator F does vice versa. 
+And provided generated data and real data, discrimnator classify real from fake data.
+Below is the diagram of the flow of the architecture.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/cycle_gan.png&quot; alt=&quot;cycle gan flow&quot; width=&quot;100%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Overview diagram of how Cycle GAN works&lt;/figcaption&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/eng-esp.png&quot; alt=&quot;english to spanish&quot; width=&quot;40%&quot; /&gt;
+    &lt;img src=&quot;/assets/img/esp-eng.png&quot; alt=&quot;spanish to english&quot; width=&quot;40%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;English to Spanish and Spanish to English&lt;/figcaption&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Here, cycle-consistency loss is an auxilary loss to maintain the retractability after a translation just like how normally text-to-text translation can be translated back to a sementically similar text. 
+Thus, on top of a commonly known GAN loss, Binary Cross-Entropy loss, cycle-consistency loss is added like the following.&lt;/p&gt;
+
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$\mathcal{L}_{GAN}(G, D_Y, X, Y) = \mathbb{E}_{y \sim p_{data}(y)}[log D_Y(y)]
+                                  + \mathbb{E}_{x \sim p_{data}(x)}[1 - log D_Y(G(x))]$$
+$$\mathcal{L}_{GAN}(F, D_X, Y, X) = \mathbb{E}_{x \sim p_{data}(x)}[log D_X(x)]
+                                  + \mathbb{E}_{y \sim p_{data}(y)}[1 - log D_X(F(y))]$$
+$$\mathcal{L}_{cyc}(G, F) = \mathbb{E}_{x \sim p_{data}(x)}[\left\Vert F(G(x)) - x \right\Vert_1]
+                          + \mathbb{E}_{y \sim p_{data}(y)}[\left\Vert G(F(y)) - y \right\Vert_1]$$
+$$\mathcal{L}_{tot}(G, F, D_X, D_Y) = \mathcal{L}_{GAN}(G, D_Y, X, Y) + \mathcal{L}_{GAN}(F, D_X, Y, X) + \mathcal{L}_{cyc}(G, F)$$
+&lt;/div&gt;
+
+&lt;p&gt;And of course, like any other GAN networks, it will be trained like a minimax updating parameters of generators and discriminators taking turns.&lt;/p&gt;
+
+&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+$$G^*, F^* = arg\min_{G,F}\max_{D_X,D_Y} \mathcal{L}(G, F, D_X, D_Y)$$
+&lt;/div&gt;
+
+&lt;h3 id=&quot;result&quot;&gt;Result&lt;/h3&gt;
+
+&lt;p&gt;Acknowledging unpaired data is used throughout the training, the outcome of what machine learned is quite fascinating. 
+By having data from X domain to be drawings from Monet, and that from Y domain to be real pictures, machine learns to translate from one domanin to the other, transfering style from each domain.
+This is better understood by the samples of the result presented from the paper.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/cycle_gan_result.png&quot; alt=&quot;result of cycle gan&quot; width=&quot;75%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;The result of image translation from real images to various painters&apos; styles of the images&lt;/figcaption&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Looking at the results provided by the paper, I see the possibilities of this model used in filming or graphic industires.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="gan" /><summary type="html">Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision. The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example. In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other. In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. Cycle GAN from a paper called, Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.</summary></entry><entry><title type="html">Embedding Weight Tying in Modern Language Models</title><link href="http://localhost:4000/2021/03/22/weight-tying-lm.html" rel="alternate" type="text/html" title="Embedding Weight Tying in Modern Language Models" /><published>2021-03-22T00:00:00+09:00</published><updated>2021-03-22T00:00:00+09:00</updated><id>http://localhost:4000/2021/03/22/weight-tying-lm</id><content type="html" xml:base="http://localhost:4000/2021/03/22/weight-tying-lm.html">&lt;p&gt;An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM).
+This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
 &lt;em&gt;“Using the Output Embedding to Improve Language Model”&lt;/em&gt;.
-I always had wondered would there be any trade off by deciding to tie the embeddings, and this paper answered my question by experimentally proving there is no side-effect to worry about.&lt;/p&gt;
+I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry&lt;/p&gt;
 
 &lt;h3 id=&quot;benefits&quot;&gt;Benefits&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;The first benefit of weight tying comes in mind is the reduced number of parameters.&lt;/strong&gt;
-Within a neural networks langauge model (NNLM) Press and Wolf suggest, it shows upto 51% decrease in the number of parameters.
+Within a NNLM Press and Wolf suggest, it shows upto 51% decrease in the number of parameters.
 This is the case where three-way weight tying is done in machine translation model,
 as same weights are shared across input embedding of encoder, input embedding of decoder, and output embedding of decoder. 
-Generally, I believe this much of parameter reduction is not the case for current deeper architectures.
-However, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting shown by less perplexity in validation set.&lt;/p&gt;
+Generally, however, I believe this much of parameter reduction is not the case for the most recent deeper architectures.
+And yet, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting with less perplexity in validation set.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
     &lt;img src=&quot;/assets/img/weight_tying.png&quot; alt=&quot;weight tying&quot; width=&quot;80%&quot; /&gt;
@@ -28,8 +85,8 @@ Press and Wolf explain this finding by looking into the gradient of each side of
 
 &lt;h3 id=&quot;caveat&quot;&gt;Caveat&lt;/h3&gt;
 &lt;p&gt;Be aware though that weight tying does not apply to word2vec.
-Authors states decoupling of input and output embeddings is required to see a positive impact of weight tying.
-Unlike word2vec, deep neural networks achieve this state, and generally weight tying on input and output embedding is a good rule of thumb.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="nlp" /><summary type="html">An input embedding layer is most commonly tied with an output embedding layer in the current language model neural network. This is because Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called, “Using the Output Embedding to Improve Language Model”. I always had wondered would there be any trade off by deciding to tie the embeddings, and this paper answered my question by experimentally proving there is no side-effect to worry about.</summary></entry><entry><title type="html">Constituency Parsing with Benepar</title><link href="http://localhost:4000/2021/03/16/benepar.html" rel="alternate" type="text/html" title="Constituency Parsing with Benepar" /><published>2021-03-16T00:00:00+09:00</published><updated>2021-03-16T00:00:00+09:00</updated><id>http://localhost:4000/2021/03/16/benepar</id><content type="html" xml:base="http://localhost:4000/2021/03/16/benepar.html">&lt;p&gt;Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser.
+Authors states decoupling of input and output embeddings is required to see the positive impact of weight tying.
+Unlike word2vec, deep neural networks achieve this state, and generally weight tying of an input and an output embeddings is a good rule of thumb.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="nlp" /><summary type="html">An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM). This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called, “Using the Output Embedding to Improve Language Model”. I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry</summary></entry><entry><title type="html">Constituency Parsing with Benepar</title><link href="http://localhost:4000/2021/03/16/benepar.html" rel="alternate" type="text/html" title="Constituency Parsing with Benepar" /><published>2021-03-16T00:00:00+09:00</published><updated>2021-03-16T00:00:00+09:00</updated><id>http://localhost:4000/2021/03/16/benepar</id><content type="html" xml:base="http://localhost:4000/2021/03/16/benepar.html">&lt;p&gt;Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser.
 The implementation of the logic is in a paper by Kitaev and Klein (2018), “Constituency Parsing with a Self-Attentive Encoder”.
 In a summary, it is a transformer architecture to made decision on the best constituency tree structure each of which are constructed by CKY (Cocke-Kasami-Younger) algorithm.&lt;/p&gt;
 
@@ -523,71 +580,4 @@ $$when \ f_k(i) = P(x_1...x_i, \pi_i=k)$$
 $$f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}$$
 &lt;/div&gt;
 
-&lt;p&gt;The weighted sum of the probabilities of previous sequence from each state is quite intuitive.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="hmm" /><summary type="html">Hidden Markov Model HMM is easy to understand knowing its components first. HMM can represent a sequence of states and symbol. Symbol is what we observe, and state is an information about the symbol. Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</summary></entry><entry><title type="html">Vanilla RNN</title><link href="http://localhost:4000/2020/11/21/vanila-RNN.html" rel="alternate" type="text/html" title="Vanilla RNN" /><published>2020-11-21T00:00:00+09:00</published><updated>2020-11-21T00:00:00+09:00</updated><id>http://localhost:4000/2020/11/21/vanila-RNN</id><content type="html" xml:base="http://localhost:4000/2020/11/21/vanila-RNN.html">&lt;h3 id=&quot;motif&quot;&gt;Motif&lt;/h3&gt;
-&lt;p&gt;Language model is the probability of a sequence.
-This can be approximated as the product of &lt;em&gt;n&lt;/em&gt;-gram,&lt;/p&gt;
-
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$P(w_1,w_2,...,w_m)=\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})\approx\prod^{i=m}_{i=1}P(w_i|w_1,...,w_{i-1})$$
-&lt;/div&gt;
-
-&lt;p&gt;So, &lt;em&gt;n&lt;/em&gt;-gram was a natural approach to do language modeling.
-However, this traditional approach has two limitations.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;sparsity of &lt;em&gt;n&lt;/em&gt;-gram&lt;/li&gt;
-  &lt;li&gt;exponential growth in model size as &lt;em&gt;n&lt;/em&gt; increases&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;vanila-rnn&quot;&gt;Vanila RNN&lt;/h3&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/rnn_structure.png&quot; alt=&quot;RNN structure&quot; width=&quot;40%&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;In contrast to the complex network of RNN,
-equations to express the network is surprisingly very simple.
-This is because weights are repeated used throughout timestamps.&lt;/p&gt;
-
-\[h_t=\sigma(W_hh_{t-1} + W_ex_t)\]
-
-\[\hat{y}=softmax(Uh_t)\]
-
-&lt;p&gt;Here are short description of dimensions of each parameter.&lt;/p&gt;
-
-\[x_t\in\mathbb{R}^d\]
-
-\[W_e\in\mathbb{R}^{D_h\times d}\]
-
-\[W_h\in\mathbb{R}^{D_h\times D_h}\]
-
-\[h_{t-1}\in\mathbb{R}^{D_h}\]
-
-\[\hat{y}\in\mathbb{R}^{|V|}\]
-
-\[U\in\mathbb{R}^{|V| \times D_h}\]
-
-&lt;p&gt;\(d\) indicates dimension of word embeddings &lt;em&gt;(possibly with Word2Vec)&lt;/em&gt;, 
-\(D_h\) is a dimension chosen in design. 
-\(|V|\) is the cardinality of the corpus.&lt;/p&gt;
-
-&lt;p&gt;Now the structure of RNN is clear, I will discuss the loss and gradient of RNN.
-First, loss function looks like this.&lt;/p&gt;
-
-\[J^{(t)}(\Theta) = - \sum^{|V|}_{j=1}y_{t,j}\times log(\hat{y}_{t,j})\]
-
-\[J = {1\over T} \sum^{T}_{t=1}J^{(t)}(\Theta)\]
-
-&lt;p&gt;Here, cross entropy is used to define a distance of proabability.
-The loss function of RNN looks a little bit complicated, but it is explained intuitively by looking at the structure of RNN.
-\(J^{(t)}\) indicates a loss at a timestamp \(t\). 
-Then \(J\) indicates the overall loss of the RNN which is a summation over each timeframe and averaged by dividing the sum by the corpus size.&lt;/p&gt;
-
-&lt;p&gt;Second, gradient looks complicated as well.&lt;/p&gt;
-
-\[{\partial J \over \partial W} = \sum^T_{t=1}{\partial J_t \over \partial W}\]
-
-\[{\partial J_t \over \partial W} = \sum^t_{k=1} {\partial J_t \over \partial y_t}{\partial y_t \over \partial h_t}{\partial h_t \over \partial h_k}{\partial h_k \over \partial W}\]
-
-&lt;p&gt;However, this again is explained intuitively. Similar to how loss at each timestamp is added for an overall loss, overall gradient can decompose into a sum of gradient at each timestamp. Then, gradient at each timestamp is a sum of gradient that imposes change to \(y_t\). This is a multiplication of local gradients in sequence.&lt;/p&gt;
-
-&lt;h3 id=&quot;problem-with-vanila-rnn&quot;&gt;Problem With Vanila RNN&lt;/h3&gt;
-&lt;p&gt;With a close look at how gradient is computed in vanila RNN, we find a problem. if elements in each local gradient is bigger than 1, the overall gradient will explode, and vanish otherwise. Each we call &lt;em&gt;exploding gradient&lt;/em&gt; and &lt;em&gt;vanishing gradient&lt;/em&gt; respectively. Thus, variation of RNNs are devised in newer literatures.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="nlp" /><summary type="html">Motif Language model is the probability of a sequence. This can be approximated as the product of n-gram,</summary></entry></feed>
+&lt;p&gt;The weighted sum of the probabilities of previous sequence from each state is quite intuitive.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="hmm" /><summary type="html">Hidden Markov Model HMM is easy to understand knowing its components first. HMM can represent a sequence of states and symbol. Symbol is what we observe, and state is an information about the symbol. Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</summary></entry></feed>
