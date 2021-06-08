@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-05T16:19:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Style Transfer with Cycle GAN</title><link href="http://localhost:4000/2021/06/01/cycle-gan.html" rel="alternate" type="text/html" title="Style Transfer with Cycle GAN" /><published>2021-06-01T00:00:00+09:00</published><updated>2021-06-01T00:00:00+09:00</updated><id>http://localhost:4000/2021/06/01/cycle-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/01/cycle-gan.html">&lt;p&gt;Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-09T00:18:37+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Disentagle Representation with InfoGAN</title><link href="http://localhost:4000/2021/06/07/info-gan.html" rel="alternate" type="text/html" title="Disentagle Representation with InfoGAN" /><published>2021-06-07T00:00:00+09:00</published><updated>2021-06-07T00:00:00+09:00</updated><id>http://localhost:4000/2021/06/07/info-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/07/info-gan.html">&lt;p&gt;To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes.
+One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from &lt;a href=&quot;https://papers.nips.cc/paper/2016/file/7c9d0b1f96aebd7b5eca8c3edaa19ebb-Paper.pdf&quot;&gt;the paper by Chen et al&lt;/a&gt;.
+More specifically with examples, salient codes from MNIST data could simply indicate a formulation of number itself or others such as width or rotation.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-does-infogan-work&quot;&gt;How Does InfoGAN Work?&lt;/h3&gt;
+&lt;p&gt;InfoGAN achieves to inject a meaning to representations by maximizing mutual information between latent code of a noise and generated data.
+We refer latent codes to \(c\) and generated data from noise and the latent code to \(G(x, c)\).
+Thus, the auxilary term to maximize a mutual information between the two is added to GAN loss,&lt;/p&gt;
+
+\[\min_G\max_D V_I(D, G) = V(D, G) - \lambda I(c, G(x, c))\]
+
+&lt;p&gt;, where \(V(D, G)\) indicates GAN loss, \(I(c, G(x, c))\) inidicates mutual information, and \(\lambda\) indicates hyperparmeter to balance the term which in implementation simply set to \(1.0\).&lt;/p&gt;
+
+&lt;p&gt;However, maximizing mutual information is a difficult task as it requires a direct access to posterior distribution, \(P(c|x)\).
+Thus, auxilary distribution, \(Q(c|x)\), which can be approximated via parametrizing neural network, is used instead.
+Here, author designs a cost efficient network sharing parameters with discriminator to approximate \(Q\).
+Below is an overview of the flow of InfoGAN and demonstration of how weights are shared.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/infogan_structure.png&quot; alt=&quot;cartoon of info gan structure&quot; width=&quot;75%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Network Diagram of InfoGAN&lt;/figcaption&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&quot;implementation-in-pytorch&quot;&gt;Implementation in PyTorch&lt;/h3&gt;
+
+&lt;p&gt;The structure of InfoGAN is quite simple, yet made a significant finding.
+Thus, I decided to reimplement the outcome of InfoGAN with PyTorch.
+Code implementation can be found in my GitHub page &lt;strong&gt;&lt;a href=&quot;https://github.com/yjang43/InfoGAN&quot;&gt;yjang43/InfoGAN&lt;/a&gt;&lt;/strong&gt;.
+For the concise demonstration of the result, I used only one discrete latent code as opposed to one discrete and two contingous latent codes from the paper to disentangle salient features from MNIST data.
+Below is the sample of generated MNIST data.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/infogan_result.png&quot; alt=&quot;InfoGAN generated MNIST&quot; width=&quot;75%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Grid of randomly generated MNIST dataset with each row corresponding to a fixed discrete latent code [0 ~ 9]&lt;/figcaption&gt;
+&lt;/p&gt;
+&lt;p&gt;The convoluted training scheme of GAN coming from its mimnimax game made the implementation challeging,
+but the result in the end was satisfying.
+Below graph is a result of training loss for 50 epochs with batch size of 16.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/infogan_train_loss.png&quot; alt=&quot;InfoGAN train loss for 50 epochs&quot; width=&quot;50%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Progresion of train loss through 50 epochs&lt;/figcaption&gt;
+&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="gan" /><summary type="html">To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes. One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from the paper by Chen et al. More specifically with examples, salient codes from MNIST data could simply indicate a formulation of number itself or others such as width or rotation.</summary></entry><entry><title type="html">Style Transfer with Cycle GAN</title><link href="http://localhost:4000/2021/06/01/cycle-gan.html" rel="alternate" type="text/html" title="Style Transfer with Cycle GAN" /><published>2021-06-01T00:00:00+09:00</published><updated>2021-06-01T00:00:00+09:00</updated><id>http://localhost:4000/2021/06/01/cycle-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/01/cycle-gan.html">&lt;p&gt;Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision.
 The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example.
 In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other.
 In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. 
@@ -515,69 +556,4 @@ Attention layer for connecting encoder and decoder is different to other attenti
 
 &lt;p&gt;&lt;em&gt;Paper: &lt;a href=&quot;https://arxiv.org/pdf/1706.03762.pdf&quot;&gt;https://arxiv.org/pdf/1706.03762.pdf&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;YouTube: &lt;a href=&quot;https://www.youtube.com/watch?v=4Bdc55j80l8&quot;&gt;https://www.youtube.com/watch?v=4Bdc55j80l8&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="nlp" /><category term="transformer" /><summary type="html">Thoughts The paper, “Attention Is All You Need”, is the first to present transformer architecture. The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN. This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure. The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.</summary></entry><entry><title type="html">Hidden Markov Model and Algorithms - 1</title><link href="http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms.html" rel="alternate" type="text/html" title="Hidden Markov Model and Algorithms - 1" /><published>2020-11-23T00:00:00+09:00</published><updated>2020-11-23T00:00:00+09:00</updated><id>http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms</id><content type="html" xml:base="http://localhost:4000/2020/11/23/hidden-markov-model-and-algorithms.html">&lt;h3 id=&quot;hidden-markov-model&quot;&gt;Hidden Markov Model&lt;/h3&gt;
-&lt;p&gt;HMM is easy to understand knowing its components first.
-HMM can represent a sequence of &lt;em&gt;states&lt;/em&gt; and &lt;em&gt;symbol&lt;/em&gt;.
-Symbol is what we observe, 
-and state is an information about the symbol.
-Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).&lt;/p&gt;
-
-&lt;p&gt;If state at location &lt;em&gt;i&lt;/em&gt; is denoted as \(\pi_i\).
-Probability of a state &lt;em&gt;k&lt;/em&gt; to state &lt;em&gt;l&lt;/em&gt; is expressed as,&lt;/p&gt;
-
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$a_{kl} = P(\pi=l|\pi=k)$$
-&lt;/div&gt;
-
-&lt;p&gt;This is called &lt;em&gt;transition probability&lt;/em&gt; and carries an important role in explaining the first part of HMM, states.
-Next, the probability of a symbol in a given state can be denoted as,&lt;/p&gt;
-
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$e_k(b) = P(x_i=b|\pi=k)$$
-&lt;/div&gt;
-&lt;p&gt;This is called &lt;em&gt;emission probability&lt;/em&gt; and likewise this explains the second part of HMM, symbol.&lt;/p&gt;
-
-&lt;h3 id=&quot;viterbi&quot;&gt;Viterbi&lt;/h3&gt;
-&lt;p&gt;One question to ask while working with a squential data whose formation is determined by probability is, 
-“what is the most probable meaning of the observed sequence?”
-This in other words is to ask what the most probable &lt;em&gt;state path&lt;/em&gt; is.&lt;/p&gt;
-
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$\tilde{\pi} = argmax_\pi P(x, \pi)$$
-&lt;/div&gt;
-
-&lt;p&gt;Viterbi algorithm provides a solution to this question. The heart of the algorithm is dynamic programming, and the idea comes from the following:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;If the last state \(\pi_n\) completes the most probable state path, it is completed by connecting to the most probable state path up to \(\pi_{n-1}\)&lt;/em&gt;&lt;/p&gt;
-
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})$$
-&lt;/div&gt;
-
-&lt;p&gt;Here &lt;em&gt;i&lt;/em&gt;, &lt;em&gt;l&lt;/em&gt;, &lt;em&gt;k&lt;/em&gt; indicate a position in the squence, a state in question, and a previous state respectively.&lt;/p&gt;
-
-&lt;h3 id=&quot;forward-algorithm&quot;&gt;Forward Algorithm&lt;/h3&gt;
-
-&lt;p&gt;Forward algorithm gives a probabilty of a sequence, \(P(x)\) 
-simple as that.&lt;/p&gt;
-
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$P(x)=\sum_\pi P(x, \pi)$$
-&lt;/div&gt;
-
-&lt;p&gt;This is a marginalization of states. This can be solved with dynamic programming because&lt;/p&gt;
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)$$
-&lt;/div&gt;
-
-&lt;p&gt;Thus,&lt;/p&gt;
-
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$when \ f_k(i) = P(x_1...x_i, \pi_i=k)$$
-&lt;/div&gt;
-
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}$$
-&lt;/div&gt;
-
-&lt;p&gt;The weighted sum of the probabilities of previous sequence from each state is quite intuitive.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="hmm" /><summary type="html">Hidden Markov Model HMM is easy to understand knowing its components first. HMM can represent a sequence of states and symbol. Symbol is what we observe, and state is an information about the symbol. Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</summary></entry></feed>
+&lt;p&gt;&lt;em&gt;YouTube: &lt;a href=&quot;https://www.youtube.com/watch?v=4Bdc55j80l8&quot;&gt;https://www.youtube.com/watch?v=4Bdc55j80l8&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="nlp" /><category term="transformer" /><summary type="html">Thoughts The paper, “Attention Is All You Need”, is the first to present transformer architecture. The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN. This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure. The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.</summary></entry></feed>

@@ -1,7 +1,0 @@
-I"t<h3 id="hidden-markov-model">Hidden Markov Model</h3>
-<p>HMM is easy to understand knowing its components first.
-HMM can represent a sequence of <em>states</em> and <em>symbol</em>.
-Symbol is what we observe, 
-and state is an information about the symbol.
-Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</p>
-:ET

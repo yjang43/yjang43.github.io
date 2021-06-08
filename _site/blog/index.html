@@ -50,92 +50,92 @@
         
       </li>
         
-          <li class="tag" data-sort="0008">
+          <li class="tag" data-sort="0009">
               <!-- ml:<span>11</span>&nbsp -->
               ml&nbsp
           </li>
         
-          <li class="tag" data-sort="0014">
+          <li class="tag" data-sort="0015">
               <!-- nlp:<span>5</span>&nbsp -->
               nlp&nbsp
           </li>
         
           <li class="tag" data-sort="0016">
+              <!-- ml,:<span>4</span>&nbsp -->
+              ml,&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0017">
               <!-- ai:<span>3</span>&nbsp -->
               ai&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
-              <!-- ml,:<span>3</span>&nbsp -->
-              ml,&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- python:<span>3</span>&nbsp -->
               python&nbsp
           </li>
         
           <li class="tag" data-sort="0018">
+              <!-- gan:<span>2</span>&nbsp -->
+              gan&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0019">
               <!-- aws:<span>1</span>&nbsp -->
               aws&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- blockchain:<span>1</span>&nbsp -->
               blockchain&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- dapp:<span>1</span>&nbsp -->
               dapp&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- django:<span>1</span>&nbsp -->
               django&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
-              <!-- gan:<span>1</span>&nbsp -->
-              gan&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- github:<span>1</span>&nbsp -->
               github&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- hmm:<span>1</span>&nbsp -->
               hmm&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- jekyll:<span>1</span>&nbsp -->
               jekyll&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- module:<span>1</span>&nbsp -->
               module&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- paper:<span>1</span>&nbsp -->
               paper&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- pytorch:<span>1</span>&nbsp -->
               pytorch&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- svm:<span>1</span>&nbsp -->
               svm&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- transformer:<span>1</span>&nbsp -->
               transformer&nbsp
           
@@ -180,6 +180,70 @@
      -->
 </div>
 <div class="container-sm">
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2021/06/07/info-gan.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/info_gan_face.png" alt="Disentagle Representation with InfoGAN image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>Disentagle Representation with InfoGAN</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">07 Jun 2021</div>
+              <div>
+            </div>
+            <div class="blog-summary">
+                <p>To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes.
+One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from <a href="https://papers.nips.cc/paper/2016/file/7c9d0b1f96aebd7b5eca8c3edaa19ebb-Paper.pdf">the paper by Chen et al</a>.
+More specifically with examples, salient codes from MNIST data could simply indicate a formulation of number itself or others such as width or rotation.</p>
+
+<h3 id="how-does-infogan-work">How Does InfoGAN Work?</h3>
+<p>InfoGAN achieves to inject a meaning to representations by maximizing mutual information between latent code of a noise and generated data.
+We refer latent codes to \(c\) and generated data from noise and the latent code to \(G(x, c)\).
+Thus, the auxilary term to maximize a mutual information between the two is added to GAN loss,</p>
+
+\[\min_G\max_D V_I(D, G) = V(D, G) - \lambda I(c, G(x, c))\]
+
+<p>, where \(V(D, G)\) indicates GAN loss, \(I(c, G(x, c))\) inidicates mutual information, and \(\lambda\) indicates hyperparmeter to balance the term which in implementation simply set to \(1.0\).</p>
+
+<p>However, maximizing mutual information is a difficult task as it requires a direct access to posterior distribution, \(P(c|x)\).
+Thus, auxilary distribution, \(Q(c|x)\), which can be approximated via parametrizing neural network, is used instead.
+Here, author designs a cost efficient network sharing parameters with discriminator to approximate \(Q\).
+Below is an overview of the flow of InfoGAN and demonstration of how weights are shared.</p>
+
+<p align="center">
+    <img src="/assets/img/infogan_structure.png" alt="cartoon of info gan structure" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Network Diagram of InfoGAN</figcaption>
+</p>
+
+<h3 id="implementation-in-pytorch">Implementation in PyTorch</h3>
+
+<p>The structure of InfoGAN is quite simple, yet made a significant finding.
+Thus, I decided to reimplement the outcome of InfoGAN with PyTorch.
+Code implementation can be found in my GitHub page <strong><a href="https://github.com/yjang43/InfoGAN">yjang43/InfoGAN</a></strong>.
+For the concise demonstration of the result, I used only one discrete latent code as opposed to one discrete and two contingous latent codes from the paper to disentangle salient features from MNIST data.
+Below is the sample of generated MNIST data.</p>
+<p align="center">
+    <img src="/assets/img/infogan_result.png" alt="InfoGAN generated MNIST" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Grid of randomly generated MNIST dataset with each row corresponding to a fixed discrete latent code [0 ~ 9]</figcaption>
+</p>
+<p>The convoluted training scheme of GAN coming from its mimnimax game made the implementation challeging,
+but the result in the end was satisfying.
+Below graph is a result of training loss for 50 epochs with batch size of 16.</p>
+
+<p align="center">
+    <img src="/assets/img/infogan_train_loss.png" alt="InfoGAN train loss for 50 epochs" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Progresion of train loss through 50 epochs</figcaption>
+</p>
+
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2021/06/01/cycle-gan.html'" type="button">
@@ -890,94 +954,6 @@ Attention layer for connecting encoder and decoder is different to other attenti
 <p><em>Paper: <a href="https://arxiv.org/pdf/1706.03762.pdf">https://arxiv.org/pdf/1706.03762.pdf</a></em></p>
 
 <p><em>YouTube: <a href="https://www.youtube.com/watch?v=4Bdc55j80l8">https://www.youtube.com/watch?v=4Bdc55j80l8</a></em></p>
-
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </button>
-    
-    <div class="post-border"></div>
-    <button class="row not-a-button" onclick="location.href='/2020/11/23/hidden-markov-model-and-algorithms.html'" type="button">
-        <div class="col-sm-4">
-            
-                <img class="blog-img" src="/assets/img/hmm.png" alt="Hidden Markov Model and Algorithms - 1 image">
-            
-        </div>
-        <div class="col-sm-8 blog-summary-container">
-            <div class="container-md">
-              <div class="row">
-                <div class="col-8"><h4>Hidden Markov Model and Algorithms - 1</h4></div>
-                <div class="col-4" style="font-size: 12px; text-align: end;">23 Nov 2020</div>
-              <div>
-            </div>
-            <div class="blog-summary">
-                <h3 id="hidden-markov-model">Hidden Markov Model</h3>
-<p>HMM is easy to understand knowing its components first.
-HMM can represent a sequence of <em>states</em> and <em>symbol</em>.
-Symbol is what we observe, 
-and state is an information about the symbol.
-Simply said, HMM focuses on understanding the meaning of the observed sequence (implication under observation).</p>
-
-<p>If state at location <em>i</em> is denoted as \(\pi_i\).
-Probability of a state <em>k</em> to state <em>l</em> is expressed as,</p>
-
-<div style="width: 100%; overflow: scroll;">
-$$a_{kl} = P(\pi=l|\pi=k)$$
-</div>
-
-<p>This is called <em>transition probability</em> and carries an important role in explaining the first part of HMM, states.
-Next, the probability of a symbol in a given state can be denoted as,</p>
-
-<div style="width: 100%; overflow: scroll;">
-$$e_k(b) = P(x_i=b|\pi=k)$$
-</div>
-<p>This is called <em>emission probability</em> and likewise this explains the second part of HMM, symbol.</p>
-
-<h3 id="viterbi">Viterbi</h3>
-<p>One question to ask while working with a squential data whose formation is determined by probability is, 
-“what is the most probable meaning of the observed sequence?”
-This in other words is to ask what the most probable <em>state path</em> is.</p>
-
-<div style="width: 100%; overflow: scroll;">
-$$\tilde{\pi} = argmax_\pi P(x, \pi)$$
-</div>
-
-<p>Viterbi algorithm provides a solution to this question. The heart of the algorithm is dynamic programming, and the idea comes from the following:</p>
-
-<p><em>If the last state \(\pi_n\) completes the most probable state path, it is completed by connecting to the most probable state path up to \(\pi_{n-1}\)</em></p>
-
-<div style="width: 100%; overflow: scroll;">
-$$v_l(i+1) = e_l(x_{i+1})\max_k(v_k(i)a_{kl})$$
-</div>
-
-<p>Here <em>i</em>, <em>l</em>, <em>k</em> indicate a position in the squence, a state in question, and a previous state respectively.</p>
-
-<h3 id="forward-algorithm">Forward Algorithm</h3>
-
-<p>Forward algorithm gives a probabilty of a sequence, \(P(x)\) 
-simple as that.</p>
-
-<div style="width: 100%; overflow: scroll;">
-$$P(x)=\sum_\pi P(x, \pi)$$
-</div>
-
-<p>This is a marginalization of states. This can be solved with dynamic programming because</p>
-<div style="width: 100%; overflow: scroll;">
-$$P(x_1...x_{i}, \pi_i) = \sum_k^l P(x_1...x_i, \pi_i, \pi_{i-1}=k)$$
-</div>
-
-<p>Thus,</p>
-
-<div style="width: 100%; overflow: scroll;">
-$$when \ f_k(i) = P(x_1...x_i, \pi_i=k)$$
-</div>
-
-<div style="width: 100%; overflow: scroll;">
-$$f_l(i+1) = e_l(x_{i+1})\sum^l_k f_k(i)a_{kl}$$
-</div>
-
-<p>The weighted sum of the probabilities of previous sequence from each state is quite intuitive.</p>
-
 
                 <div class="overlay"></div>
             </div>
