@@ -1,0 +1,4 @@
+I"­<p><a href="https://github.com/NVlabs/stylegan">StyleGAN developed by NVIDIAâ€™s research team</a> has shown an exceptional result as to separating high level attributes, such as pose, face, hair, and etc., of generated data.
+The success derived from the structural design of the network, via which each style is localized within the subset of the network. 
+Style mixing performed by the network shows what it is capable of.</p>
+:ET

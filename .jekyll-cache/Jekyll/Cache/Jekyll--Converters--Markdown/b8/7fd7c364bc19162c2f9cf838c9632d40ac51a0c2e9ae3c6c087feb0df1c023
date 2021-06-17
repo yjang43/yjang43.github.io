@@ -1,4 +1,0 @@
-I"ð<p>To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes.
-One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from <a href="https://papers.nips.cc/paper/2016/file/7c9d0b1f96aebd7b5eca8c3edaa19ebb-Paper.pdf">the paper by Chen et al</a>.
-More specifically with examples, salient codes from MNIST data could simply indicate a number itself or others such as width or rotation.</p>
-:ET

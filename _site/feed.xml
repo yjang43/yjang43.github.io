@@ -1,4 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-09T00:18:37+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Disentagle Representation with InfoGAN</title><link href="http://localhost:4000/2021/06/07/info-gan.html" rel="alternate" type="text/html" title="Disentagle Representation with InfoGAN" /><published>2021-06-07T00:00:00+09:00</published><updated>2021-06-07T00:00:00+09:00</updated><id>http://localhost:4000/2021/06/07/info-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/07/info-gan.html">&lt;p&gt;To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-18T04:18:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">A Method to Encode Real Data for StyleGAN</title><link href="http://localhost:4000/2021/06/17/style-gan-encoder.html" rel="alternate" type="text/html" title="A Method to Encode Real Data for StyleGAN" /><published>2021-06-17T00:00:00+09:00</published><updated>2021-06-17T00:00:00+09:00</updated><id>http://localhost:4000/2021/06/17/style-gan-encoder</id><content type="html" xml:base="http://localhost:4000/2021/06/17/style-gan-encoder.html">&lt;p&gt;&lt;a href=&quot;https://github.com/NVlabs/stylegan&quot;&gt;StyleGAN developed by NVIDIA’s research team&lt;/a&gt; has shown an exceptional result as to separating high level attributes, such as pose, face, hair, and etc., of generated data.
+The success derived from the structural design of the network, via which each style is localized within the subset of the network. 
+Style mixing performed by the network shows what it is capable of.&lt;/p&gt;
+
+&lt;!-- figure goes here --&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/style_mixing.jpeg&quot; alt=&quot;style mixing from style gan&quot; width=&quot;75%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;StyleGAN style mixing result from the paper&lt;/figcaption&gt;
+&lt;/p&gt;
+
+&lt;p&gt;However, because of the common framework of GAN whose input is a noise vector from a normal distribution, mapping from an image to a latent code, the noise vector, is not explicit in contrast to the vice versa.
+This limits generative model only to certain areas.
+The limitation could be lifted off once there is a way to encode a real data to a latent code that model can understand.
+The blog will mostly focus on this aspect after the simple explanation of styleGAN.&lt;/p&gt;
+
+&lt;h3 id=&quot;quick-overview-of-stylegan&quot;&gt;Quick Overview of StyleGAN&lt;/h3&gt;
+
+&lt;p&gt;The GAN framework consists two counterparts, generator and discriminator. 
+Same architecture as one from progressive growing by &lt;a href=&quot;https://arxiv.org/pdf/1710.10196.pdf&quot;&gt;Karras et al&lt;/a&gt; is used for the discriminator.&lt;/p&gt;
+
+&lt;p&gt;Generator on the other hand is very unique to itself.
+The generator is composed of mapping network and synthesis network
+The first network maps a latent code to another intermediate latent code, which helps disentangle features.
+The disentanglement is a state in which features lie in a sublinear space, and, thus, the output latent code could be considered a set of styles easy to distinguish (pose, hairstyle, gender, and etc.).
+The second network then synthesize an image given the intermediate latent code.
+This intermediate latent code is localized to each sublayers of the synthesis network through adaptive instance normalization which then allows separation of styles across the sublayers. 
+This unique design hints its ability to localize high level styles.&lt;/p&gt;
+
+&lt;!-- style gan generator goes here --&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/style_gan_structure.png&quot; alt=&quot;style gan structure&quot; width=&quot;50%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Structure of StyleGAN, mapping network on the left and synthesis network on the right&lt;/figcaption&gt;
+&lt;/p&gt;
+
+&lt;p&gt;For simplicity, we denote latent code to \(z\) and intermediate latent code to \(w\) from now.&lt;/p&gt;
+
+&lt;h3 id=&quot;encoding-image-for-stylegan&quot;&gt;Encoding Image for StyleGAN&lt;/h3&gt;
+
+&lt;p&gt;The paper that introduced styleGAN is not explicit on a method to encode a real image to a latent code.
+However, this does not make the potential of the task trivial as it widens the choice of real life applications of styleGAN.&lt;/p&gt;
+
+&lt;p&gt;I tried making a program to transfer hairstyle of a person to the user using style mixing but faced an issue of not being able to encode real images to feed through the generator.
+This is just one example of applications if the issue is resolved. 
+I thought of one way that can possibly remedy the issue, which is to train another model that inverses generator process.
+However, some articles mentioned the difficulty of inversing generator of GAN framework.
+Thus, I did more research and found out that I could directly optimize a latent code of an image with gradient descent.
+Before the implementation, it needs to disambiguate the form of latent code because there are more than one latent codes to choose from in styleGAN: \(z\) and \(w\).&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/style_gan_pipeline.png&quot; alt=&quot;style gan pipeline&quot; width=&quot;100%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Where should we feed information of an image to generate the same image?&lt;/figcaption&gt;
+&lt;/p&gt;
+&lt;p&gt;Thankfully, however, the study emprically proved that \(w\) is somewhat able to disentangles features, and that was enough to make \(w\) be the choice of latent code to convert the real images into.&lt;/p&gt;
+
+&lt;p&gt;I was able to find implementation of &lt;a href=&quot;https://github.com/rosinality/style-based-gan-pytorch&quot;&gt;styleGAN&lt;/a&gt; and its &lt;a href=&quot;https://github.com/jacobhallberg/pytorch_stylegan_encoder&quot;&gt;encoder&lt;/a&gt; that I could refer to.
+With excitement, I decided to implement it myself in practice.
+&lt;a href=&quot;https://github.com/yjang43/style-based-gan-pytorch&quot;&gt;&lt;strong&gt;Here is the implementation of my code&lt;/strong&gt;&lt;/a&gt; and results of it will be further shared in this post.&lt;/p&gt;
+
+&lt;p&gt;The alogrithm for my initial attempt to optimize \(w\) is the following:&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/style_gan_encoder_1.png&quot; alt=&quot;style gan encoder algorithm&quot; width=&quot;75%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Steps to optimize &lt;em&gt;w&lt;/em&gt; with gradient descent&lt;/figcaption&gt;
+&lt;/p&gt;
+&lt;p&gt;And below picture shows the progression of generated images from learned \(w\).
+Top pictures are data sampled from &lt;a href=&quot;http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html&quot;&gt;CelebA&lt;/a&gt; dataset, and images below demostrate progression of learning.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/encoder_progress_1.png&quot; alt=&quot;style gan encoder algorithm result&quot; width=&quot;100%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Generated images of optimized &lt;em&gt;w&lt;/em&gt; through out training: &lt;br /&gt;images are blur if loss is computed pixel by pixel&lt;/figcaption&gt;
+&lt;/p&gt;
+&lt;p&gt;With the algorithm above, optimized \(w\) resulted in blurred image.
+To address this problem, I refered to other’s implemenation where pretrained VGG-16 network is used to extract features from a generated image and a real image and then compute the loss between them.&lt;/p&gt;
+
+&lt;p&gt;The improved version to optimize \(w\) is the following:&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/style_gan_encoder_2.png&quot; alt=&quot;style gan encoder algorithm improved with VGG-16&quot; width=&quot;75%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Steps to optimize &lt;em&gt;w&lt;/em&gt; with gradient descent but improved with VGG-16 to extract features from&lt;/figcaption&gt;
+&lt;/p&gt;
+&lt;p&gt;Picture below shows the progression, and the same sample is used for comparison.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/assets/img/encoder_progress_2.png&quot; alt=&quot;style gan encoder algorithm improved result&quot; width=&quot;100%&quot; /&gt;
+    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Generated images of optimized &lt;em&gt;w&lt;/em&gt; through out training improved version with VGG-16: &lt;br /&gt;fine images but some features are transformed&lt;/figcaption&gt;
+&lt;/p&gt;
+&lt;p&gt;The generated pictures are less blur and tend to grab more specific features of an image, but some features are transformed amid optimization resulting in different person but similar looking.
+This was very fascinating result as it proves that the meaning of extracted features are somewhat conceived similarly by both to human and the machine, but disappointing to realize that accurately converting an image to a latent code is a difficult task.&lt;/p&gt;</content><author><name></name></author><category term="ml," /><category term="gan" /><summary type="html">StyleGAN developed by NVIDIA’s research team has shown an exceptional result as to separating high level attributes, such as pose, face, hair, and etc., of generated data. The success derived from the structural design of the network, via which each style is localized within the subset of the network. Style mixing performed by the network shows what it is capable of.</summary></entry><entry><title type="html">Disentagle Representation with InfoGAN</title><link href="http://localhost:4000/2021/06/07/info-gan.html" rel="alternate" type="text/html" title="Disentagle Representation with InfoGAN" /><published>2021-06-07T00:00:00+09:00</published><updated>2021-06-07T00:00:00+09:00</updated><id>http://localhost:4000/2021/06/07/info-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/07/info-gan.html">&lt;p&gt;To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes.
 One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from &lt;a href=&quot;https://papers.nips.cc/paper/2016/file/7c9d0b1f96aebd7b5eca8c3edaa19ebb-Paper.pdf&quot;&gt;the paper by Chen et al&lt;/a&gt;.
 More specifically with examples, salient codes from MNIST data could simply indicate a formulation of number itself or others such as width or rotation.&lt;/p&gt;
 
@@ -515,45 +598,4 @@ tensor&lt;span class=&quot;o&quot;&gt;([[&lt;/span&gt;2., 2., 2., 2.]]&lt;span c
 &lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
 &lt;p&gt;My confusion on how autograd works was greatly solved by &lt;a href=&quot;https://towardsdatascience.com/pytorch-autograd-understanding-the-heart-of-pytorchs-magic-2686cd94ec95&quot;&gt;Vaibhav Kumar’s blog post&lt;/a&gt;. My post is a note on what I find important from it and added an example and mathematic explanation that were not covered in the blog.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://pytorch.org/docs/stable/notes/autograd.html&quot;&gt;To learn more about autograd mechanics&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="pytorch" /><summary type="html">I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us. Accurately, autograd is an engine for Jacobian-vector product (JVP). I will cover two things, cycle of its operation and JVP Operation Cycle Autograd is possible because operations on Tensors are recorded, and a directed acyclic graph (DAG), or more specifically dynamic computational graph (DCG), is craeted along with it. In a view of graph, nodes are Tensors, and edges are operations.</summary></entry><entry><title type="html">Attention Is All You Need - Transformer</title><link href="http://localhost:4000/2020/12/03/transformer.html" rel="alternate" type="text/html" title="Attention Is All You Need - Transformer" /><published>2020-12-03T00:00:00+09:00</published><updated>2020-12-03T00:00:00+09:00</updated><id>http://localhost:4000/2020/12/03/transformer</id><content type="html" xml:base="http://localhost:4000/2020/12/03/transformer.html">&lt;h3 id=&quot;thoughts&quot;&gt;Thoughts&lt;/h3&gt;
-&lt;p&gt;The paper, “Attention Is All You Need”, is the first to present transformer architecture.
-The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
-This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
-The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/transformer_table.png&quot; alt=&quot;transformer rnn cnn comparison table&quot; width=&quot;75%&quot; /&gt;
-&lt;/p&gt;
-
-&lt;h3 id=&quot;architecture&quot;&gt;Architecture&lt;/h3&gt;
-&lt;p&gt;I recommend looking back at the article for more details because this part will only stay simple focus more on the overview of the architecture.
-Below is the diagram,&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/transformer_architecture.png&quot; alt=&quot;transformer architecture&quot; width=&quot;40%&quot; /&gt;
-&lt;/p&gt;
-&lt;p&gt;Left part of the diagram is an encoder (multi-head self-attention mechanism + fully connected feed-forward network) and the right is a decoder (multi-head attention over output + multi-head attention connecting encoder and decoder + fully connected feed-forawrd).&lt;/p&gt;
-&lt;h4 id=&quot;encoder&quot;&gt;Encoder&lt;/h4&gt;
-&lt;p&gt;Starting from the bottom of the encoder, input embedding is done like many other networks into \(d_{model}\) dimension.
-Positional encoding is added to the embeddings. From the candidates of positional encodings, one using sine and consine functions is used. I need more background to understand this implementation.
-Then, this gets fed into &lt;em&gt;multi-head attention&lt;/em&gt; or scaled dot-product attention layer. This layer is the highlight of the paper, and used in both encoder and encoder and even encoder-decoder in which encoder connects to decoder. 
-Difference between multi-head attention and scaled dot-product attention is simply the latter is the single-head version of the former.
-We can use parallelization in this step by using multi-head instead.
-Here is a diagram of multi-head attention mechansim.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/attention_diagram.png&quot; alt=&quot;attention diagram&quot; width=&quot;75%&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;The idea is simply taking a dot product of &lt;em&gt;query&lt;/em&gt; vector and &lt;em&gt;key&lt;/em&gt; vector to decide the weight to put on the &lt;em&gt;value&lt;/em&gt; vector. This shows the depencies of values. 
-Then the result gets fed into a feed-forward network with one hidden layer with ReLU activation.&lt;/p&gt;
-
-&lt;h4 id=&quot;decoder&quot;&gt;Decoder&lt;/h4&gt;
-&lt;p&gt;Input embedding and positional encoding is identical to an encoder. Also, a feed-forward network after the attention mechanism layer is identical. However, the attention mechanism layers for decoder have some subtle difference. Self-attention layer attends up to the current point which means position after the current point needs to be masked.
-This masking stage is shown in the diagram as “Mask (opt.)” and mask is done by putting \(-inf\) to the position after the current point.
-Attention layer for connecting encoder and decoder is different to other attention layers in a sense that &lt;em&gt;query&lt;/em&gt; comes from the decoder step and &lt;em&gt;key&lt;/em&gt; and &lt;em&gt;value&lt;/em&gt; comes from the encoder step.&lt;/p&gt;
-
-&lt;p&gt;The overview of transformer ends here. It was a great fun reading the paper. In addition to the link to the paper, I leave a link of YouTube video that explains the structure in much more detail with visuals.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Paper: &lt;a href=&quot;https://arxiv.org/pdf/1706.03762.pdf&quot;&gt;https://arxiv.org/pdf/1706.03762.pdf&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;YouTube: &lt;a href=&quot;https://www.youtube.com/watch?v=4Bdc55j80l8&quot;&gt;https://www.youtube.com/watch?v=4Bdc55j80l8&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="nlp" /><category term="transformer" /><summary type="html">Thoughts The paper, “Attention Is All You Need”, is the first to present transformer architecture. The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN. This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure. The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://pytorch.org/docs/stable/notes/autograd.html&quot;&gt;To learn more about autograd mechanics&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="pytorch" /><summary type="html">I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us. Accurately, autograd is an engine for Jacobian-vector product (JVP). I will cover two things, cycle of its operation and JVP Operation Cycle Autograd is possible because operations on Tensors are recorded, and a directed acyclic graph (DAG), or more specifically dynamic computational graph (DCG), is craeted along with it. In a view of graph, nodes are Tensors, and edges are operations.</summary></entry></feed>

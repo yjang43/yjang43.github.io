@@ -50,92 +50,92 @@
         
       </li>
         
-          <li class="tag" data-sort="0009">
+          <li class="tag" data-sort="0010">
               <!-- ml:<span>11</span>&nbsp -->
               ml&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
+              <!-- ml,:<span>5</span>&nbsp -->
+              ml,&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0016">
               <!-- nlp:<span>5</span>&nbsp -->
               nlp&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
-              <!-- ml,:<span>4</span>&nbsp -->
-              ml,&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- ai:<span>3</span>&nbsp -->
               ai&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
+              <!-- gan:<span>3</span>&nbsp -->
+              gan&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0018">
               <!-- python:<span>3</span>&nbsp -->
               python&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
-              <!-- gan:<span>2</span>&nbsp -->
-              gan&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- aws:<span>1</span>&nbsp -->
               aws&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- blockchain:<span>1</span>&nbsp -->
               blockchain&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- dapp:<span>1</span>&nbsp -->
               dapp&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- django:<span>1</span>&nbsp -->
               django&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- github:<span>1</span>&nbsp -->
               github&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- hmm:<span>1</span>&nbsp -->
               hmm&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- jekyll:<span>1</span>&nbsp -->
               jekyll&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- module:<span>1</span>&nbsp -->
               module&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- paper:<span>1</span>&nbsp -->
               paper&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- pytorch:<span>1</span>&nbsp -->
               pytorch&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- svm:<span>1</span>&nbsp -->
               svm&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- transformer:<span>1</span>&nbsp -->
               transformer&nbsp
           
@@ -180,6 +180,112 @@
      -->
 </div>
 <div class="container-sm">
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2021/06/17/style-gan-encoder.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/info_gan_face.png" alt="A Method to Encode Real Data for StyleGAN image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>A Method to Encode Real Data for StyleGAN</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">17 Jun 2021</div>
+              <div>
+            </div>
+            <div class="blog-summary">
+                <p><a href="https://github.com/NVlabs/stylegan">StyleGAN developed by NVIDIA’s research team</a> has shown an exceptional result as to separating high level attributes, such as pose, face, hair, and etc., of generated data.
+The success derived from the structural design of the network, via which each style is localized within the subset of the network. 
+Style mixing performed by the network shows what it is capable of.</p>
+
+<!-- figure goes here -->
+<p align="center">
+    <img src="/assets/img/style_mixing.jpeg" alt="style mixing from style gan" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">StyleGAN style mixing result from the paper</figcaption>
+</p>
+
+<p>However, because of the common framework of GAN whose input is a noise vector from a normal distribution, mapping from an image to a latent code, the noise vector, is not explicit in contrast to the vice versa.
+This limits generative model only to certain areas.
+The limitation could be lifted off once there is a way to encode a real data to a latent code that model can understand.
+The blog will mostly focus on this aspect after the simple explanation of styleGAN.</p>
+
+<h3 id="quick-overview-of-stylegan">Quick Overview of StyleGAN</h3>
+
+<p>The GAN framework consists two counterparts, generator and discriminator. 
+Same architecture as one from progressive growing by <a href="https://arxiv.org/pdf/1710.10196.pdf">Karras et al</a> is used for the discriminator.</p>
+
+<p>Generator on the other hand is very unique to itself.
+The generator is composed of mapping network and synthesis network
+The first network maps a latent code to another intermediate latent code, which helps disentangle features.
+The disentanglement is a state in which features lie in a sublinear space, and, thus, the output latent code could be considered a set of styles easy to distinguish (pose, hairstyle, gender, and etc.).
+The second network then synthesize an image given the intermediate latent code.
+This intermediate latent code is localized to each sublayers of the synthesis network through adaptive instance normalization which then allows separation of styles across the sublayers. 
+This unique design hints its ability to localize high level styles.</p>
+
+<!-- style gan generator goes here -->
+<p align="center">
+    <img src="/assets/img/style_gan_structure.png" alt="style gan structure" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Structure of StyleGAN, mapping network on the left and synthesis network on the right</figcaption>
+</p>
+
+<p>For simplicity, we denote latent code to \(z\) and intermediate latent code to \(w\) from now.</p>
+
+<h3 id="encoding-image-for-stylegan">Encoding Image for StyleGAN</h3>
+
+<p>The paper that introduced styleGAN is not explicit on a method to encode a real image to a latent code.
+However, this does not make the potential of the task trivial as it widens the choice of real life applications of styleGAN.</p>
+
+<p>I tried making a program to transfer hairstyle of a person to the user using style mixing but faced an issue of not being able to encode real images to feed through the generator.
+This is just one example of applications if the issue is resolved. 
+I thought of one way that can possibly remedy the issue, which is to train another model that inverses generator process.
+However, some articles mentioned the difficulty of inversing generator of GAN framework.
+Thus, I did more research and found out that I could directly optimize a latent code of an image with gradient descent.
+Before the implementation, it needs to disambiguate the form of latent code because there are more than one latent codes to choose from in styleGAN: \(z\) and \(w\).</p>
+<p align="center">
+    <img src="/assets/img/style_gan_pipeline.png" alt="style gan pipeline" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Where should we feed information of an image to generate the same image?</figcaption>
+</p>
+<p>Thankfully, however, the study emprically proved that \(w\) is somewhat able to disentangles features, and that was enough to make \(w\) be the choice of latent code to convert the real images into.</p>
+
+<p>I was able to find implementation of <a href="https://github.com/rosinality/style-based-gan-pytorch">styleGAN</a> and its <a href="https://github.com/jacobhallberg/pytorch_stylegan_encoder">encoder</a> that I could refer to.
+With excitement, I decided to implement it myself in practice.
+<a href="https://github.com/yjang43/style-based-gan-pytorch"><strong>Here is the implementation of my code</strong></a> and results of it will be further shared in this post.</p>
+
+<p>The alogrithm for my initial attempt to optimize \(w\) is the following:</p>
+<p align="center">
+    <img src="/assets/img/style_gan_encoder_1.png" alt="style gan encoder algorithm" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Steps to optimize <em>w</em> with gradient descent</figcaption>
+</p>
+<p>And below picture shows the progression of generated images from learned \(w\).
+Top pictures are data sampled from <a href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA</a> dataset, and images below demostrate progression of learning.</p>
+<p align="center">
+    <img src="/assets/img/encoder_progress_1.png" alt="style gan encoder algorithm result" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Generated images of optimized <em>w</em> through out training: <br />images are blur if loss is computed pixel by pixel</figcaption>
+</p>
+<p>With the algorithm above, optimized \(w\) resulted in blurred image.
+To address this problem, I refered to other’s implemenation where pretrained VGG-16 network is used to extract features from a generated image and a real image and then compute the loss between them.</p>
+
+<p>The improved version to optimize \(w\) is the following:</p>
+<p align="center">
+    <img src="/assets/img/style_gan_encoder_2.png" alt="style gan encoder algorithm improved with VGG-16" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Steps to optimize <em>w</em> with gradient descent but improved with VGG-16 to extract features from</figcaption>
+</p>
+<p>Picture below shows the progression, and the same sample is used for comparison.</p>
+
+<p align="center">
+    <img src="/assets/img/encoder_progress_2.png" alt="style gan encoder algorithm improved result" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Generated images of optimized <em>w</em> through out training improved version with VGG-16: <br />fine images but some features are transformed</figcaption>
+</p>
+<p>The generated pictures are less blur and tend to grab more specific features of an image, but some features are transformed amid optimization resulting in different person but similar looking.
+This was very fascinating result as it proves that the meaning of extracted features are somewhat conceived similarly by both to human and the machine, but disappointing to realize that accurately converting an image to a latent code is a difficult task.</p>
+
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2021/06/07/info-gan.html'" type="button">
@@ -897,69 +1003,6 @@ tensor<span class="o">([[</span>2., 2., 2., 2.]]<span class="o">)</span>
         </div>
     </button>
     
-    <div class="post-border"></div>
-    <button class="row not-a-button" onclick="location.href='/2020/12/03/transformer.html'" type="button">
-        <div class="col-sm-4">
-            
-                <img class="blog-img" src="/assets/img/transformer.jpeg" alt="Attention Is All You Need - Transformer image">
-            
-        </div>
-        <div class="col-sm-8 blog-summary-container">
-            <div class="container-md">
-              <div class="row">
-                <div class="col-8"><h4>Attention Is All You Need - Transformer</h4></div>
-                <div class="col-4" style="font-size: 12px; text-align: end;">03 Dec 2020</div>
-              <div>
-            </div>
-            <div class="blog-summary">
-                <h3 id="thoughts">Thoughts</h3>
-<p>The paper, “Attention Is All You Need”, is the first to present transformer architecture.
-The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
-This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
-The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.</p>
-
-<p align="center">
-    <img src="/assets/img/transformer_table.png" alt="transformer rnn cnn comparison table" width="75%" />
-</p>
-
-<h3 id="architecture">Architecture</h3>
-<p>I recommend looking back at the article for more details because this part will only stay simple focus more on the overview of the architecture.
-Below is the diagram,</p>
-<p align="center">
-    <img src="/assets/img/transformer_architecture.png" alt="transformer architecture" width="40%" />
-</p>
-<p>Left part of the diagram is an encoder (multi-head self-attention mechanism + fully connected feed-forward network) and the right is a decoder (multi-head attention over output + multi-head attention connecting encoder and decoder + fully connected feed-forawrd).</p>
-<h4 id="encoder">Encoder</h4>
-<p>Starting from the bottom of the encoder, input embedding is done like many other networks into \(d_{model}\) dimension.
-Positional encoding is added to the embeddings. From the candidates of positional encodings, one using sine and consine functions is used. I need more background to understand this implementation.
-Then, this gets fed into <em>multi-head attention</em> or scaled dot-product attention layer. This layer is the highlight of the paper, and used in both encoder and encoder and even encoder-decoder in which encoder connects to decoder. 
-Difference between multi-head attention and scaled dot-product attention is simply the latter is the single-head version of the former.
-We can use parallelization in this step by using multi-head instead.
-Here is a diagram of multi-head attention mechansim.</p>
-
-<p align="center">
-    <img src="/assets/img/attention_diagram.png" alt="attention diagram" width="75%" />
-</p>
-
-<p>The idea is simply taking a dot product of <em>query</em> vector and <em>key</em> vector to decide the weight to put on the <em>value</em> vector. This shows the depencies of values. 
-Then the result gets fed into a feed-forward network with one hidden layer with ReLU activation.</p>
-
-<h4 id="decoder">Decoder</h4>
-<p>Input embedding and positional encoding is identical to an encoder. Also, a feed-forward network after the attention mechanism layer is identical. However, the attention mechanism layers for decoder have some subtle difference. Self-attention layer attends up to the current point which means position after the current point needs to be masked.
-This masking stage is shown in the diagram as “Mask (opt.)” and mask is done by putting \(-inf\) to the position after the current point.
-Attention layer for connecting encoder and decoder is different to other attention layers in a sense that <em>query</em> comes from the decoder step and <em>key</em> and <em>value</em> comes from the encoder step.</p>
-
-<p>The overview of transformer ends here. It was a great fun reading the paper. In addition to the link to the paper, I leave a link of YouTube video that explains the structure in much more detail with visuals.</p>
-
-<p><em>Paper: <a href="https://arxiv.org/pdf/1706.03762.pdf">https://arxiv.org/pdf/1706.03762.pdf</a></em></p>
-
-<p><em>YouTube: <a href="https://www.youtube.com/watch?v=4Bdc55j80l8">https://www.youtube.com/watch?v=4Bdc55j80l8</a></em></p>
-
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </button>
-    
 </div>
 
 <div class="pagination">
@@ -979,6 +1022,12 @@ Attention layer for connecting encoder and decoder is different to other attenti
     
       <span class=page_num>
         <a href="/blog/page2/">2 </a>
+      </span>
+    
+  
+    
+      <span class=page_num>
+        <a href="/blog/page3/">3 </a>
       </span>
     
   

@@ -50,92 +50,92 @@
         
       </li>
         
-          <li class="tag" data-sort="0009">
+          <li class="tag" data-sort="0010">
               <!-- ml:<span>11</span>&nbsp -->
               ml&nbsp
           </li>
         
-          <li class="tag" data-sort="0015">
+          <li class="tag" data-sort="0016">
+              <!-- ml,:<span>5</span>&nbsp -->
+              ml,&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0016">
               <!-- nlp:<span>5</span>&nbsp -->
               nlp&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
-              <!-- ml,:<span>4</span>&nbsp -->
-              ml,&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
               <!-- ai:<span>3</span>&nbsp -->
               ai&nbsp
           </li>
         
-          <li class="tag" data-sort="0017">
+          <li class="tag" data-sort="0018">
+              <!-- gan:<span>3</span>&nbsp -->
+              gan&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0018">
               <!-- python:<span>3</span>&nbsp -->
               python&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
-              <!-- gan:<span>2</span>&nbsp -->
-              gan&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- aws:<span>1</span>&nbsp -->
               aws&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- blockchain:<span>1</span>&nbsp -->
               blockchain&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- dapp:<span>1</span>&nbsp -->
               dapp&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- django:<span>1</span>&nbsp -->
               django&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- github:<span>1</span>&nbsp -->
               github&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- hmm:<span>1</span>&nbsp -->
               hmm&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- jekyll:<span>1</span>&nbsp -->
               jekyll&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- module:<span>1</span>&nbsp -->
               module&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- paper:<span>1</span>&nbsp -->
               paper&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- pytorch:<span>1</span>&nbsp -->
               pytorch&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- svm:<span>1</span>&nbsp -->
               svm&nbsp
           </li>
         
-          <li class="tag" data-sort="0019">
+          <li class="tag" data-sort="0020">
               <!-- transformer:<span>1</span>&nbsp -->
               transformer&nbsp
           
@@ -180,6 +180,69 @@
      -->
 </div>
 <div class="container-sm">
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/12/03/transformer.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/transformer.jpeg" alt="Attention Is All You Need - Transformer image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>Attention Is All You Need - Transformer</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">03 Dec 2020</div>
+              <div>
+            </div>
+            <div class="blog-summary">
+                <h3 id="thoughts">Thoughts</h3>
+<p>The paper, “Attention Is All You Need”, is the first to present transformer architecture.
+The attention mehanism that this architecture implements is capable of representing dependencies of words without a sequential structure like RNN.
+This let the transformer architecture utilize the parallel computation with GPU. This is difficult to acheive in RNN models because of its sequential structure.
+The paper states tthe three motifs of self-attention mechanism. One, computational complexity per layer. Two, parallelization. Three, path length for long-range dependencies for inputs. The table below shows the comparison with other networks.</p>
+
+<p align="center">
+    <img src="/assets/img/transformer_table.png" alt="transformer rnn cnn comparison table" width="75%" />
+</p>
+
+<h3 id="architecture">Architecture</h3>
+<p>I recommend looking back at the article for more details because this part will only stay simple focus more on the overview of the architecture.
+Below is the diagram,</p>
+<p align="center">
+    <img src="/assets/img/transformer_architecture.png" alt="transformer architecture" width="40%" />
+</p>
+<p>Left part of the diagram is an encoder (multi-head self-attention mechanism + fully connected feed-forward network) and the right is a decoder (multi-head attention over output + multi-head attention connecting encoder and decoder + fully connected feed-forawrd).</p>
+<h4 id="encoder">Encoder</h4>
+<p>Starting from the bottom of the encoder, input embedding is done like many other networks into \(d_{model}\) dimension.
+Positional encoding is added to the embeddings. From the candidates of positional encodings, one using sine and consine functions is used. I need more background to understand this implementation.
+Then, this gets fed into <em>multi-head attention</em> or scaled dot-product attention layer. This layer is the highlight of the paper, and used in both encoder and encoder and even encoder-decoder in which encoder connects to decoder. 
+Difference between multi-head attention and scaled dot-product attention is simply the latter is the single-head version of the former.
+We can use parallelization in this step by using multi-head instead.
+Here is a diagram of multi-head attention mechansim.</p>
+
+<p align="center">
+    <img src="/assets/img/attention_diagram.png" alt="attention diagram" width="75%" />
+</p>
+
+<p>The idea is simply taking a dot product of <em>query</em> vector and <em>key</em> vector to decide the weight to put on the <em>value</em> vector. This shows the depencies of values. 
+Then the result gets fed into a feed-forward network with one hidden layer with ReLU activation.</p>
+
+<h4 id="decoder">Decoder</h4>
+<p>Input embedding and positional encoding is identical to an encoder. Also, a feed-forward network after the attention mechanism layer is identical. However, the attention mechanism layers for decoder have some subtle difference. Self-attention layer attends up to the current point which means position after the current point needs to be masked.
+This masking stage is shown in the diagram as “Mask (opt.)” and mask is done by putting \(-inf\) to the position after the current point.
+Attention layer for connecting encoder and decoder is different to other attention layers in a sense that <em>query</em> comes from the decoder step and <em>key</em> and <em>value</em> comes from the encoder step.</p>
+
+<p>The overview of transformer ends here. It was a great fun reading the paper. In addition to the link to the paper, I leave a link of YouTube video that explains the structure in much more detail with visuals.</p>
+
+<p><em>Paper: <a href="https://arxiv.org/pdf/1706.03762.pdf">https://arxiv.org/pdf/1706.03762.pdf</a></em></p>
+
+<p><em>YouTube: <a href="https://www.youtube.com/watch?v=4Bdc55j80l8">https://www.youtube.com/watch?v=4Bdc55j80l8</a></em></p>
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2020/11/23/hidden-markov-model-and-algorithms.html'" type="button">
@@ -684,43 +747,6 @@ deactivate
         </div>
     </button>
     
-    <div class="post-border"></div>
-    <button class="row not-a-button" onclick="location.href='/2020/05/26/jekyll-to-github-pages.html'" type="button">
-        <div class="col-sm-4">
-            
-                <img class="blog-img" src="/assets/img/jekyll.jpeg" alt="Jekyll to GitHub Pages image">
-            
-        </div>
-        <div class="col-sm-8 blog-summary-container">
-            <div class="container-md">
-              <div class="row">
-                <div class="col-8"><h4>Jekyll to GitHub Pages</h4></div>
-                <div class="col-4" style="font-size: 12px; text-align: end;">26 May 2020</div>
-              <div>
-            </div>
-            <div class="blog-summary">
-                <p>GitHub page is not something new to me. When I first
-learned about HTML and CSS, like all others wanted to do,
-I tried to create a phat personal website.
-However, I knew so little to make it look okay.</p>
-
-<p>Several months later, as I learn more about website hosting
-and etc. I realized there is no cheap way <em>for a college student like me</em>
-to host a dynamic web sites. Reason is simple, you need a computer to
-compute and render. So, I came back to GitHub page because they are free.
-Then, I looked for static site generator that GitHub supports.</p>
-
-<p>Jekyll was a standard one and very easy to understand. Some of the terms
-were quite knew to me because Jekyll was a Ruby product, but many of them
-can be disregarded without backfiring at your project.</p>
-
-<p><a href="https://jekyllrb.com/">Check out Jekyll.</a></p>
-
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </button>
-    
 </div>
 
 <div class="pagination">
@@ -743,10 +769,16 @@ can be disregarded without backfiring at your project.</p>
       </span>
     
   
+    
+      <span class=page_num>
+        <a href="/blog/page3/">3 </a>
+      </span>
+    
+  
 
   
     <span class=page_num>
-      <span>Next &raquo;</span>
+      <a href="/blog/page3/">Next &raquo;</a>
     </span>
   
 </div>
