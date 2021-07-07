@@ -74,6 +74,10 @@
     column-gap: 20px;
 }
 
+ul.github-ul {
+    list-style-image: url('/assets//img/blacktocat-32.png');
+}
+
 .coursework {
     background-color: rgb(248, 249, 250);
     padding-top: 2%;
