@@ -1,6 +1,6 @@
 ---
 title: Embedding Weight Tying in Modern Language Models
-tags: ml, nlp
+tags: ml nlp
 img_url: /assets/img/tying_knot.jpg
 layout: blog
 ---

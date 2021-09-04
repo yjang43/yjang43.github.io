@@ -1,7 +1,0 @@
-I"C<p>I find it very important to understand what autograd is more than simply viewing as a PyTorch engine that computes gradient automatically for us.
-Accurately, autograd is an engine for Jacobian-vector product (JVP).
-I will cover two things, cycle of its operation and JVP</p>
-<h3 id="operation-cycle">Operation Cycle</h3>
-<p>Autograd is possible because operations on Tensors are recorded, and a directed acyclic graph (DAG), or more specifically dynamic computational graph (DCG), is craeted along with it.
-In a view of graph, nodes are Tensors, and edges are operations.</p>
-:ET

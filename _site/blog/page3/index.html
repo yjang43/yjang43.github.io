@@ -50,92 +50,92 @@
         
       </li>
         
-          <li class="tag" data-sort="0010">
-              <!-- ml:<span>11</span>&nbsp -->
+          <li class="tag" data-sort="0005">
+              <!-- ml:<span>17</span>&nbsp -->
               ml&nbsp
           </li>
         
-          <li class="tag" data-sort="0016">
-              <!-- ml,:<span>5</span>&nbsp -->
-              ml,&nbsp
-          </li>
-        
-          <li class="tag" data-sort="0016">
+          <li class="tag" data-sort="0017">
               <!-- nlp:<span>5</span>&nbsp -->
               nlp&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- ai:<span>3</span>&nbsp -->
               ai&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- gan:<span>3</span>&nbsp -->
               gan&nbsp
           </li>
         
-          <li class="tag" data-sort="0018">
+          <li class="tag" data-sort="0019">
               <!-- python:<span>3</span>&nbsp -->
               python&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- aws:<span>1</span>&nbsp -->
               aws&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
+              <!-- bishop:<span>1</span>&nbsp -->
+              bishop&nbsp
+          </li>
+        
+          <li class="tag" data-sort="0021">
               <!-- blockchain:<span>1</span>&nbsp -->
               blockchain&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- dapp:<span>1</span>&nbsp -->
               dapp&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- django:<span>1</span>&nbsp -->
               django&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- github:<span>1</span>&nbsp -->
               github&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- hmm:<span>1</span>&nbsp -->
               hmm&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- jekyll:<span>1</span>&nbsp -->
               jekyll&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- module:<span>1</span>&nbsp -->
               module&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- paper:<span>1</span>&nbsp -->
               paper&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- pytorch:<span>1</span>&nbsp -->
               pytorch&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- svm:<span>1</span>&nbsp -->
               svm&nbsp
           </li>
         
-          <li class="tag" data-sort="0020">
+          <li class="tag" data-sort="0021">
               <!-- transformer:<span>1</span>&nbsp -->
               transformer&nbsp
           
@@ -174,12 +174,57 @@
     
     pytorch
     
-    ml,
-    
     gan
+    
+    bishop
      -->
 </div>
 <div class="container-sm">
+    
+    <div class="post-border"></div>
+    <button class="row not-a-button" onclick="location.href='/2020/05/27/django-aws-compatibility.html'" type="button">
+        <div class="col-sm-4">
+            
+                <img class="blog-img" src="/assets/img/aws.png" alt="AWS Deployment, Check for Compatibility image">
+            
+        </div>
+        <div class="col-sm-8 blog-summary-container">
+            <div class="container-md">
+              <div class="row">
+                <div class="col-8"><h4>AWS Deployment, Check for Compatibility</h4></div>
+                <div class="col-4" style="font-size: 12px; text-align: end;">27 May 2020</div>
+              <div>
+            </div>
+            <div class="blog-summary">
+                <p>I used Django 3.0.5 to develop my portfolio website originally.
+Unfortunately, I overlooked the version compatibility of AWS with Django.
+The specified version was 2.1.1 with Python 3.6 the latest.
+This made me configure the project to 2.1.1, basically recreating the project and moving the file in to the project root.
+I think one of the reasons why AWS is maintaining such compatibility is due to SQLite.
+Once I did</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb logs
+</code></pre></div></div>
+<p>I found out that SQLite 3.8 which is a default db provided by Django is not provided by AWS
+(it still maintained 3.7 version).</p>
+
+<p>This made me reconsider the value of virtualenv sciprt.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>pyenv
+pyenv <span class="nb">install </span>3.6
+virtualenv <span class="nt">-p</span> <span class="o">[</span>LOCATION_OF_PYTHON_INSTALLED]/bin/python.3.6 <span class="o">[</span>VIRTUAL_ENVIRONMENT]
+<span class="nb">source</span> <span class="o">[</span>VIRTUAL_ENVIRONMENT]/bin/activate
+...
+
+deactivate
+</code></pre></div></div>
+
+<p>This gets very handy when I have to face compatibility issue.</p>
+
+
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </button>
     
     <div class="post-border"></div>
     <button class="row not-a-button" onclick="location.href='/2020/05/26/jekyll-to-github-pages.html'" type="button">

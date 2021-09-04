@@ -1,0 +1,4 @@
+I"ì<p>The two interpretation of probability are frequentist and Bayesian views. 
+One good example of frequentist view is training neural network, in which the model is trained minimizing negative log likelihood (maximizing likelihood in other words) observing train data.
+Opposite to frequentist view which relies merely on observation of occurrences, Bayesian involves <em>prior probability</em> to prevent some of the shortcomings of frequentist view such as overfitting on small dataset.</p>
+:ET

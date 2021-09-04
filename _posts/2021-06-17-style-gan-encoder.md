@@ -1,6 +1,6 @@
 ---
 title: A Method to Encode Real Data for StyleGAN
-tags: ml, gan
+tags: ml gan
 img_url: /assets/img/style_mixing.jpeg
 layout: blog
 ---
