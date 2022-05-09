@@ -1,187 +1,187 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-04T12:29:13-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Bayesian Probabilities</title><link href="http://localhost:4000/2021/09/04/bayesian-probabilities.html" rel="alternate" type="text/html" title="Bayesian Probabilities" /><published>2021-09-04T00:00:00-05:00</published><updated>2021-09-04T00:00:00-05:00</updated><id>http://localhost:4000/2021/09/04/bayesian-probabilities</id><content type="html" xml:base="http://localhost:4000/2021/09/04/bayesian-probabilities.html">&lt;p&gt;The two interpretation of probability are frequentist and Bayesian views. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-23T22:54:45-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YJ</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Bayesian Probabilities</title><link href="http://localhost:4000/2021/09/04/bayesian-probabilities.html" rel="alternate" type="text/html" title="Bayesian Probabilities" /><published>2021-09-04T00:00:00-05:00</published><updated>2021-09-04T00:00:00-05:00</updated><id>http://localhost:4000/2021/09/04/bayesian-probabilities</id><content type="html" xml:base="http://localhost:4000/2021/09/04/bayesian-probabilities.html"><![CDATA[<p>The two interpretation of probability are frequentist and Bayesian views. 
 One good example of frequentist view is training neural network, in which the model is trained minimizing negative log likelihood (maximizing likelihood in other words) observing train data.
-Opposite to frequentist view which relies merely on observation of occurrences, Bayesian involves &lt;em&gt;prior probability&lt;/em&gt; to prevent some of the shortcomings of frequentist view such as overfitting on small dataset.&lt;/p&gt;
+Opposite to frequentist view which relies merely on observation of occurrences, Bayesian involves <em>prior probability</em> to prevent some of the shortcomings of frequentist view such as overfitting on small dataset.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/bayesian.png&quot; alt=&quot;bayesian cartoon&quot; width=&quot;75%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;&lt;/figcaption&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/bayesian.png" alt="bayesian cartoon" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center"></figcaption>
+</p>
 
-&lt;p&gt;Bayesian approach can be further explained from Bayes’ rule.
-Bayes’ rule is the following,&lt;/p&gt;
+<p>Bayesian approach can be further explained from Bayes’ rule.
+Bayes’ rule is the following,</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$p(D | \mathbf{w}) = {p(D | \mathbf{w}) p(\mathbf{w}) \over p(D)}$$
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;\(p(D | \mathbf{w})\) being &lt;em&gt;posterior probability&lt;/em&gt;, \(p(D | \mathbf{w})\) being &lt;em&gt;likelihood&lt;/em&gt; \(p(\mathbf{w})\) being &lt;em&gt;prior probability&lt;/em&gt;.
-Thus, the following relation can be drawn,&lt;/p&gt;
+<p>\(p(D | \mathbf{w})\) being <em>posterior probability</em>, \(p(D | \mathbf{w})\) being <em>likelihood</em> \(p(\mathbf{w})\) being <em>prior probability</em>.
+Thus, the following relation can be drawn,</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$\text{posterior} \propto \text{likelihood} \times \text{prior}$$
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;This relation provides a profound note that maximizing likelihood function results in maximizing posterior probability.
+<p>This relation provides a profound note that maximizing likelihood function results in maximizing posterior probability.
 However, the process of modeling with such process will only work with an appropriate prior probability.
-I will further discuss regarding the details of other aspects of Bayesian view in later blog posts.&lt;/p&gt;
+I will further discuss regarding the details of other aspects of Bayesian view in later blog posts.</p>
 
-&lt;hr /&gt;
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf&quot;&gt;Bishop, Christopher M. (2006). Pattern recognition and machine learning. New York :Springer,&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="bishop" /><summary type="html">The two interpretation of probability are frequentist and Bayesian views. One good example of frequentist view is training neural network, in which the model is trained minimizing negative log likelihood (maximizing likelihood in other words) observing train data. Opposite to frequentist view which relies merely on observation of occurrences, Bayesian involves prior probability to prevent some of the shortcomings of frequentist view such as overfitting on small dataset.</summary></entry><entry><title type="html">A Method to Encode Real Data for StyleGAN</title><link href="http://localhost:4000/2021/06/17/style-gan-encoder.html" rel="alternate" type="text/html" title="A Method to Encode Real Data for StyleGAN" /><published>2021-06-17T00:00:00-05:00</published><updated>2021-06-17T00:00:00-05:00</updated><id>http://localhost:4000/2021/06/17/style-gan-encoder</id><content type="html" xml:base="http://localhost:4000/2021/06/17/style-gan-encoder.html">&lt;p&gt;&lt;a href=&quot;https://github.com/NVlabs/stylegan&quot;&gt;StyleGAN developed by NVIDIA’s research team&lt;/a&gt; has shown an exceptional result as to separating high level attributes, such as pose, face, hair, and etc., of generated data.
+<hr />
+<h2 id="reference">Reference</h2>
+<p><a href="https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf">Bishop, Christopher M. (2006). Pattern recognition and machine learning. New York :Springer,</a></p>]]></content><author><name></name></author><category term="ml" /><category term="bishop" /><summary type="html"><![CDATA[The two interpretation of probability are frequentist and Bayesian views. One good example of frequentist view is training neural network, in which the model is trained minimizing negative log likelihood (maximizing likelihood in other words) observing train data. Opposite to frequentist view which relies merely on observation of occurrences, Bayesian involves prior probability to prevent some of the shortcomings of frequentist view such as overfitting on small dataset.]]></summary></entry><entry><title type="html">A Method to Encode Real Data for StyleGAN</title><link href="http://localhost:4000/2021/06/17/style-gan-encoder.html" rel="alternate" type="text/html" title="A Method to Encode Real Data for StyleGAN" /><published>2021-06-17T00:00:00-05:00</published><updated>2021-06-17T00:00:00-05:00</updated><id>http://localhost:4000/2021/06/17/style-gan-encoder</id><content type="html" xml:base="http://localhost:4000/2021/06/17/style-gan-encoder.html"><![CDATA[<p><a href="https://github.com/NVlabs/stylegan">StyleGAN developed by NVIDIA’s research team</a> has shown an exceptional result as to separating high level attributes, such as pose, face, hair, and etc., of generated data.
 The success derived from the structural design of the network, via which each style is localized within the subset of the network. 
-Style mixing performed by the network shows what it is capable of.&lt;/p&gt;
+Style mixing performed by the network shows what it is capable of.</p>
 
-&lt;!-- figure goes here --&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/style_mixing.jpeg&quot; alt=&quot;style mixing from style gan&quot; width=&quot;75%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;StyleGAN style mixing result from the paper&lt;/figcaption&gt;
-&lt;/p&gt;
+<!-- figure goes here -->
+<p align="center">
+    <img src="/assets/img/style_mixing.jpeg" alt="style mixing from style gan" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">StyleGAN style mixing result from the paper</figcaption>
+</p>
 
-&lt;p&gt;However, because of the common framework of GAN whose input is a noise vector from a normal distribution, mapping from an image to a latent code, the noise vector, is not explicit in contrast to the vice versa.
+<p>However, because of the common framework of GAN whose input is a noise vector from a normal distribution, mapping from an image to a latent code, the noise vector, is not explicit in contrast to the vice versa.
 This limits generative model only to certain areas.
 The limitation could be lifted off once there is a way to encode a real data to a latent code that model can understand.
-The blog will mostly focus on this aspect after the simple explanation of styleGAN.&lt;/p&gt;
+The blog will mostly focus on this aspect after the simple explanation of styleGAN.</p>
 
-&lt;h3 id=&quot;quick-overview-of-stylegan&quot;&gt;Quick Overview of StyleGAN&lt;/h3&gt;
+<h3 id="quick-overview-of-stylegan">Quick Overview of StyleGAN</h3>
 
-&lt;p&gt;The GAN framework consists two counterparts, generator and discriminator. 
-Same architecture as one from progressive growing by &lt;a href=&quot;https://arxiv.org/pdf/1710.10196.pdf&quot;&gt;Karras et al&lt;/a&gt; is used for the discriminator.&lt;/p&gt;
+<p>The GAN framework consists two counterparts, generator and discriminator. 
+Same architecture as one from progressive growing by <a href="https://arxiv.org/pdf/1710.10196.pdf">Karras et al</a> is used for the discriminator.</p>
 
-&lt;p&gt;Generator on the other hand is very unique to itself.
+<p>Generator on the other hand is very unique to itself.
 The generator is composed of mapping network and synthesis network
 The first network maps a latent code to another intermediate latent code, which helps disentangle features.
 The disentanglement is a state in which features lie in a sublinear space, and, thus, the output latent code could be considered a set of styles easy to distinguish (pose, hairstyle, gender, and etc.).
 The second network then synthesize an image given the intermediate latent code.
 This intermediate latent code is localized to each sublayers of the synthesis network through adaptive instance normalization which then allows separation of styles across the sublayers. 
-This unique design hints its ability to localize high level styles.&lt;/p&gt;
+This unique design hints its ability to localize high level styles.</p>
 
-&lt;!-- style gan generator goes here --&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/style_gan_structure.png&quot; alt=&quot;style gan structure&quot; width=&quot;50%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Structure of StyleGAN, mapping network on the left and synthesis network on the right&lt;/figcaption&gt;
-&lt;/p&gt;
+<!-- style gan generator goes here -->
+<p align="center">
+    <img src="/assets/img/style_gan_structure.png" alt="style gan structure" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Structure of StyleGAN, mapping network on the left and synthesis network on the right</figcaption>
+</p>
 
-&lt;p&gt;For simplicity, we denote latent code to \(z\) and intermediate latent code to \(w\) from now.&lt;/p&gt;
+<p>For simplicity, we denote latent code to \(z\) and intermediate latent code to \(w\) from now.</p>
 
-&lt;h3 id=&quot;encoding-image-for-stylegan&quot;&gt;Encoding Image for StyleGAN&lt;/h3&gt;
+<h3 id="encoding-image-for-stylegan">Encoding Image for StyleGAN</h3>
 
-&lt;p&gt;The paper that introduced styleGAN is not explicit on a method to encode a real image to a latent code.
-However, this does not make the potential of the task trivial as it widens the choice of real life applications of styleGAN.&lt;/p&gt;
+<p>The paper that introduced styleGAN is not explicit on a method to encode a real image to a latent code.
+However, this does not make the potential of the task trivial as it widens the choice of real life applications of styleGAN.</p>
 
-&lt;p&gt;I tried making a program to transfer hairstyle of a person to the user using style mixing but faced an issue of not being able to encode real images to feed through the generator.
+<p>I tried making a program to transfer hairstyle of a person to the user using style mixing but faced an issue of not being able to encode real images to feed through the generator.
 This is just one example of applications if the issue is resolved. 
 I thought of one way that can possibly remedy the issue, which is to train another model that inverses generator process.
 However, some articles mentioned the difficulty of inversing generator of GAN framework.
 Thus, I did more research and found out that I could directly optimize a latent code of an image with gradient descent.
-Before the implementation, it needs to disambiguate the form of latent code because there are more than one latent codes to choose from in styleGAN: \(z\) and \(w\).&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/style_gan_pipeline.png&quot; alt=&quot;style gan pipeline&quot; width=&quot;100%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Where should we feed information of an image to generate the same image?&lt;/figcaption&gt;
-&lt;/p&gt;
-&lt;p&gt;Thankfully, however, the study emprically proved that \(w\) is somewhat able to disentangles features, and that was enough to make \(w\) be the choice of latent code to convert the real images into.&lt;/p&gt;
+Before the implementation, it needs to disambiguate the form of latent code because there are more than one latent codes to choose from in styleGAN: \(z\) and \(w\).</p>
+<p align="center">
+    <img src="/assets/img/style_gan_pipeline.png" alt="style gan pipeline" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Where should we feed information of an image to generate the same image?</figcaption>
+</p>
+<p>Thankfully, however, the study emprically proved that \(w\) is somewhat able to disentangles features, and that was enough to make \(w\) be the choice of latent code to convert the real images into.</p>
 
-&lt;p&gt;I was able to find implementation of &lt;a href=&quot;https://github.com/rosinality/style-based-gan-pytorch&quot;&gt;styleGAN&lt;/a&gt; and its &lt;a href=&quot;https://github.com/jacobhallberg/pytorch_stylegan_encoder&quot;&gt;encoder&lt;/a&gt; that I could refer to.
+<p>I was able to find implementation of <a href="https://github.com/rosinality/style-based-gan-pytorch">styleGAN</a> and its <a href="https://github.com/jacobhallberg/pytorch_stylegan_encoder">encoder</a> that I could refer to.
 With excitement, I decided to implement it myself in practice.
-&lt;a href=&quot;https://github.com/yjang43/style-based-gan-pytorch&quot;&gt;&lt;strong&gt;Here is the implementation of my code&lt;/strong&gt;&lt;/a&gt; and results of it will be further shared in this post.&lt;/p&gt;
+<a href="https://github.com/yjang43/style-based-gan-pytorch"><strong>Here is the implementation of my code</strong></a> and results of it will be further shared in this post.</p>
 
-&lt;p&gt;The alogrithm for my initial attempt to optimize \(w\) is the following:&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/style_gan_encoder_1.png&quot; alt=&quot;style gan encoder algorithm&quot; width=&quot;75%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Steps to optimize &lt;em&gt;w&lt;/em&gt; with gradient descent&lt;/figcaption&gt;
-&lt;/p&gt;
-&lt;p&gt;And below picture shows the progression of generated images from learned \(w\).
-Top pictures are data sampled from &lt;a href=&quot;http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html&quot;&gt;CelebA&lt;/a&gt; dataset, and images below demostrate progression of learning.&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/encoder_progress_1.png&quot; alt=&quot;style gan encoder algorithm result&quot; width=&quot;100%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Generated images of optimized &lt;em&gt;w&lt;/em&gt; through out training: &lt;br /&gt;images are blur if loss is computed pixel by pixel&lt;/figcaption&gt;
-&lt;/p&gt;
-&lt;p&gt;With the algorithm above, optimized \(w\) resulted in blurred image.
-To address this problem, I refered to other’s implemenation where pretrained VGG-16 network is used to extract features from a generated image and a real image and then compute the loss between them.&lt;/p&gt;
+<p>The alogrithm for my initial attempt to optimize \(w\) is the following:</p>
+<p align="center">
+    <img src="/assets/img/style_gan_encoder_1.png" alt="style gan encoder algorithm" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Steps to optimize <em>w</em> with gradient descent</figcaption>
+</p>
+<p>And below picture shows the progression of generated images from learned \(w\).
+Top pictures are data sampled from <a href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA</a> dataset, and images below demostrate progression of learning.</p>
+<p align="center">
+    <img src="/assets/img/encoder_progress_1.png" alt="style gan encoder algorithm result" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Generated images of optimized <em>w</em> through out training: <br />images are blur if loss is computed pixel by pixel</figcaption>
+</p>
+<p>With the algorithm above, optimized \(w\) resulted in blurred image.
+To address this problem, I refered to other’s implemenation where pretrained VGG-16 network is used to extract features from a generated image and a real image and then compute the loss between them.</p>
 
-&lt;p&gt;The improved version to optimize \(w\) is the following:&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/style_gan_encoder_2.png&quot; alt=&quot;style gan encoder algorithm improved with VGG-16&quot; width=&quot;75%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Steps to optimize &lt;em&gt;w&lt;/em&gt; with gradient descent but improved with VGG-16 to extract features from&lt;/figcaption&gt;
-&lt;/p&gt;
-&lt;p&gt;Picture below shows the progression, and the same sample is used for comparison.&lt;/p&gt;
+<p>The improved version to optimize \(w\) is the following:</p>
+<p align="center">
+    <img src="/assets/img/style_gan_encoder_2.png" alt="style gan encoder algorithm improved with VGG-16" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Steps to optimize <em>w</em> with gradient descent but improved with VGG-16 to extract features from</figcaption>
+</p>
+<p>Picture below shows the progression, and the same sample is used for comparison.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/encoder_progress_2.png&quot; alt=&quot;style gan encoder algorithm improved result&quot; width=&quot;100%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Generated images of optimized &lt;em&gt;w&lt;/em&gt; through out training improved version with VGG-16: &lt;br /&gt;fine images but some features are transformed&lt;/figcaption&gt;
-&lt;/p&gt;
-&lt;p&gt;The generated pictures are less blur and tend to grab more specific features of an image, but some features are transformed amid optimization resulting in different person but similar looking.
-This was very fascinating result as it proves that the meaning of extracted features are somewhat conceived similarly by both to human and the machine, but disappointing to realize that accurately converting an image to a latent code is a difficult task.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="gan" /><summary type="html">StyleGAN developed by NVIDIA’s research team has shown an exceptional result as to separating high level attributes, such as pose, face, hair, and etc., of generated data. The success derived from the structural design of the network, via which each style is localized within the subset of the network. Style mixing performed by the network shows what it is capable of.</summary></entry><entry><title type="html">Disentagle Representation with InfoGAN</title><link href="http://localhost:4000/2021/06/07/info-gan.html" rel="alternate" type="text/html" title="Disentagle Representation with InfoGAN" /><published>2021-06-07T00:00:00-05:00</published><updated>2021-06-07T00:00:00-05:00</updated><id>http://localhost:4000/2021/06/07/info-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/07/info-gan.html">&lt;p&gt;To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes.
-One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from &lt;a href=&quot;https://papers.nips.cc/paper/2016/file/7c9d0b1f96aebd7b5eca8c3edaa19ebb-Paper.pdf&quot;&gt;the paper by Chen et al&lt;/a&gt;.
-More specifically with examples, salient codes from MNIST data could simply indicate a formulation of number itself or others such as width or rotation.&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/encoder_progress_2.png" alt="style gan encoder algorithm improved result" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Generated images of optimized <em>w</em> through out training improved version with VGG-16: <br />fine images but some features are transformed</figcaption>
+</p>
+<p>The generated pictures are less blur and tend to grab more specific features of an image, but some features are transformed amid optimization resulting in different person but similar looking.
+This was very fascinating result as it proves that the meaning of extracted features are somewhat conceived similarly by both to human and the machine, but disappointing to realize that accurately converting an image to a latent code is a difficult task.</p>]]></content><author><name></name></author><category term="ml" /><category term="gan" /><summary type="html"><![CDATA[StyleGAN developed by NVIDIA’s research team has shown an exceptional result as to separating high level attributes, such as pose, face, hair, and etc., of generated data. The success derived from the structural design of the network, via which each style is localized within the subset of the network. Style mixing performed by the network shows what it is capable of.]]></summary></entry><entry><title type="html">Disentagle Representation with InfoGAN</title><link href="http://localhost:4000/2021/06/07/info-gan.html" rel="alternate" type="text/html" title="Disentagle Representation with InfoGAN" /><published>2021-06-07T00:00:00-05:00</published><updated>2021-06-07T00:00:00-05:00</updated><id>http://localhost:4000/2021/06/07/info-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/07/info-gan.html"><![CDATA[<p>To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes.
+One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from <a href="https://papers.nips.cc/paper/2016/file/7c9d0b1f96aebd7b5eca8c3edaa19ebb-Paper.pdf">the paper by Chen et al</a>.
+More specifically with examples, salient codes from MNIST data could simply indicate a formulation of number itself or others such as width or rotation.</p>
 
-&lt;h3 id=&quot;how-does-infogan-work&quot;&gt;How Does InfoGAN Work?&lt;/h3&gt;
-&lt;p&gt;InfoGAN achieves to inject a meaning to representations by maximizing mutual information between latent code of a noise and generated data.
+<h3 id="how-does-infogan-work">How Does InfoGAN Work?</h3>
+<p>InfoGAN achieves to inject a meaning to representations by maximizing mutual information between latent code of a noise and generated data.
 We refer latent codes to \(c\) and generated data from noise and the latent code to \(G(x, c)\).
-Thus, the auxilary term to maximize a mutual information between the two is added to GAN loss,&lt;/p&gt;
+Thus, the auxilary term to maximize a mutual information between the two is added to GAN loss,</p>
 
 \[\min_G\max_D V_I(D, G) = V(D, G) - \lambda I(c, G(x, c))\]
 
-&lt;p&gt;, where \(V(D, G)\) indicates GAN loss, \(I(c, G(x, c))\) inidicates mutual information, and \(\lambda\) indicates hyperparmeter to balance the term which in implementation simply set to \(1.0\).&lt;/p&gt;
+<p>, where \(V(D, G)\) indicates GAN loss, \(I(c, G(x, c))\) inidicates mutual information, and \(\lambda\) indicates hyperparmeter to balance the term which in implementation simply set to \(1.0\).</p>
 
-&lt;p&gt;However, maximizing mutual information is a difficult task as it requires a direct access to posterior distribution, \(P(c|x)\).
+<p>However, maximizing mutual information is a difficult task as it requires a direct access to posterior distribution, \(P(c|x)\).
 Thus, auxilary distribution, \(Q(c|x)\), which can be approximated via parametrizing neural network, is used instead.
 Here, author designs a cost efficient network sharing parameters with discriminator to approximate \(Q\).
-Below is an overview of the flow of InfoGAN and demonstration of how weights are shared.&lt;/p&gt;
+Below is an overview of the flow of InfoGAN and demonstration of how weights are shared.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/infogan_structure.png&quot; alt=&quot;cartoon of info gan structure&quot; width=&quot;75%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Network Diagram of InfoGAN&lt;/figcaption&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/infogan_structure.png" alt="cartoon of info gan structure" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Network Diagram of InfoGAN</figcaption>
+</p>
 
-&lt;h3 id=&quot;implementation-in-pytorch&quot;&gt;Implementation in PyTorch&lt;/h3&gt;
+<h3 id="implementation-in-pytorch">Implementation in PyTorch</h3>
 
-&lt;p&gt;The structure of InfoGAN is quite simple, yet made a significant finding.
+<p>The structure of InfoGAN is quite simple, yet made a significant finding.
 Thus, I decided to reimplement the outcome of InfoGAN with PyTorch.
-Code implementation can be found in my GitHub page &lt;strong&gt;&lt;a href=&quot;https://github.com/yjang43/InfoGAN&quot;&gt;yjang43/InfoGAN&lt;/a&gt;&lt;/strong&gt;.
+Code implementation can be found in my GitHub page <strong><a href="https://github.com/yjang43/InfoGAN">yjang43/InfoGAN</a></strong>.
 For the concise demonstration of the result, I used only one discrete latent code as opposed to one discrete and two contingous latent codes from the paper to disentangle salient features from MNIST data.
-Below is the sample of generated MNIST data.&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/infogan_result.png&quot; alt=&quot;InfoGAN generated MNIST&quot; width=&quot;75%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Grid of randomly generated MNIST dataset with each row corresponding to a fixed discrete latent code [0 ~ 9]&lt;/figcaption&gt;
-&lt;/p&gt;
-&lt;p&gt;The convoluted training scheme of GAN coming from its mimnimax game made the implementation challeging,
+Below is the sample of generated MNIST data.</p>
+<p align="center">
+    <img src="/assets/img/infogan_result.png" alt="InfoGAN generated MNIST" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Grid of randomly generated MNIST dataset with each row corresponding to a fixed discrete latent code [0 ~ 9]</figcaption>
+</p>
+<p>The convoluted training scheme of GAN coming from its mimnimax game made the implementation challeging,
 but the result in the end was satisfying.
-Below graph is a result of training loss for 50 epochs with batch size of 16.&lt;/p&gt;
+Below graph is a result of training loss for 50 epochs with batch size of 16.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/infogan_train_loss.png&quot; alt=&quot;InfoGAN train loss for 50 epochs&quot; width=&quot;50%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Progresion of train loss through 50 epochs&lt;/figcaption&gt;
-&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="gan" /><summary type="html">To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes. One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from the paper by Chen et al. More specifically with examples, salient codes from MNIST data could simply indicate a formulation of number itself or others such as width or rotation.</summary></entry><entry><title type="html">Style Transfer with Cycle GAN</title><link href="http://localhost:4000/2021/06/01/cycle-gan.html" rel="alternate" type="text/html" title="Style Transfer with Cycle GAN" /><published>2021-06-01T00:00:00-05:00</published><updated>2021-06-01T00:00:00-05:00</updated><id>http://localhost:4000/2021/06/01/cycle-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/01/cycle-gan.html">&lt;p&gt;Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision.
+<p align="center">
+    <img src="/assets/img/infogan_train_loss.png" alt="InfoGAN train loss for 50 epochs" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Progresion of train loss through 50 epochs</figcaption>
+</p>]]></content><author><name></name></author><category term="ml" /><category term="gan" /><summary type="html"><![CDATA[To merely consider deep neural network to be a black box puts a constraint of retreiving salient codes. One of the approaches to disentangle representation for salient codes in generative task is InfoGAN, which is introduced from the paper by Chen et al. More specifically with examples, salient codes from MNIST data could simply indicate a formulation of number itself or others such as width or rotation.]]></summary></entry><entry><title type="html">Style Transfer with Cycle GAN</title><link href="http://localhost:4000/2021/06/01/cycle-gan.html" rel="alternate" type="text/html" title="Style Transfer with Cycle GAN" /><published>2021-06-01T00:00:00-05:00</published><updated>2021-06-01T00:00:00-05:00</updated><id>http://localhost:4000/2021/06/01/cycle-gan</id><content type="html" xml:base="http://localhost:4000/2021/06/01/cycle-gan.html"><![CDATA[<p>Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision.
 The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example.
 In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other.
 In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. 
-Cycle GAN from a paper called, &lt;a href=&quot;https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Unpaired_Image-To-Image_Translation_ICCV_2017_paper.pdf&quot;&gt;Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks&lt;/a&gt; demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.&lt;/p&gt;
+Cycle GAN from a paper called, <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Unpaired_Image-To-Image_Translation_ICCV_2017_paper.pdf">Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks</a> demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.</p>
 
-&lt;h3 id=&quot;from-gan-to-cycle-gan&quot;&gt;From GAN to Cycle GAN&lt;/h3&gt;
-&lt;p&gt;From the name of it, Cycle GAN uses GAN framework like many other generative models. 
-GAN is a framework of two adversarial neural networks to replicate data sampled from a target distribution.&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/gan_structure.png&quot; alt=&quot;cartoon of gan structure&quot; width=&quot;75%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;GAN framework described from Deep Learning with PyTorch by Eli Stevens&lt;/figcaption&gt;
-&lt;/p&gt;
-&lt;p&gt;This framework is used in Cycle GAN in a sense that generator G generates fake data corresponds to Y domain from X domain, and generator F does vice versa. 
+<h3 id="from-gan-to-cycle-gan">From GAN to Cycle GAN</h3>
+<p>From the name of it, Cycle GAN uses GAN framework like many other generative models. 
+GAN is a framework of two adversarial neural networks to replicate data sampled from a target distribution.</p>
+<p align="center">
+    <img src="/assets/img/gan_structure.png" alt="cartoon of gan structure" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">GAN framework described from Deep Learning with PyTorch by Eli Stevens</figcaption>
+</p>
+<p>This framework is used in Cycle GAN in a sense that generator G generates fake data corresponds to Y domain from X domain, and generator F does vice versa. 
 And provided generated data and real data, discrimnator classify real from fake data.
-Below is the diagram of the flow of the architecture.&lt;/p&gt;
+Below is the diagram of the flow of the architecture.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/cycle_gan.png&quot; alt=&quot;cycle gan flow&quot; width=&quot;100%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Overview diagram of how Cycle GAN works&lt;/figcaption&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/eng-esp.png&quot; alt=&quot;english to spanish&quot; width=&quot;40%&quot; /&gt;
-    &lt;img src=&quot;/assets/img/esp-eng.png&quot; alt=&quot;spanish to english&quot; width=&quot;40%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;English to Spanish and Spanish to English&lt;/figcaption&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/cycle_gan.png" alt="cycle gan flow" width="100%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Overview diagram of how Cycle GAN works</figcaption>
+</p>
+<p align="center">
+    <img src="/assets/img/eng-esp.png" alt="english to spanish" width="40%" />
+    <img src="/assets/img/esp-eng.png" alt="spanish to english" width="40%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">English to Spanish and Spanish to English</figcaption>
+</p>
 
-&lt;p&gt;Here, cycle-consistency loss is an auxilary loss to maintain the retractability after a translation just like how normally text-to-text translation can be translated back to a sementically similar text. 
-Thus, on top of a commonly known GAN loss, Binary Cross-Entropy loss, cycle-consistency loss is added like the following.&lt;/p&gt;
+<p>Here, cycle-consistency loss is an auxilary loss to maintain the retractability after a translation just like how normally text-to-text translation can be translated back to a sementically similar text. 
+Thus, on top of a commonly known GAN loss, Binary Cross-Entropy loss, cycle-consistency loss is added like the following.</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$\mathcal{L}_{GAN}(G, D_Y, X, Y) = \mathbb{E}_{y \sim p_{data}(y)}[log D_Y(y)]
                                   + \mathbb{E}_{x \sim p_{data}(x)}[1 - log D_Y(G(x))]$$
 $$\mathcal{L}_{GAN}(F, D_X, Y, X) = \mathbb{E}_{x \sim p_{data}(x)}[log D_X(x)]
@@ -189,351 +189,351 @@ $$\mathcal{L}_{GAN}(F, D_X, Y, X) = \mathbb{E}_{x \sim p_{data}(x)}[log D_X(x)]
 $$\mathcal{L}_{cyc}(G, F) = \mathbb{E}_{x \sim p_{data}(x)}[\left\Vert F(G(x)) - x \right\Vert_1]
                           + \mathbb{E}_{y \sim p_{data}(y)}[\left\Vert G(F(y)) - y \right\Vert_1]$$
 $$\mathcal{L}_{tot}(G, F, D_X, D_Y) = \mathcal{L}_{GAN}(G, D_Y, X, Y) + \mathcal{L}_{GAN}(F, D_X, Y, X) + \mathcal{L}_{cyc}(G, F)$$
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;And of course, like any other GAN networks, it will be trained like a minimax updating parameters of generators and discriminators taking turns.&lt;/p&gt;
+<p>And of course, like any other GAN networks, it will be trained like a minimax updating parameters of generators and discriminators taking turns.</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$G^*, F^* = arg\min_{G,F}\max_{D_X,D_Y} \mathcal{L}(G, F, D_X, D_Y)$$
-&lt;/div&gt;
+</div>
 
-&lt;h3 id=&quot;result&quot;&gt;Result&lt;/h3&gt;
+<h3 id="result">Result</h3>
 
-&lt;p&gt;Acknowledging unpaired data is used throughout the training, the outcome of what machine learned is quite fascinating. 
+<p>Acknowledging unpaired data is used throughout the training, the outcome of what machine learned is quite fascinating. 
 By having data from X domain to be drawings from Monet, and that from Y domain to be real pictures, machine learns to translate from one domanin to the other, transfering style from each domain.
-This is better understood by the samples of the result presented from the paper.&lt;/p&gt;
+This is better understood by the samples of the result presented from the paper.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/cycle_gan_result.png&quot; alt=&quot;result of cycle gan&quot; width=&quot;75%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;The result of image translation from real images to various painters&apos; styles of the images&lt;/figcaption&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/cycle_gan_result.png" alt="result of cycle gan" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">The result of image translation from real images to various painters' styles of the images</figcaption>
+</p>
 
-&lt;p&gt;Looking at the results provided by the paper, I see the possibilities of this model used in filming or graphic industires.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="gan" /><summary type="html">Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision. The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example. In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other. In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. Cycle GAN from a paper called, Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.</summary></entry><entry><title type="html">Embedding Weight Tying in Modern Language Models</title><link href="http://localhost:4000/2021/03/22/weight-tying-lm.html" rel="alternate" type="text/html" title="Embedding Weight Tying in Modern Language Models" /><published>2021-03-22T00:00:00-05:00</published><updated>2021-03-22T00:00:00-05:00</updated><id>http://localhost:4000/2021/03/22/weight-tying-lm</id><content type="html" xml:base="http://localhost:4000/2021/03/22/weight-tying-lm.html">&lt;p&gt;An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM).
+<p>Looking at the results provided by the paper, I see the possibilities of this model used in filming or graphic industires.</p>]]></content><author><name></name></author><category term="ml" /><category term="gan" /><summary type="html"><![CDATA[Text-to-text translation in NLP with transformer architecture is commonly trained with paired set of data and same with computer vision. The paired data is expensive and rare, thus NLP tends to remedy the issue by generating even more data, back translation for example. In the field of computer vision, however, there exists less constraint as to the broadness of mapping from one domanin to the other. In other words, semantic meaning should maintain strictly in text-to-text translation while image-to-image not so much. Cycle GAN from a paper called, Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks demonstrated a promising result despite utilizing unpaired dataset, which reduces the problem of relying on expensive paired data.]]></summary></entry><entry><title type="html">Embedding Weight Tying in Modern Language Models</title><link href="http://localhost:4000/2021/03/22/weight-tying-lm.html" rel="alternate" type="text/html" title="Embedding Weight Tying in Modern Language Models" /><published>2021-03-22T00:00:00-05:00</published><updated>2021-03-22T00:00:00-05:00</updated><id>http://localhost:4000/2021/03/22/weight-tying-lm</id><content type="html" xml:base="http://localhost:4000/2021/03/22/weight-tying-lm.html"><![CDATA[<p>An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM).
 This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called,
-&lt;em&gt;“Using the Output Embedding to Improve Language Model”&lt;/em&gt;.
-I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry&lt;/p&gt;
+<em>“Using the Output Embedding to Improve Language Model”</em>.
+I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry</p>
 
-&lt;h3 id=&quot;benefits&quot;&gt;Benefits&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;The first benefit of weight tying comes in mind is the reduced number of parameters.&lt;/strong&gt;
+<h3 id="benefits">Benefits</h3>
+<p><strong>The first benefit of weight tying comes in mind is the reduced number of parameters.</strong>
 Within a NNLM Press and Wolf suggest, it shows upto 51% decrease in the number of parameters.
 This is the case where three-way weight tying is done in machine translation model,
 as same weights are shared across input embedding of encoder, input embedding of decoder, and output embedding of decoder. 
 Generally, however, I believe this much of parameter reduction is not the case for the most recent deeper architectures.
-And yet, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting with less perplexity in validation set.&lt;/p&gt;
+And yet, as a result of this, it does not only show efficiency in computation of training but also prevents overfitting with less perplexity in validation set.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/weight_tying.png&quot; alt=&quot;weight tying&quot; width=&quot;80%&quot; /&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/weight_tying.png" alt="weight tying" width="80%" />
+</p>
 
-&lt;p&gt;&lt;strong&gt;Second benefit, suprisingly, is a better quality of word embeddings.&lt;/strong&gt;
+<p><strong>Second benefit, suprisingly, is a better quality of word embeddings.</strong>
 Press and Wolf evaluated this quality by making a correlation of human judgement on relation between words to their consine distance of vector representations.
 One finding within the evaluation is that a word embedding in NNLM resembles more of an output embedding than of an input embedding when weights are tied.
 This implies that an output embedding is actually a better representation of words than an input embedding.
-Press and Wolf explain this finding by looking into the gradient of each side of embedding, in which more information is learned in an output embedding throughout training compared to an input embedding&lt;/p&gt;
+Press and Wolf explain this finding by looking into the gradient of each side of embedding, in which more information is learned in an output embedding throughout training compared to an input embedding</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/weight_tying_equation.png&quot; alt=&quot;gradient flow on input and output embedding&quot; width=&quot;50%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;gradient flow on input and output embedding (from the paper)&lt;/figcaption&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/weight_tying_equation.png" alt="gradient flow on input and output embedding" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">gradient flow on input and output embedding (from the paper)</figcaption>
+</p>
 
-&lt;h3 id=&quot;caveat&quot;&gt;Caveat&lt;/h3&gt;
-&lt;p&gt;Be aware though that weight tying does not apply to word2vec.
+<h3 id="caveat">Caveat</h3>
+<p>Be aware though that weight tying does not apply to word2vec.
 Authors states decoupling of input and output embeddings is required to see the positive impact of weight tying.
-Unlike word2vec, deep neural networks achieve this state, and generally weight tying of an input and an output embeddings is a good rule of thumb.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="nlp" /><summary type="html">An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM). This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called, “Using the Output Embedding to Improve Language Model”. I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry</summary></entry><entry><title type="html">Constituency Parsing with Benepar</title><link href="http://localhost:4000/2021/03/16/benepar.html" rel="alternate" type="text/html" title="Constituency Parsing with Benepar" /><published>2021-03-16T00:00:00-05:00</published><updated>2021-03-16T00:00:00-05:00</updated><id>http://localhost:4000/2021/03/16/benepar</id><content type="html" xml:base="http://localhost:4000/2021/03/16/benepar.html">&lt;p&gt;Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser.
+Unlike word2vec, deep neural networks achieve this state, and generally weight tying of an input and an output embeddings is a good rule of thumb.</p>]]></content><author><name></name></author><category term="ml" /><category term="nlp" /><summary type="html"><![CDATA[An input embedding layer is most commonly tied with an output embedding layer in the current neural network language model (NNLM). This is ever since Press and Wolf (2017) proved the efficiency of tying weights in those two layers in the paper called, “Using the Output Embedding to Improve Language Model”. I always had wondered would there be any trade off by tying the embeddings, and this paper answered my question by experimentally proving that there are no side-effects to worry]]></summary></entry><entry><title type="html">Constituency Parsing with Benepar</title><link href="http://localhost:4000/2021/03/16/benepar.html" rel="alternate" type="text/html" title="Constituency Parsing with Benepar" /><published>2021-03-16T00:00:00-05:00</published><updated>2021-03-16T00:00:00-05:00</updated><id>http://localhost:4000/2021/03/16/benepar</id><content type="html" xml:base="http://localhost:4000/2021/03/16/benepar.html"><![CDATA[<p>Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser.
 The implementation of the logic is in a paper by Kitaev and Klein (2018), “Constituency Parsing with a Self-Attentive Encoder”.
-In a summary, it is a transformer architecture to made decision on the best constituency tree structure each of which are constructed by CKY (Cocke-Kasami-Younger) algorithm.&lt;/p&gt;
+In a summary, it is a transformer architecture to made decision on the best constituency tree structure each of which are constructed by CKY (Cocke-Kasami-Younger) algorithm.</p>
 
-&lt;h2 id=&quot;context-free-grammar&quot;&gt;Context Free Grammar&lt;/h2&gt;
-&lt;p&gt;To understand constituency parsing, knowing CFG (Context Free Grammar) is important.
+<h2 id="context-free-grammar">Context Free Grammar</h2>
+<p>To understand constituency parsing, knowing CFG (Context Free Grammar) is important.
 CFG is a set of grammar rules in which one needs no prior understanding of context of a sentence.
-Here are some examples:&lt;/p&gt;
+Here are some examples:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;S → NP VP&lt;/li&gt;
-  &lt;li&gt;VP → Verb NP&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>S → NP VP</li>
+  <li>VP → Verb NP</li>
+</ul>
 
-&lt;p&gt;S, NP, and VP denotes setence, noun phrase, and verb phrase respectively.
+<p>S, NP, and VP denotes setence, noun phrase, and verb phrase respectively.
 There are many more rules.
-This means, there are multiple formation of parsed tree given a sentence with many grammar rules.&lt;/p&gt;
+This means, there are multiple formation of parsed tree given a sentence with many grammar rules.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/benepar_example.png&quot; alt=&quot;multiple parsed trees&quot; width=&quot;50%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;an example where multiple parsed trees exist&lt;/figcaption&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/benepar_example.png" alt="multiple parsed trees" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">an example where multiple parsed trees exist</figcaption>
+</p>
 
-&lt;p&gt;There is a need of scoring system of such that predicts a correct parsed tree, and to do so, neural network comes to the rescue.&lt;/p&gt;
+<p>There is a need of scoring system of such that predicts a correct parsed tree, and to do so, neural network comes to the rescue.</p>
 
-&lt;h2 id=&quot;model-architecture&quot;&gt;Model Architecture&lt;/h2&gt;
-&lt;p&gt;Kitaev and Klein were inspired by previous works of Stern et al (2017) and Gaddy et al (2018).
-The model Kitaev and Klein proposed is very similar to theirs with the only difference in that contextual span embedding is produced by transformer architecture.&lt;/p&gt;
+<h2 id="model-architecture">Model Architecture</h2>
+<p>Kitaev and Klein were inspired by previous works of Stern et al (2017) and Gaddy et al (2018).
+The model Kitaev and Klein proposed is very similar to theirs with the only difference in that contextual span embedding is produced by transformer architecture.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/benepar_architecture.png&quot; alt=&quot;benepar architecture&quot; width=&quot;50%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;benepar architecture&lt;/figcaption&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/benepar_architecture.png" alt="benepar architecture" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">benepar architecture</figcaption>
+</p>
 
-&lt;p&gt;Despite how well transformer architecture works compared to a previous BiLSTM archtiecture, I personally find the way of producing span representation awkward.&lt;/p&gt;
+<p>Despite how well transformer architecture works compared to a previous BiLSTM archtiecture, I personally find the way of producing span representation awkward.</p>
 
-&lt;p&gt;Previsouly in Gaddy et al (2018), span is \(r_{ij} = [f_j - f_i; b_i - b_j]\), which is a concatanation of the difference from point \(i\) to \(j\) of LSTM’s forward and backward direction.
-This formation is very intuitive once understood that forward representation of point \(i\) represents context upto \(i\) and point \(j\) upto \(j\), meaning subtraction of forward pass of \(j\) and \(i\) will result in the portion of representation equivalent to from \(i\) to \(j\).&lt;/p&gt;
+<p>Previsouly in Gaddy et al (2018), span is \(r_{ij} = [f_j - f_i; b_i - b_j]\), which is a concatanation of the difference from point \(i\) to \(j\) of LSTM’s forward and backward direction.
+This formation is very intuitive once understood that forward representation of point \(i\) represents context upto \(i\) and point \(j\) upto \(j\), meaning subtraction of forward pass of \(j\) and \(i\) will result in the portion of representation equivalent to from \(i\) to \(j\).</p>
 
-&lt;p&gt;However, Kitaev and Klein mimic the formation of span representation by splitting a token representation in half and pretend each to be forward and backward representation of the token.&lt;/p&gt;
+<p>However, Kitaev and Klein mimic the formation of span representation by splitting a token representation in half and pretend each to be forward and backward representation of the token.</p>
 
-&lt;p&gt;Once span representations are produced, score of the span to corresponding label is produced by the following feed forward network:&lt;/p&gt;
+<p>Once span representations are produced, score of the span to corresponding label is produced by the following feed forward network:</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$ s(i, j, l) = [W_2g(W_1r_{ij} + z_1) + z_2]_l $$
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;g, z, and W are ReLU activation function, bias, and weight.&lt;/p&gt;
+<p>g, z, and W are ReLU activation function, bias, and weight.</p>
 
-&lt;p&gt;By summing span scores, \(s(i, j, l)\), of a tree \(T\), we finally get the score of a tree.&lt;/p&gt;
+<p>By summing span scores, \(s(i, j, l)\), of a tree \(T\), we finally get the score of a tree.</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$ s(T) = \sum_{(i,j,l) \in T} s(i,j,l)$$
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;Here \((i, j, l) \in T\) can be considered as constituents in a candidate parsed tree from CKY algorithm.&lt;/p&gt;
+<p>Here \((i, j, l) \in T\) can be considered as constituents in a candidate parsed tree from CKY algorithm.</p>
 
-&lt;p&gt;And at test time or inference time, the optimal parsed tree will be&lt;/p&gt;
+<p>And at test time or inference time, the optimal parsed tree will be</p>
 
 \[\hat {T} = arg\max_T s(T)\]
 
-&lt;p&gt;For train time, the model is trained with hinge loss in the following form:&lt;/p&gt;
+<p>For train time, the model is trained with hinge loss in the following form:</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$ max(0, \max_{T\neq T^*}[s(T) + \Delta(T, T^*)] - s(T^*)) \text{ , where } T^* \text{ is the ground truth parsed tree}$$
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;where \(\Delta\) indicates a hamming loss, which is a commonly used to indicate loss in multi label classification task.
+<p>where \(\Delta\) indicates a hamming loss, which is a commonly used to indicate loss in multi label classification task.
 This makes sense because multiple labelings are conducted on a tree for each constituent - as VB, NP, ADJP, and etc.
-I recommend refering to the paper for more details on the architecture as what drove me to discuss this paper is on the next section.&lt;/p&gt;
+I recommend refering to the paper for more details on the architecture as what drove me to discuss this paper is on the next section.</p>
 
-&lt;h2 id=&quot;separating-content-and-position-information&quot;&gt;Separating Content and Position Information&lt;/h2&gt;
+<h2 id="separating-content-and-position-information">Separating Content and Position Information</h2>
 
-&lt;p&gt;Kitaev and Klein claim the following: content and position information should be balanced throughout learning, but in practice it does not.
-Thus, they seek for a way to separate the information within the network.&lt;/p&gt;
+<p>Kitaev and Klein claim the following: content and position information should be balanced throughout learning, but in practice it does not.
+Thus, they seek for a way to separate the information within the network.</p>
 
-&lt;p&gt;Given the equation \(z_t = w_t + m_t + p_t\), where \(w_t, m_t, p_t\) each means word, tag, and positional embedding,
-approach using this was limitted in its peformance as positional information dominates content information.&lt;/p&gt;
+<p>Given the equation \(z_t = w_t + m_t + p_t\), where \(w_t, m_t, p_t\) each means word, tag, and positional embedding,
+approach using this was limitted in its peformance as positional information dominates content information.</p>
 
-&lt;p&gt;Authors’ first attempt was to separate information by concatanating as such: \(z_t = [w_t + m_t;p_t]\).
+<p>Authors’ first attempt was to separate information by concatanating as such: \(z_t = [w_t + m_t;p_t]\).
 However, regarding this approach intermingles both information in high deimention network, this method results the same.
 For a better explanation, given the following relation \(q = q^{(c)} + q^{(p)}\) and \(k = k^{(c)} + k^{(p)}\),
 where \(c\) and \(p\) each means content and position information,
-throughout attention mechanism, we see they intermingle and loss balance eventually.&lt;/p&gt;
+throughout attention mechanism, we see they intermingle and loss balance eventually.</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
     $$ q\cdot k = (q^{(c)} + q^{(p)})\cdot (k^{(c)} + k^{(p)}) $$
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;This happens because weights multiplied to key and value are the &lt;em&gt;weighted sum of both&lt;/em&gt; content and position information.
-Thus, authors decide to completely &lt;em&gt;factor&lt;/em&gt; out each inforamtion by reforming weights operated on input like below,&lt;/p&gt;
+<p>This happens because weights multiplied to key and value are the <em>weighted sum of both</em> content and position information.
+Thus, authors decide to completely <em>factor</em> out each inforamtion by reforming weights operated on input like below,</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-    $$ W = \begin{bmatrix} W^{(c)} &amp;amp; 0 \\ 0 &amp;amp; W^{(p)} \end{bmatrix} $$
-&lt;/div&gt;
+<div style="width: 100%; overflow: scroll;">
+    $$ W = \begin{bmatrix} W^{(c)} &amp; 0 \\ 0 &amp; W^{(p)} \end{bmatrix} $$
+</div>
 
-&lt;p&gt;Then, \(W c = [W^{(c)}x^{(c)};W^{(p)}x^{(p)}]\), which means unlike their initial approach,&lt;/p&gt;
+<p>Then, \(W c = [W^{(c)}x^{(c)};W^{(p)}x^{(p)}]\), which means unlike their initial approach,</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
     $$ q\cdot k = q^{(c)}\cdot k^{(c)} + q^{(p)}\cdot k^{(p)} $$
-&lt;/div&gt;</content><author><name></name></author><category term="ml" /><category term="nlp" /><summary type="html">Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser. The implementation of the logic is in a paper by Kitaev and Klein (2018), “Constituency Parsing with a Self-Attentive Encoder”. In a summary, it is a transformer architecture to made decision on the best constituency tree structure each of which are constructed by CKY (Cocke-Kasami-Younger) algorithm.</summary></entry><entry><title type="html">Distillation in Neural Networks</title><link href="http://localhost:4000/2021/02/09/distilation.html" rel="alternate" type="text/html" title="Distillation in Neural Networks" /><published>2021-02-09T00:00:00-06:00</published><updated>2021-02-09T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/09/distilation</id><content type="html" xml:base="http://localhost:4000/2021/02/09/distilation.html">&lt;p&gt;First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). 
-I decided to learn more about distillation technique, and headed to where the paper directed me: &lt;em&gt;“Distillling the Knowledge in a Neural Network” (Hinton, 2015)&lt;/em&gt;.
-Distillation is one of trasfer learning techniques &lt;strong&gt;to achieve the same or similar performance as big model with a small model.&lt;/strong&gt;&lt;/p&gt;
+</div>]]></content><author><name></name></author><category term="ml" /><category term="nlp" /><summary type="html"><![CDATA[Benepar (Berkley Neural Parser) is a current state-of-the-art constituency parser. The implementation of the logic is in a paper by Kitaev and Klein (2018), “Constituency Parsing with a Self-Attentive Encoder”. In a summary, it is a transformer architecture to made decision on the best constituency tree structure each of which are constructed by CKY (Cocke-Kasami-Younger) algorithm.]]></summary></entry><entry><title type="html">Distillation in Neural Networks</title><link href="http://localhost:4000/2021/02/09/distilation.html" rel="alternate" type="text/html" title="Distillation in Neural Networks" /><published>2021-02-09T00:00:00-06:00</published><updated>2021-02-09T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/09/distilation</id><content type="html" xml:base="http://localhost:4000/2021/02/09/distilation.html"><![CDATA[<p>First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). 
+I decided to learn more about distillation technique, and headed to where the paper directed me: <em>“Distillling the Knowledge in a Neural Network” (Hinton, 2015)</em>.
+Distillation is one of trasfer learning techniques <strong>to achieve the same or similar performance as big model with a small model.</strong></p>
 
-&lt;h2 id=&quot;motif&quot;&gt;Motif&lt;/h2&gt;
-&lt;p&gt;At a glance, converting a big model to a small model seems redundant because both models’ performance will be similar (becase that is the goal of distillation – duh!). 
-However, distillation provides speed in inference phase, and this is important in real-time applications such as autonomous driving or chatbot customer service.&lt;/p&gt;
+<h2 id="motif">Motif</h2>
+<p>At a glance, converting a big model to a small model seems redundant because both models’ performance will be similar (becase that is the goal of distillation – duh!). 
+However, distillation provides speed in inference phase, and this is important in real-time applications such as autonomous driving or chatbot customer service.</p>
 
-&lt;h2 id=&quot;distillation-big-model-to-small-model&quot;&gt;Distillation: Big Model to Small Model&lt;/h2&gt;
-&lt;p&gt;Idea seems direct, big model to small model, but steps need a closer look.
+<h2 id="distillation-big-model-to-small-model">Distillation: Big Model to Small Model</h2>
+<p>Idea seems direct, big model to small model, but steps need a closer look.
 Prior to the discussion of nitty gritty of its implementation, intuition of where the knowledge comes from is important.
 The authors find this information from soft label, or soft target.
 Unlike hard label that deterministically indicates a label of an input, soft label indicates probability, and what the distribution of probability provides is useful information.
-For example, if model was to classify dogs from other objects such as cats and ships, it may misclassify dogs to be cats rather than to be ships. Probability distribution contains information that describes such cases.&lt;/p&gt;
+For example, if model was to classify dogs from other objects such as cats and ships, it may misclassify dogs to be cats rather than to be ships. Probability distribution contains information that describes such cases.</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$ \text{soft label: } \begin{pmatrix}\text{dog: }0.8 &amp;amp; \text{cat: }0.19 &amp;amp; \text{ship: }0.01\end{pmatrix} \\
-\text{hard label: } \begin{pmatrix}\text{dog: }1 &amp;amp; \text{cat: }0 &amp;amp; \text{ship: }0\end{pmatrix} $$
-&lt;/div&gt;
+<div style="width: 100%; overflow: scroll;">
+$$ \text{soft label: } \begin{pmatrix}\text{dog: }0.8 &amp; \text{cat: }0.19 &amp; \text{ship: }0.01\end{pmatrix} \\
+\text{hard label: } \begin{pmatrix}\text{dog: }1 &amp; \text{cat: }0 &amp; \text{ship: }0\end{pmatrix} $$
+</div>
 
-&lt;p&gt;With this intuition, we naturally move towards softmax to generate the probability distribution. However, softmax alone hardly provide a useable distribution. 
+<p>With this intuition, we naturally move towards softmax to generate the probability distribution. However, softmax alone hardly provide a useable distribution. 
 Thus, we need to add and adjust additional term, temperature.
-This is where the word, distillation, comes from&lt;/p&gt;
+This is where the word, distillation, comes from</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$ q_i = {exp(z_i/T)\over \sum_j exp(z_j / T)}\text{, T is temperature} $$
-&lt;/div&gt;
+</div>
 
-&lt;h4 align=&quot;center&quot;&gt;
-    &quot;... to raise the temperature of the final softmax until the cumbersome [big] model produces a suitably soft set of targets&quot;.
-&lt;/h4&gt;
+<h4 align="center">
+    "... to raise the temperature of the final softmax until the cumbersome [big] model produces a suitably soft set of targets".
+</h4>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/distillation.jpg&quot; alt=&quot;distillation&quot; width=&quot;50%&quot; /&gt;
-    &lt;figcaption style=&quot;color: gray; font-size:12px; text-align:center&quot;&gt;Distillation is the process of separating components of a mixture based on different boiling points.&lt;/figcaption&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/distillation.jpg" alt="distillation" width="50%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center">Distillation is the process of separating components of a mixture based on different boiling points.</figcaption>
+</p>
 
-&lt;p&gt;The result of increaseing a temperature is explained with the following diagram. 
+<p>The result of increaseing a temperature is explained with the following diagram. 
 As temperature rises, more consideration is put on unlikely categories. 
-In other words, when model was to predict an input to be a dog, it more acknowledges the similarity between cats and dogs as temperature grows.&lt;/p&gt;
+In other words, when model was to predict an input to be a dog, it more acknowledges the similarity between cats and dogs as temperature grows.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/temperature.png&quot; alt=&quot;probability distribution as temperature increases&quot; width=&quot;80%&quot; /&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/temperature.png" alt="probability distribution as temperature increases" width="80%" />
+</p>
 
-&lt;h2 id=&quot;final-loss-function&quot;&gt;Final Loss Function&lt;/h2&gt;
-&lt;p&gt;There can be many ways to include distillation to reduce big model to smaller model. The authors suggest to take weighted sum of two loss functions for classficiation task.&lt;/p&gt;
+<h2 id="final-loss-function">Final Loss Function</h2>
+<p>There can be many ways to include distillation to reduce big model to smaller model. The authors suggest to take weighted sum of two loss functions for classficiation task.</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Set the same temperature for both big and small models and cross entropy of with soft labels.&lt;/li&gt;
-  &lt;li&gt;Like normal classficiation task, cross entropy with hard label.&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Set the same temperature for both big and small models and cross entropy of with soft labels.</li>
+  <li>Like normal classficiation task, cross entropy with hard label.</li>
+</ul>
 
-&lt;p&gt;Then, \(T^2\)  should be multiplied to the first loss function as the temperature included in the loss function will decrease the flow of its gradient by \(1 \over T^2\).&lt;/p&gt;</content><author><name></name></author><category term="ml" /><summary type="html">First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). I decided to learn more about distillation technique, and headed to where the paper directed me: “Distillling the Knowledge in a Neural Network” (Hinton, 2015). Distillation is one of trasfer learning techniques to achieve the same or similar performance as big model with a small model.</summary></entry><entry><title type="html">Byte Pair Encoding in NLP</title><link href="http://localhost:4000/2021/02/03/bpe.html" rel="alternate" type="text/html" title="Byte Pair Encoding in NLP" /><published>2021-02-03T00:00:00-06:00</published><updated>2021-02-03T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/03/bpe</id><content type="html" xml:base="http://localhost:4000/2021/02/03/bpe.html">&lt;p&gt;This is a short summary of a paper, &lt;em&gt;Neural Machine Translation of Rare Words with Subwords Units&lt;/em&gt; by &lt;em&gt;Sennrich (2016)&lt;/em&gt;.
-The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite words with subwords.&lt;/p&gt;
+<p>Then, \(T^2\)  should be multiplied to the first loss function as the temperature included in the loss function will decrease the flow of its gradient by \(1 \over T^2\).</p>]]></content><author><name></name></author><category term="ml" /><summary type="html"><![CDATA[First I approach the idea distillation from the reading about DistilBERT (Sanh, 2019). I decided to learn more about distillation technique, and headed to where the paper directed me: “Distillling the Knowledge in a Neural Network” (Hinton, 2015). Distillation is one of trasfer learning techniques to achieve the same or similar performance as big model with a small model.]]></summary></entry><entry><title type="html">Byte Pair Encoding in NLP</title><link href="http://localhost:4000/2021/02/03/bpe.html" rel="alternate" type="text/html" title="Byte Pair Encoding in NLP" /><published>2021-02-03T00:00:00-06:00</published><updated>2021-02-03T00:00:00-06:00</updated><id>http://localhost:4000/2021/02/03/bpe</id><content type="html" xml:base="http://localhost:4000/2021/02/03/bpe.html"><![CDATA[<p>This is a short summary of a paper, <em>Neural Machine Translation of Rare Words with Subwords Units</em> by <em>Sennrich (2016)</em>.
+The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite words with subwords.</p>
 
-&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
-&lt;p&gt;Before the dicussion of its algorithm, it will be better to tackle on why new approach of formulating vocabulary is desired.
+<h2 id="motivation">Motivation</h2>
+<p>Before the dicussion of its algorithm, it will be better to tackle on why new approach of formulating vocabulary is desired.
 Original works include having UNK vocabulary or back-off strategy to cope with OOV cases.
 These issues were brought forth due to their fixed vocabulary size.
-Using subwords, however, can avoid this because combinations of subwords can create infinite number of words, and to make subwords, we need to segment words into smaller pieces.&lt;/p&gt;
+Using subwords, however, can avoid this because combinations of subwords can create infinite number of words, and to make subwords, we need to segment words into smaller pieces.</p>
 
-&lt;p&gt;However, one question can follow: would it work better?
+<p>However, one question can follow: would it work better?
 The answer to that question is simply, yes (in neural translation model specifically).
-Languages, not limited only to English, contains such common cases: named entities, cognates and loanwords, morphologically complex words. And, these narrow down to two things to consider: &lt;em&gt;compounding&lt;/em&gt; which is to combine words for a more complex word (air + plane -&amp;gt; airplane) and &lt;em&gt;transliteration&lt;/em&gt; which is a translation from letter to letter (g, b -&amp;gt; ㄱ, ㅂ).&lt;/p&gt;
+Languages, not limited only to English, contains such common cases: named entities, cognates and loanwords, morphologically complex words. And, these narrow down to two things to consider: <em>compounding</em> which is to combine words for a more complex word (air + plane -&gt; airplane) and <em>transliteration</em> which is a translation from letter to letter (g, b -&gt; ㄱ, ㅂ).</p>
 
-&lt;p&gt;BPE is not a magic that solves any issues unless the balance is found. Size of vocabulary may be small (even down to alphabet level size), and it will still cover limitless words. This of course will be able to maximize time and space efficiency, but with the major cost of delievering information in the sequence.
-In other words, small size words will result the same input to be a longer sequence than bigger size words, in which it becomes more dfficult to contain information from its vicinity.&lt;/p&gt;
+<p>BPE is not a magic that solves any issues unless the balance is found. Size of vocabulary may be small (even down to alphabet level size), and it will still cover limitless words. This of course will be able to maximize time and space efficiency, but with the major cost of delievering information in the sequence.
+In other words, small size words will result the same input to be a longer sequence than bigger size words, in which it becomes more dfficult to contain information from its vicinity.</p>
 
-&lt;h2 id=&quot;algorithm&quot;&gt;Algorithm&lt;/h2&gt;
-&lt;p&gt;BPE encoding is a compression algorithm that iteratively pairs with the most frequent pairs. In my opinion, this distinct itself from WPM because Schuster (2012) picks pair that optimize language model rather than sepcifically for pair’s frequency.
-The code is provided in the paper like the following:&lt;/p&gt;
+<h2 id="algorithm">Algorithm</h2>
+<p>BPE encoding is a compression algorithm that iteratively pairs with the most frequent pairs. In my opinion, this distinct itself from WPM because Schuster (2012) picks pair that optimize language model rather than sepcifically for pair’s frequency.
+The code is provided in the paper like the following:</p>
 
-&lt;!-- ``` python --&gt;
+<!-- ``` python -->
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;collections&lt;/span&gt;
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span><span class="p">,</span> <span class="n">collections</span>
 
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;collections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;defaultdict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;
+<span class="k">def</span> <span class="nf">get_stats</span><span class="p">(</span><span class="n">vocab</span><span class="p">):</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">vocab</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">symbols</span> <span class="o">=</span> <span class="n">word</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">pairs</span><span class="p">[</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">freq</span>
+    <span class="k">return</span> <span class="n">pairs</span>
 
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge_vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;v_out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;bigram&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;escape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos; &apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;(?&amp;lt;!\S)&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bigram&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;sa&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;(?!\S)&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;w_out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;v_out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_out&lt;/span&gt;
+<span class="k">def</span> <span class="nf">merge_vocab</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">v_in</span><span class="p">):</span>
+    <span class="n">v_out</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">escape</span><span class="p">(</span><span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">pair</span><span class="p">))</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="sa">r</span><span class="s">'(?&lt;!\S)'</span> <span class="o">+</span> <span class="n">bigram</span> <span class="o">+</span> <span class="sa">r</span><span class="s">'(?!\S)'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">v_in</span><span class="p">:</span>
+        <span class="n">w_out</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">pair</span><span class="p">),</span> <span class="n">word</span><span class="p">)</span>
+        <span class="n">v_out</span><span class="p">[</span><span class="n">w_out</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_in</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">v_out</span>
 
-&lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;l o w &amp;lt;/w&amp;gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;l o w e r &amp;lt;/w&amp;gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;s&quot;&gt;&apos;n e w e s t &amp;lt;/w&amp;gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;w i d e s t &amp;lt;/w&amp;gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+<span class="n">vocab</span> <span class="o">=</span> <span class="p">{</span><span class="s">'l o w &lt;/w&gt;'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">'l o w e r &lt;/w&gt;'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+         <span class="s">'n e w e s t &lt;/w&gt;'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">'w i d e s t &lt;/w&gt;'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 
-&lt;span class=&quot;n&quot;&gt;num_merges&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_merges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;best&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;best&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vocab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;best&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+<span class="n">num_merges</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_merges</span><span class="p">):</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">get_stats</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">pairs</span><span class="p">.</span><span class="n">get</span><span class="p">)</span>
+    <span class="n">vocab</span> <span class="o">=</span> <span class="n">merge_vocab</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">vocab</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">best</span><span class="p">)</span></code></pre></figure>
 
-&lt;!-- ``` --&gt;
+<!-- ``` -->
 
-&lt;p&gt;When the code is run, we get the ouput like the following.&lt;/p&gt;
+<p>When the code is run, we get the ouput like the following.</p>
 
-&lt;div style=&quot;text-align: center;&quot;&gt;
-(&apos;e&apos;, &apos;s&apos;)&lt;br /&gt;
-(&apos;es&apos;, &apos;t&apos;)&lt;br /&gt;
-&lt;b&gt;(&apos;est&apos;, &apos;&amp;lt;/w&amp;gt;&apos;)&lt;/b&gt;&lt;br /&gt;
-(&apos;l&apos;, &apos;o&apos;)&lt;br /&gt;
-(&apos;lo&apos;, &apos;w&apos;)&lt;br /&gt;
-(&apos;n&apos;, &apos;e&apos;)&lt;br /&gt;
-(&apos;ne&apos;, &apos;w&apos;)&lt;br /&gt;
-&lt;b&gt;(&apos;new&apos;, &apos;est&amp;lt;/w&amp;gt;&apos;)&lt;/b&gt;&lt;br /&gt;
-(&apos;low&apos;, &apos;&amp;lt;/w&amp;gt;&apos;)&lt;br /&gt;
-(&apos;w&apos;, &apos;i&apos;)&lt;br /&gt;
-&lt;br /&gt;
-&lt;/div&gt;
-&lt;p&gt;Note that ‘est’ which has occurred frequently later combine with ‘new’ and ‘low’ as a whole.
-The role of comparison ‘est’ is cached and combination with other subwords shows a transparent transformation and later help transparent translation, meaning &lt;em&gt;“adjective + ‘est’“&lt;/em&gt; is &lt;em&gt;&quot;’가장’ + 형용사”&lt;/em&gt; in Korean and parrallel translation can be found within.&lt;/p&gt;</content><author><name></name></author><category term="ml" /><category term="nlp" /><summary type="html">This is a short summary of a paper, Neural Machine Translation of Rare Words with Subwords Units by Sennrich (2016). The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite words with subwords.</summary></entry><entry><title type="html">Autoencoders and Transfer Learning</title><link href="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html" rel="alternate" type="text/html" title="Autoencoders and Transfer Learning" /><published>2021-01-22T00:00:00-06:00</published><updated>2021-01-22T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning</id><content type="html" xml:base="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html">&lt;h2 id=&quot;autoencoders&quot;&gt;Autoencoders&lt;/h2&gt;
-&lt;p&gt;Autoencoders is an unsupervised learning method to reduce a dimensionality of input.
+<div style="text-align: center;">
+('e', 's')<br />
+('es', 't')<br />
+<b>('est', '&lt;/w&gt;')</b><br />
+('l', 'o')<br />
+('lo', 'w')<br />
+('n', 'e')<br />
+('ne', 'w')<br />
+<b>('new', 'est&lt;/w&gt;')</b><br />
+('low', '&lt;/w&gt;')<br />
+('w', 'i')<br />
+<br />
+</div>
+<p>Note that ‘est’ which has occurred frequently later combine with ‘new’ and ‘low’ as a whole.
+The role of comparison ‘est’ is cached and combination with other subwords shows a transparent transformation and later help transparent translation, meaning <em>“adjective + ‘est’“</em> is <em>"’가장’ + 형용사”</em> in Korean and parrallel translation can be found within.</p>]]></content><author><name></name></author><category term="ml" /><category term="nlp" /><summary type="html"><![CDATA[This is a short summary of a paper, Neural Machine Translation of Rare Words with Subwords Units by Sennrich (2016). The approach to formulate a dictionary of corpus is very similar to WordPiece Model proposed by Schuster (2012), which both resolves OOV (out-of-vocabulary) cases by being able to create infinite words with subwords.]]></summary></entry><entry><title type="html">Autoencoders and Transfer Learning</title><link href="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html" rel="alternate" type="text/html" title="Autoencoders and Transfer Learning" /><published>2021-01-22T00:00:00-06:00</published><updated>2021-01-22T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning</id><content type="html" xml:base="http://localhost:4000/2021/01/22/autoencoders-and-transfer-learning.html"><![CDATA[<h2 id="autoencoders">Autoencoders</h2>
+<p>Autoencoders is an unsupervised learning method to reduce a dimensionality of input.
 The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. 
 The main idea is to reconstruct an input with limitted features.
-Here is a diagram of a simple autoencoder.&lt;/p&gt;
+Here is a diagram of a simple autoencoder.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/autoencoder.png&quot; alt=&quot;JVP&quot; width=&quot;50%&quot; /&gt;
-&lt;/p&gt;
+<p align="center">
+    <img src="/assets/img/autoencoder.png" alt="JVP" width="50%" />
+</p>
 
-&lt;p&gt;Basically, the network is composed of encoder and decoder, and lantent features (code) gives a high-level representation of input. 
+<p>Basically, the network is composed of encoder and decoder, and lantent features (code) gives a high-level representation of input. 
 Some tricks on autoencoder can result in better representation of latent features.
-One I will mention is denosing autoencoders invented by Vincet(2008). By masking portion of input, it provides robust representation to partially destructed input, which aligns with the definition author proposed to be a “good” representation. Here is a &lt;strong&gt;&lt;a href=&quot;https://github.com/yjang43/ml_practice/blob/master/autoencoder.ipynb&quot;&gt;link&lt;/a&gt;&lt;/strong&gt; that compares the results of autoencoders and desnoising autoencoder.&lt;/p&gt;
+One I will mention is denosing autoencoders invented by Vincet(2008). By masking portion of input, it provides robust representation to partially destructed input, which aligns with the definition author proposed to be a “good” representation. Here is a <strong><a href="https://github.com/yjang43/ml_practice/blob/master/autoencoder.ipynb">link</a></strong> that compares the results of autoencoders and desnoising autoencoder.</p>
 
-&lt;h2 id=&quot;transfer-learning-with-autoencoder&quot;&gt;Transfer Learning with Autoencoder&lt;/h2&gt;
-&lt;p&gt;Transfer learning is to use information from source domains, abundant data, to support tasks in target domains, small data.
+<h2 id="transfer-learning-with-autoencoder">Transfer Learning with Autoencoder</h2>
+<p>Transfer learning is to use information from source domains, abundant data, to support tasks in target domains, small data.
 Glorot(2011) proposes that stacked denoising autoencoder (SDA) can extract intermediate representations from both source and target domain, and use that to help classfication task in target domain.
-This idea extends to transfer learning with deep autoencoders (TLDA) by Zhuang (2015), which is a form of supervised learning unlike the usual approach with autoencoder. I have conducted an experiment to check its better performance &lt;strong&gt;&lt;a href=&quot;https://github.com/yjang43/ml_practice/blob/master/TLDA.ipynb&quot;&gt;here&lt;/a&gt;&lt;/strong&gt;.
+This idea extends to transfer learning with deep autoencoders (TLDA) by Zhuang (2015), which is a form of supervised learning unlike the usual approach with autoencoder. I have conducted an experiment to check its better performance <strong><a href="https://github.com/yjang43/ml_practice/blob/master/TLDA.ipynb">here</a></strong>.
 Instead of using the same dataset from the paper, I used MNIST data.
 The task was to check if a binary classfication of a number (ex. is the input ‘1’ when compared with ‘3’) can be transfered to another binary classification (ex. is the input ‘1’ when compared with ‘5’). 
 Surprisingly, TLDA performed much better than the baseline, in which I shared parameters trained in simple DNN to another task.
 Here is a comparsion of learned feature between TLDA and baseline.
-You can see the learned feature from TLDA is more generalized to both the source and target domains.&lt;/p&gt;
+You can see the learned feature from TLDA is more generalized to both the source and target domains.</p>
 
-&lt;p align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/assets/img/tlda_result.png&quot; alt=&quot;JVP&quot; width=&quot;100%&quot; /&gt;
-&lt;/p&gt;</content><author><name></name></author><category term="ml" /><summary type="html">Autoencoders Autoencoders is an unsupervised learning method to reduce a dimensionality of input. The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. The main idea is to reconstruct an input with limitted features. Here is a diagram of a simple autoencoder.</summary></entry><entry><title type="html">Learning Xavier Initialization</title><link href="http://localhost:4000/2021/01/10/xavier-init.html" rel="alternate" type="text/html" title="Learning Xavier Initialization" /><published>2021-01-10T00:00:00-06:00</published><updated>2021-01-10T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/10/xavier-init</id><content type="html" xml:base="http://localhost:4000/2021/01/10/xavier-init.html">&lt;p&gt;Learning PyTorch, I happened to come across a function called &lt;em&gt;reset_parameters()&lt;/em&gt;.
+<p align="center">
+    <img src="/assets/img/tlda_result.png" alt="JVP" width="100%" />
+</p>]]></content><author><name></name></author><category term="ml" /><summary type="html"><![CDATA[Autoencoders Autoencoders is an unsupervised learning method to reduce a dimensionality of input. The main idea is very similar to PCA, but more can be done with autoencoder, for example adding non-linearity or regularization. The main idea is to reconstruct an input with limitted features. Here is a diagram of a simple autoencoder.]]></summary></entry><entry><title type="html">Learning Xavier Initialization</title><link href="http://localhost:4000/2021/01/10/xavier-init.html" rel="alternate" type="text/html" title="Learning Xavier Initialization" /><published>2021-01-10T00:00:00-06:00</published><updated>2021-01-10T00:00:00-06:00</updated><id>http://localhost:4000/2021/01/10/xavier-init</id><content type="html" xml:base="http://localhost:4000/2021/01/10/xavier-init.html"><![CDATA[<p>Learning PyTorch, I happened to come across a function called <em>reset_parameters()</em>.
 This function included xavier initalization instead of standard initialization.
 So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”.
-The origin paper of Xavier intialization gave me great undersatnding of its objective.&lt;/p&gt;
+The origin paper of Xavier intialization gave me great undersatnding of its objective.</p>
 
-&lt;h3 id=&quot;xavier-initialization&quot;&gt;Xavier Initialization&lt;/h3&gt;
+<h3 id="xavier-initialization">Xavier Initialization</h3>
 
-&lt;p&gt;Objectives of Xavier initialization are simply all about managing variance,&lt;/p&gt;
+<p>Objectives of Xavier initialization are simply all about managing variance,</p>
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Maintaining variance of forward propagation.&lt;br /&gt;
-Each neuron should equally contribute to right prediction.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Maintaining variance of backward propagation&lt;br /&gt;
-Back propagation should not be susceptible to vanishing and exploding gradient.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+<ol>
+  <li>
+    <p>Maintaining variance of forward propagation.<br />
+Each neuron should equally contribute to right prediction.</p>
+  </li>
+  <li>
+    <p>Maintaining variance of backward propagation<br />
+Back propagation should not be susceptible to vanishing and exploding gradient.</p>
+  </li>
+</ol>
 
-&lt;p&gt;The part that interested me the most is how variance can be calculated and multiplied and added according to the number of layers and hidden neurons within each layer.&lt;/p&gt;
+<p>The part that interested me the most is how variance can be calculated and multiplied and added according to the number of layers and hidden neurons within each layer.</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
-$$ Var[z^i]  = Var[x]\prod^{i-1}_{i^{&apos;}=0}n_{i^{&apos;}}Var[W^{i^{&apos;}}]$$
-&lt;/div&gt;
+<div style="width: 100%; overflow: scroll;">
+$$ Var[z^i]  = Var[x]\prod^{i-1}_{i^{'}=0}n_{i^{'}}Var[W^{i^{'}}]$$
+</div>
 
-&lt;p&gt;Moving forward, the authors present the following way to intialize weights from such distribution,&lt;/p&gt;
+<p>Moving forward, the authors present the following way to intialize weights from such distribution,</p>
 
-&lt;div style=&quot;width: 100%; overflow: scroll;&quot;&gt;
+<div style="width: 100%; overflow: scroll;">
 $$ W \sim U\Big[-{\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}, {\sqrt{3}\over{\sqrt{n_{in} + n_{out}}}}\Big] $$
-&lt;/div&gt;
+</div>
 
-&lt;h3 id=&quot;additional-study&quot;&gt;Additional Study&lt;/h3&gt;
-&lt;p&gt;Although introduction of Xavier initialization is the main meal of the paper, I enjoyed learning other points made by the authors.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;It is important to choose a good activation function.
-&lt;br /&gt;
+<h3 id="additional-study">Additional Study</h3>
+<p>Although introduction of Xavier initialization is the main meal of the paper, I enjoyed learning other points made by the authors.</p>
+<ul>
+  <li>
+    <p>It is important to choose a good activation function.
+<br />
 For example, sigmoid shows a quick saturation of hidden layer in the output.
 It makes sense because in the early training period, bias overrules features in neurons.
 This restricts lower layers to learn meaningful features, and thus slower learning.
-Choosing zero-mean activation function line tanh can avoid the problem.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;It is important to choose a right loss function.
-&lt;br /&gt;
+Choosing zero-mean activation function line tanh can avoid the problem.</p>
+  </li>
+  <li>
+    <p>It is important to choose a right loss function.
+<br />
 The authors compared the result between quadratic(LSE) and cross entropy. 
-Result shows quadratic loss function gives more plateaus, which I assume it means slower training (flatness gives smaller gradient).&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="ml" /><summary type="html">Learning PyTorch, I happened to come across a function called reset_parameters(). This function included xavier initalization instead of standard initialization. So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”. The origin paper of Xavier intialization gave me great undersatnding of its objective.</summary></entry></feed>
+Result shows quadratic loss function gives more plateaus, which I assume it means slower training (flatness gives smaller gradient).</p>
+  </li>
+</ul>]]></content><author><name></name></author><category term="ml" /><summary type="html"><![CDATA[Learning PyTorch, I happened to come across a function called reset_parameters(). This function included xavier initalization instead of standard initialization. So, I decided to read Xavier Glorot and Yoshua Bengio’s “Understanding the difficulty of training deep feedforward neural networks”. The origin paper of Xavier intialization gave me great undersatnding of its objective.]]></summary></entry></feed>

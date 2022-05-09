@@ -18,10 +18,10 @@ Bayesian approach can be further explained from Bayes' rule.
 Bayes' rule is the following,
 
 <div style="width: 100%; overflow: scroll;">
-$$p(D | \mathbf{w}) = {p(D | \mathbf{w}) p(\mathbf{w}) \over p(D)}$$
+$$p(\mathbf{w} | D) = {p(D | \mathbf{w}) p(\mathbf{w}) \over p(D)}$$
 </div>
 
-$$p(D | \mathbf{w})$$ being _posterior probability_, $$p(D | \mathbf{w})$$ being _likelihood_ $$p(\mathbf{w})$$ being _prior probability_.
+$$p(\mathbf{w} | D)$$ being _posterior probability_, $$p(D | \mathbf{w})$$ being _likelihood_ $$p(\mathbf{w})$$ being _prior probability_.
 Thus, the following relation can be drawn,
 
 <div style="width: 100%; overflow: scroll;">
