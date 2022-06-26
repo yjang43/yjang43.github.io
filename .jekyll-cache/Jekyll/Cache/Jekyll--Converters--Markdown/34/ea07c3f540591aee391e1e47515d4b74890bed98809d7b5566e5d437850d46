@@ -1,0 +1,31 @@
+I"4<p>The two interpretation of probability are frequentist and Bayesian views. 
+One good example of frequentist view is training neural network, in which the model is trained minimizing negative log likelihood (maximizing likelihood in other words) observing train data.
+Opposite to frequentist view which relies merely on observation of occurrences, Bayesian involves <em>prior probability</em> to prevent some of the shortcomings of frequentist view such as overfitting on small dataset.</p>
+
+<p align="center">
+    <img src="/assets/img/bayesian.png" alt="bayesian cartoon" width="75%" />
+    <figcaption style="color: gray; font-size:12px; text-align:center"></figcaption>
+</p>
+
+<p>Bayesian approach can be further explained from Bayes’ rule.
+Bayes’ rule is the following,</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$p(\mathbf{w} | D) = {p(D | \mathbf{w}) p(\mathbf{w}) \over p(D)}$$
+</div>
+
+<p>\(p(\mathbf{w} | D)\) being <em>posterior probability</em>, \(p(D | \mathbf{w})\) being <em>likelihood</em> \(p(\mathbf{w})\) being <em>prior probability</em>.
+Thus, the following relation can be drawn,</p>
+
+<div style="width: 100%; overflow: scroll;">
+$$\text{posterior} \propto \text{likelihood} \times \text{prior}$$
+</div>
+
+<p>This relation provides a profound note that maximizing likelihood function results in maximizing posterior probability.
+However, the process of modeling with such process will only work with an appropriate prior probability.
+I will further discuss regarding the details of other aspects of Bayesian view in later blog posts.</p>
+
+<hr />
+<h2 id="reference">Reference</h2>
+<p><a href="https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf">Bishop, Christopher M. (2006). Pattern recognition and machine learning. New York :Springer,</a></p>
+:ET
