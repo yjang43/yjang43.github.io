@@ -1,12 +1,8 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - yjang43
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - yjang43/pushingonreadability_transformers
+  - yjang43/data-to-text-baseline
+  - yjang43/lora-multitask
+  - yjang43/vqgan
