@@ -18,18 +18,14 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-I am a forever-learning computer science student, and in real life working as a software engineer at Samsung Electronics.
-Currently, my work is focused on building products that employs generative AI.
 
-Aside from work, my interest lies in machine learning, especially in AI alignment.
-The growth of AI has created an unseen impact within our lives, and the concern about the alignment of AI has become tangible.
-I hope to study continue study in this direction, and hopefully, in some day, contribute to the society.
+I am a first-year PhD student in the Computer Science Department at Stony Brook University. My current interest lies in diffusion models and their connection to optimal transport. I believe this perspective will provide new breakthroughs in many applications. Specifically, I hope to apply this to the computer vision and robotics domains.
+
+Aside from research, I like to play chess &#9823;.
 
 
 <div>
   <p>
-  Email: yoosung [dot] jang [at] stonybrook [dot] edu <br>
-  Work Email: ys43 [dot] jang [at] samsung [dot] com <br>
-  Phone: +82 10 3257 7418
+  Email: yoosjang [at] cs [dot] stonybrook [dot] edu <br>
   </p>
 </div>
