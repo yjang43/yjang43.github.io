@@ -1,10 +1,20 @@
 ---
-layout: page
+layout: about
 permalink: /teaching/
-title: teaching
+title: CSE 305
 description:
-nav: false
-nav_order: 6
+
+profile:
+  align: right
+  image: profile.jpeg
+  image_circular: true # crops the image to make it circular
+  more_info: >
+
 ---
 
-TBA
+# CSE 305
+
+<p>Name: Yoo Sung Jang</p>
+<p>Office Hour: Monday 9am-11am</p>
+<p>Zoom: https://stonybrook.zoom.us/j/92552835863?pwd=rvGKmsQeYA0gXa2SXzBptcfIujNXbX.1</p>
+
